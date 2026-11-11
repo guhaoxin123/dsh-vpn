@@ -281,9 +281,28 @@ def main():
         p.pop("_delay", None)
         p["name"] = f"{i:03d} {old}" if old else f"{i:03d}"
 
+    region_of, unknown = {}, []
+    for p in alive:
+        r = detect_region(p["name"])
+        region_of[p["name"]] = r
+        if r == "OTHER":
+            unknown.append(p)
+    if unknown:
+        print(f"  {len(unknown)} 个节点名字里没有地区，按 IP 归属地补全…")
+        geo = geo_lookup(sorted({str(p["server"]) for p in unknown}))
+        alias = {"GB": "UK"}
+        known = {c for c, _ in REGION_DEFS}
+        fixed = 0
+        for p in unknown:
+            cc = geo.get(str(p["server"]), "")
+            cc = alias.get(cc, cc)
+            if cc in known:
+                region_of[p["name"]] = cc
+                fixed += 1
+        print(f"  归属地识别 {fixed}/{len(unknown)}")
     buckets = {}
     for p in alive:
-        buckets.setdefault(detect_region(p["name"]), []).append(p["name"])
+        buckets.setdefault(region_of[p["name"]], []).append(p["name"])
 
     region_groups = []
     for code, _ in REGION_DEFS:
@@ -331,7 +350,7 @@ REGION_DEFS.extend([
     ("ES", ["🇪🇸", "西班牙", "Spain", "ESP"]),
     ("CH", ["🇨🇭", "瑞士", "Switzerland", "CHE"]),
     ("SE", ["🇸🇪", "瑞典", "Sweden", "SWE"]),
-    ("NO", ["🇳🇴", "挪威", "Norway", "NOR"]),
+    ("NOR", ["🇳🇴", "挪威", "Norway", "NOR"]),
     ("DK", ["🇩🇰", "丹麦", "Denmark", "DNK"]),
     ("FI", ["🇫🇮", "芬兰", "Finland", "FIN"]),
     ("IE", ["🇮🇪", "爱尔兰", "Ireland", "IRL"]),
@@ -380,6 +399,36 @@ REGION_DEFS.extend([
 ])
 
 REGION_PATTERNS = [(name, _build_pattern(words)) for name, words in REGION_DEFS]
+
+
+
+
+def geo_lookup(hosts):
+    """按 IP 归属地识别地区，失败则返回空表（不影响主流程）"""
+    ipmap = {}
+    for h in hosts:
+        try:
+            ipmap[h] = socket.gethostbyname(h)
+        except Exception:
+            pass
+    uniq = sorted(set(ipmap.values()))
+    print(f"  待查 {len(hosts)} 个域名 -> {len(uniq)} 个 IP")
+    country = {}
+    for i in range(0, len(uniq), 100):
+        chunk = uniq[i:i + 100]
+        body = json.dumps([{"query": ip, "fields": "status,countryCode"} for ip in chunk]).encode()
+        try:
+            req = urllib.request.Request("http://ip-api.com/batch", data=body,
+                                         headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=40) as r:
+                res = json.loads(r.read().decode("utf-8", "ignore"))
+            for ip, item in zip(chunk, res):
+                if isinstance(item, dict) and item.get("status") == "success":
+                    country[ip] = item.get("countryCode") or ""
+        except Exception as e:
+            print(f"  ! geo batch {i//100+1}: {e}", file=sys.stderr)
+        time.sleep(4)
+    return {h: country.get(ip, "") for h, ip in ipmap.items() if country.get(ip)}
 
 
 if __name__ == "__main__":
