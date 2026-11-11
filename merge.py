@@ -38,6 +38,7 @@ TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snel
 UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
 TIMEOUT_MS = 10000
+MAX_DELAY = 2000   # 超过这个延迟(ms)的节点直接删除
 CTRL_PORT = 19090
 
 
@@ -292,7 +293,7 @@ def prune(proxies):
     if got:
         for i, k in kmap.items():
             d = int(got.get(k) or 0)
-            if d > 0:
+            if 0 < d <= MAX_DELAY:
                 dmap[i] = d
         print(f"  整组测速：{len(dmap)}/{len(kmap)} 可用")
     bad = [(i, p) for i, p in enumerate(proxies) if i in kmap and not dmap.get(i)]
@@ -311,7 +312,7 @@ def prune(proxies):
     alive = []
     for i, p in items:
         d = dmap.get(i)
-        if d:
+        if d and d <= MAX_DELAY:
             p["_delay"] = d
             alive.append(p)
     try:
