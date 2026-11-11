@@ -37,7 +37,7 @@ JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重�
 TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snell"}
 UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
-TIMEOUT_MS = 6000
+TIMEOUT_MS = 8000
 CTRL_PORT = 19090
 
 
@@ -260,6 +260,18 @@ def delay_of(key):
 def prune(proxies):
     total = len(proxies)
     proxies = sanitize(proxies)
+
+    def tcp_task(p):
+        return True if str(p.get("type")) in UDP_TYPES else tcp_ok(p)
+
+    with ThreadPoolExecutor(max_workers=128) as ex:
+        flags = list(ex.map(tcp_task, proxies))
+    proxies = [p for p, ok in zip(proxies, flags) if ok]
+    print(f"  TCP 预筛：{len(proxies)}/{total} 可达")
+    if not proxies:
+        print("  ! 无可用节点，停止生成", file=sys.stderr)
+        sys.exit(1)
+
     proc, kmap = start_mihomo(proxies)
     if proc is None:
         print("  ! mihomo 无法启动，停止生成（不发布未校验的配置）", file=sys.stderr)
@@ -271,13 +283,13 @@ def prune(proxies):
         return i, delay_of(kmap[i])
 
     dmap = {}
-    with ThreadPoolExecutor(max_workers=96) as ex:
+    with ThreadPoolExecutor(max_workers=64) as ex:
         for i, d in ex.map(task, items):
             dmap[i] = d
     bad = [it for it in items if not dmap.get(it[0])]
     print(f"  首轮可用 {len(items) - len(bad)}，重测 {len(bad)} 个…")
     if bad:
-        with ThreadPoolExecutor(max_workers=96) as ex:
+        with ThreadPoolExecutor(max_workers=64) as ex:
             for i, d in ex.map(task, bad):
                 if d:
                     dmap[i] = d
