@@ -375,7 +375,7 @@ SB_TYPES = {"ss", "vmess", "trojan", "http", "socks5"}
 def _kv(**kw):
     out = []
     for k, v in kw.items():
-        if v is None or v == "":
+        if v is None or v == "" or v == "None":
             continue
         if isinstance(v, bool):
             v = "true" if v else "false"
@@ -495,6 +495,136 @@ def write_surfboard(alive, region_groups):
 
 
 
+# ---------------------------------------------------------------- v2rayNG 输出
+def _b64u(data):
+    return base64.urlsafe_b64encode(data.encode("utf-8")).decode().rstrip("=")
+
+
+def _q(d):
+    pairs = []
+    for k, v in d.items():
+        if v is None or v == "" or v is False or v == "None":
+            continue
+        if isinstance(v, (list, tuple)):
+            v = ",".join(str(x) for x in v)
+        pairs.append((k, str(v)))
+    return urllib.parse.urlencode(pairs, quote_via=urllib.parse.quote)
+
+
+def to_link(p):
+    """clash 节点 -> 分享链接，v2rayNG / v2rayN / NekoBox 通用"""
+    t = str(p.get("type", "")).lower()
+    name = str(p.get("name", "")).strip()
+    srv = str(p.get("server", "")).strip()
+    port = int(p.get("port") or 0)
+    if not srv or not port or not name:
+        return None
+    frag = "#" + urllib.parse.quote(name, safe="")
+    net = str(p.get("network", "tcp") or "tcp")
+    wso = p.get("ws-opts") if isinstance(p.get("ws-opts"), dict) else {}
+    go = p.get("grpc-opts") if isinstance(p.get("grpc-opts"), dict) else {}
+    host = str((wso.get("headers") or {}).get("Host", "") or "")
+    path = str(wso.get("path", "/") or "/")
+    sni = str(p.get("servername") or p.get("sni") or host or "")
+
+    if t == "ss":
+        cipher = str(p.get("cipher", "aes-256-gcm"))
+        pw = str(p.get("password", ""))
+        if not pw:
+            return None
+        userinfo = _b64u(f"{cipher}:{pw}")
+        extra = ""
+        plug = p.get("plugin")
+        if plug:
+            opt = p.get("plugin-opts") or {}
+            if isinstance(opt, dict):
+                mode = str(opt.get("mode", ""))
+                h = str(opt.get("host", ""))
+                extra = "?plugin=" + urllib.parse.quote(f"obfs-local;obfs={mode};obfs-host={h}", safe="")
+        return f"ss://{userinfo}@{srv}:{port}{extra}{frag}"
+
+    if t == "vmess":
+        uuid = str(p.get("uuid", ""))
+        if not uuid:
+            return None
+        obj = {"v": "2", "ps": name, "add": srv, "port": str(port), "id": uuid,
+               "aid": str(p.get("alterId", 0) or 0), "scy": str(p.get("cipher", "auto") or "auto"),
+               "net": net, "type": "none" if net in ("tcp", "ws", "grpc") else net,
+               "host": host, "path": str(go.get("grpc-service-name", "") or path) if net == "grpc" else path,
+               "tls": "tls" if p.get("tls") else "", "sni": sni, "alpn": "", "fp": ""}
+        return "vmess://" + _b64u(json.dumps(obj, ensure_ascii=False))
+
+    if t == "vless":
+        uuid = str(p.get("uuid", ""))
+        if not uuid:
+            return None
+        ro = p.get("reality-opts") if isinstance(p.get("reality-opts"), dict) else {}
+        query = _q({"encryption": "none",
+                    "security": "reality" if ro else ("tls" if p.get("tls") else ""),
+                    "sni": sni, "fp": p.get("client-fingerprint"),
+                    "pbk": ro.get("public-key"), "sid": ro.get("short-id"),
+                    "type": net,
+                    "path": str(go.get("grpc-service-name", "") or path) if net == "grpc" else path,
+                    "host": host,
+                    "serviceName": go.get("grpc-service-name"),
+                    "allowInsecure": "1" if p.get("skip-cert-verify") else ""})
+        return f"vless://{uuid}@{srv}:{port}?{query}{frag}"
+
+    if t == "trojan":
+        pw = str(p.get("password", ""))
+        if not pw:
+            return None
+        query = _q({"security": "tls", "sni": sni, "type": net,
+                    "path": str(go.get("grpc-service-name", "") or path) if net == "grpc" else path,
+                    "host": host,
+                    "allowInsecure": "1" if p.get("skip-cert-verify") else ""})
+        return f"trojan://{urllib.parse.quote(pw, safe='')}@{srv}:{port}?{query}{frag}"
+
+    if t in ("hysteria2", "hy2"):
+        pw = str(p.get("password") or p.get("auth") or p.get("auth-str") or "")
+        if not pw:
+            return None
+        query = _q({"sni": sni, "insecure": "1" if p.get("skip-cert-verify") else "",
+                    "obfs": p.get("obfs"), "obfs-password": p.get("obfs-password")})
+        return f"hysteria2://{urllib.parse.quote(pw, safe='')}@{srv}:{port}?{query}{frag}"
+
+    if t == "hysteria":
+        auth = str(p.get("auth-str") or p.get("auth") or "")
+        query = _q({"sni": sni, "insecure": "1" if p.get("skip-cert-verify") else "",
+                    "auth": auth, "upmbps": p.get("up"), "downmbps": p.get("down"),
+                    "protocol": p.get("protocol")})
+        return f"hysteria://{srv}:{port}?{query}{frag}"
+
+    if t == "tuic":
+        uuid = str(p.get("uuid", ""))
+        pw = str(p.get("password", ""))
+        if not uuid:
+            return None
+        query = _q({"sni": sni, "congestion_control": p.get("congestion-controller"),
+                    "udp_relay_mode": p.get("udp-relay-mode"),
+                    "alpn": p.get("alpn"), "allow_insecure": "1" if p.get("skip-cert-verify") else ""})
+        return f"tuic://{uuid}:{urllib.parse.quote(pw, safe='')}@{srv}:{port}?{query}{frag}"
+
+    return None
+
+
+def write_v2rayng(alive):
+    links, used = [], 0
+    for p in alive:
+        try:
+            line = to_link(p)
+        except Exception:
+            line = None
+        if line:
+            links.append(line)
+            used += 1
+    body = base64.b64encode("\n".join(links).encode("utf-8")).decode()
+    with open("v2rayng.txt", "w", encoding="utf-8") as f:
+        f.write(body)
+    print(f"  v2rayNG：{used} 个节点（跳过 {len(alive) - used} 个不支持的类型）")
+    return used
+
+
 def main():
     all_px, seen = [], set()
     for tag, url in SOURCES:
@@ -585,7 +715,8 @@ def main():
     with open("proxies.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": alive}, f, allow_unicode=True, sort_keys=False, width=4096)
     write_surfboard(alive, region_groups)
-    print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml / surfboard.conf")
+    write_v2rayng(alive)
+    print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml / surfboard.conf / v2rayng.txt")
 
 
 # ---- 补充国家：追加进上面的列表，然后重建匹配表 ----
