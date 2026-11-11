@@ -368,6 +368,133 @@ def detect_region(name):
 
 
 # ---------------------------------------------------------------- 主流程
+# ---------------------------------------------------------------- Surfboard 输出
+SB_TYPES = {"ss", "vmess", "trojan", "http", "socks5"}
+
+
+def _kv(**kw):
+    out = []
+    for k, v in kw.items():
+        if v is None or v == "":
+            continue
+        if isinstance(v, bool):
+            v = "true" if v else "false"
+        out.append(f"{k.replace('_', '-')}={v}")
+    return out
+
+
+def sb_proxy(p):
+    """把 clash 节点转成 Surfboard/Surge 的 [Proxy] 行，不支持的类型返回 None"""
+    t = str(p.get("type", "")).lower()
+    if t not in SB_TYPES:
+        return None, None
+    name = str(p.get("name", "")).replace(",", " ").replace("=", "-").strip()
+    if not name:
+        return None, None
+    server = str(p.get("server", ""))
+    port = int(p.get("port") or 0)
+    if not server or not port:
+        return None, None
+    head = f"{name} = {t}, {server}, {port}"
+
+    if t == "ss":
+        cipher = str(p.get("cipher", "aes-256-gcm"))
+        pw = str(p.get("password", ""))
+        if not pw:
+            return None
+        opts = _kv(encrypt_method=cipher, password=pw, udp_relay=True)
+        return name, ", ".join([head] + opts)
+
+    if t == "vmess":
+        uuid = str(p.get("uuid", ""))
+        if not uuid:
+            return None
+        net = str(p.get("network", "tcp"))
+        ws = net == "ws"
+        tls = bool(p.get("tls"))
+        wso = p.get("ws-opts") or {}
+        host = ""
+        if isinstance(wso, dict):
+            host = str((wso.get("headers") or {}).get("Host", "") or "")
+        opts = _kv(username=uuid, tls=tls or None, ws=True if ws else None,
+                   ws_path=str(wso.get("path", "/")) if ws and isinstance(wso, dict) else None,
+                   ws_headers=f"Host:{host}" if ws and host else None,
+                   sni=p.get("servername"), skip_cert_verify=p.get("skip-cert-verify"),
+                   udp_relay=True)
+        return name, ", ".join([head] + opts)
+
+    if t == "trojan":
+        pw = str(p.get("password", ""))
+        if not pw:
+            return None
+        net = str(p.get("network", "tcp"))
+        ws = net == "ws"
+        wso = p.get("ws-opts") or {}
+        host = ""
+        if isinstance(wso, dict):
+            host = str((wso.get("headers") or {}).get("Host", "") or "")
+        opts = _kv(password=pw, sni=p.get("sni") or p.get("servername"),
+                   skip_cert_verify=p.get("skip-cert-verify"),
+                   ws=True if ws else None,
+                   ws_path=str(wso.get("path", "/")) if ws and isinstance(wso, dict) else None,
+                   ws_headers=f"Host:{host}" if ws and host else None,
+                   udp_relay=True)
+        return name, ", ".join([head] + opts)
+
+    if t in ("http", "socks5"):
+        opts = _kv(username=p.get("username"), password=p.get("password"),
+                   tls=bool(p.get("tls")) or None,
+                   skip_cert_verify=p.get("skip-cert-verify"))
+        return name, ", ".join([head] + opts)
+
+    return None, None
+
+
+def write_surfboard(alive, region_groups):
+    lines = ["[General]", "loglevel = notify",
+             "dns-server = 223.5.5.5, 119.29.29.29, https://doh.pub/dns-query",
+             "skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, "
+             "100.64.0.0/10, localhost, *.local",
+             "bypass-tun = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10",
+             "", "[Proxy]"]
+
+    used = {}
+    alias = {}
+    kept = 0
+    for p in alive:
+        nm, line = sb_proxy(p)
+        if not line:
+            continue
+        used[nm] = True
+        alias[p["name"]] = nm
+        lines.append(line)
+        kept += 1
+
+    lines += ["", "[Proxy Group]"]
+    region_names = []
+    for g in region_groups:
+        members = [alias[m] for m in g["proxies"] if m in alias]
+        if not members:
+            continue
+        region_names.append(g["name"])
+        lines.append(", ".join([f"{g['name']} = select"] + members))
+    all_names = list(used.keys())
+    if all_names:
+        lines.append(", ".join([f"♻️ 自动选择 = url-test"] + all_names +
+                               ["url=http://www.gstatic.com/generate_204",
+                                "interval=600", "tolerance=100"]))
+    lines.append(", ".join(["🚀 节点选择 = select"] + region_names +
+                           (["♻️ 自动选择"] if all_names else []) + ["DIRECT"]))
+
+    lines += ["", "[Rule]", "DOMAIN-SUFFIX,cn,DIRECT", "GEOIP,CN,DIRECT",
+              "FINAL,🚀 节点选择", ""]
+    with open("surfboard.conf", "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"  Surfboard：{kept} 个节点（跳过 {len(alive) - kept} 个不支持的协议）")
+    return kept
+
+
+
 def main():
     all_px, seen = [], set()
     for tag, url in SOURCES:
@@ -451,11 +578,14 @@ def main():
         "rules": ["DOMAIN-SUFFIX,cn,DIRECT", "DOMAIN-KEYWORD,-cn,DIRECT",
                   "GEOIP,private,DIRECT,no-resolve", "GEOIP,CN,DIRECT", "MATCH,🚀 节点选择"],
     }
+
+
     with open("clash.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
     with open("proxies.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": alive}, f, allow_unicode=True, sort_keys=False, width=4096)
-    print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml")
+    write_surfboard(alive, region_groups)
+    print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml / surfboard.conf")
 
 
 # ---- 补充国家：追加进上面的列表，然后重建匹配表 ----
