@@ -37,7 +37,7 @@ JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重�
 TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snell"}
 UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
-TIMEOUT_MS = 8000
+TIMEOUT_MS = 10000
 CTRL_PORT = 19090
 
 
@@ -199,6 +199,7 @@ def start_mihomo(proxies):
         cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "error",
                "external-controller": f"127.0.0.1:{CTRL_PORT}", "ipv6": False,
                "proxies": [dict(proxies[i], name=k) for i, k in zip(idxs, keys)],
+               "proxy-groups": [{"name": "PROBE", "type": "select", "proxies": keys}],
                "rules": ["MATCH,DIRECT"]}
         with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
             yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
@@ -276,23 +277,37 @@ def prune(proxies):
     if proc is None:
         print("  ! mihomo 无法启动，停止生成（不发布未校验的配置）", file=sys.stderr)
         sys.exit(1)
-    items = [(i, p) for i, p in enumerate(proxies) if i in kmap]
+    def group_delay():
+        q = urllib.parse.quote(TEST_URL, safe="")
+        url = f"http://127.0.0.1:{CTRL_PORT}/group/PROBE/delay?timeout={TIMEOUT_MS}&url={q}"
+        try:
+            with urllib.request.urlopen(url, timeout=2400) as r:
+                return json.loads(r.read().decode("utf-8", "ignore")) or {}
+        except Exception as e:
+            print(f"  ! 整组测速失败：{e}", file=sys.stderr)
+            return {}
+
+    dmap = {}
+    got = group_delay()
+    if got:
+        for i, k in kmap.items():
+            d = int(got.get(k) or 0)
+            if d > 0:
+                dmap[i] = d
+        print(f"  整组测速：{len(dmap)}/{len(kmap)} 可用")
+    bad = [(i, p) for i, p in enumerate(proxies) if i in kmap and not dmap.get(i)]
+    print(f"  重测 {len(bad)} 个…")
 
     def task(it):
         i, _ = it
         return i, delay_of(kmap[i])
 
-    dmap = {}
-    with ThreadPoolExecutor(max_workers=64) as ex:
-        for i, d in ex.map(task, items):
-            dmap[i] = d
-    bad = [it for it in items if not dmap.get(it[0])]
-    print(f"  首轮可用 {len(items) - len(bad)}，重测 {len(bad)} 个…")
     if bad:
-        with ThreadPoolExecutor(max_workers=64) as ex:
+        with ThreadPoolExecutor(max_workers=48) as ex:
             for i, d in ex.map(task, bad):
                 if d:
                     dmap[i] = d
+    items = [(i, p) for i, p in enumerate(proxies)]
     alive = []
     for i, p in items:
         d = dmap.get(i)
