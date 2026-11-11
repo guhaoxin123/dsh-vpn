@@ -3,10 +3,15 @@ name: update-clash-sub
 on:
   schedule:
     - cron: "17 * * * *"
+    - cron: "47 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -36,7 +41,7 @@ jobs:
           chmod +x mihomo
           ./mihomo -v
 
-      - name: 合并 + 测速剔除 + 编号
+      - name: 合并 + 测速剔除 + 编号 + 地区分组
         run: python merge.py
 
       - name: 提交
