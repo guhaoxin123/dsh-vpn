@@ -153,13 +153,53 @@ def tcp_ok(p, to=4):
         return False
 
 
+SS_CIPHERS = {
+    "aes-128-gcm", "aes-192-gcm", "aes-256-gcm",
+    "chacha20-ietf-poly1305", "xchacha20-ietf-poly1305",
+    "2022-blake3-aes-128-gcm", "2022-blake3-aes-256-gcm",
+    "2022-blake3-chacha20-poly1305",
+    "aes-128-cfb", "aes-192-cfb", "aes-256-cfb",
+    "aes-128-ctr", "aes-192-ctr", "aes-256-ctr",
+    "rc4-md5", "chacha20-ietf", "xchacha20", "chacha20", "none",
+}
+SUPPORTED_TYPES = TCP_TYPES | UDP_TYPES
+
+
+def sanitize(proxies):
+    """丢弃字段明显损坏的节点，避免整份配置加载失败"""
+    keep, drop = [], 0
+    for p in proxies:
+        t = str(p.get("type", "")).lower()
+        srv = str(p.get("server", "")).strip()
+        try:
+            port = int(p.get("port"))
+        except Exception:
+            port = 0
+        if t not in SUPPORTED_TYPES or not srv or not 0 < port < 65536:
+            drop += 1
+            continue
+        if not re.fullmatch(r"[A-Za-z0-9._:\[\]-]+", srv):
+            drop += 1
+            continue
+        if t == "ss" and str(p.get("cipher", "")).lower() not in SS_CIPHERS:
+            drop += 1
+            continue
+        keep.append(p)
+    if drop:
+        print(f"  字段校验剔除 {drop} 个")
+    return keep
+
+
 def start_mihomo(proxies):
-    """启动 mihomo，遇到非法节点就剔除后重试"""
+    """用 n00001 这类纯索引名启动 mihomo，报错时按索引剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
-    for attempt in range(50):
+    idxs = list(range(len(proxies)))
+    for _ in range(60):
+        keys = [f"n{i:05d}" for i in idxs]
         cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "error",
-               "external-controller": f"127.0.0.1:{CTRL_PORT}",
-               "proxies": proxies, "rules": ["MATCH,DIRECT"]}
+               "external-controller": f"127.0.0.1:{CTRL_PORT}", "ipv6": False,
+               "proxies": [dict(proxies[i], name=k) for i, k in zip(idxs, keys)],
+               "rules": ["MATCH,DIRECT"]}
         with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
             yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
         errf = open("runtime/mihomo.err", "w")
@@ -168,7 +208,7 @@ def start_mihomo(proxies):
                                     stdout=errf, stderr=subprocess.STDOUT)
         except Exception as e:
             print(f"  ! mihomo 无法执行: {e}", file=sys.stderr)
-            return None, proxies
+            return None, {}
         ready = False
         for _ in range(40):
             time.sleep(1)
@@ -181,8 +221,8 @@ def start_mihomo(proxies):
             except Exception:
                 pass
         if ready:
-            print(f"  mihomo 就绪（{len(proxies)} 个节点，剔除非法 {attempt} 个）")
-            return proc, proxies
+            print(f"  mihomo 就绪（{len(idxs)} 个节点，剔除非法 {len(proxies) - len(idxs)} 个）")
+            return proc, dict(zip(idxs, keys))
         try:
             proc.kill()
         except Exception:
@@ -192,25 +232,21 @@ def start_mihomo(proxies):
             err = open("runtime/mihomo.err", encoding="utf-8", errors="ignore").read()
         except Exception:
             err = ""
-        bad = None
-        for line in err.splitlines():
-            for p in proxies:
-                if p["name"] and p["name"] in line:
-                    bad = p["name"]
-                    break
-            if bad:
-                break
-        if not bad:
+        m = re.search(r"proxy (n\d{5})", err) or re.search(r"name \"?(n\d{5})", err)
+        if not m:
             print("  ! mihomo 启动失败，错误信息：", file=sys.stderr)
-            print("\n".join(err.splitlines()[-12:]), file=sys.stderr)
-            return None, proxies
-        print(f"  ! 剔除无效节点：{bad}")
-        proxies = [p for p in proxies if p["name"] != bad]
-    return None, proxies
+            print("\n".join(err.splitlines()[-8:]), file=sys.stderr)
+            return None, {}
+        i = int(m.group(1)[1:])
+        if i not in idxs:
+            return None, {}
+        print(f"  ! 剔除非法节点：{proxies[i].get('name', '?')}")
+        idxs.remove(i)
+    return None, {}
 
 
-def delay_of(name):
-    q = urllib.parse.quote(name, safe="")
+def delay_of(key):
+    q = urllib.parse.quote(key, safe="")
     url = (f"http://127.0.0.1:{CTRL_PORT}/proxies/{q}/delay"
            f"?timeout={TIMEOUT_MS}&url={urllib.parse.quote(TEST_URL, safe='')}")
     try:
@@ -223,48 +259,43 @@ def delay_of(name):
 
 def prune(proxies):
     total = len(proxies)
-    proc, proxies = start_mihomo(proxies)
-    alive = []
-    if proc is not None:
-        names = [p["name"] for p in proxies]
-        dmap = {}
+    proxies = sanitize(proxies)
+    proc, kmap = start_mihomo(proxies)
+    if proc is None:
+        print("  ! mihomo 无法启动，停止生成（不发布未校验的配置）", file=sys.stderr)
+        sys.exit(1)
+    items = [(i, p) for i, p in enumerate(proxies) if i in kmap]
+
+    def task(it):
+        i, _ = it
+        return i, delay_of(kmap[i])
+
+    dmap = {}
+    with ThreadPoolExecutor(max_workers=96) as ex:
+        for i, d in ex.map(task, items):
+            dmap[i] = d
+    bad = [it for it in items if not dmap.get(it[0])]
+    print(f"  首轮可用 {len(items) - len(bad)}，重测 {len(bad)} 个…")
+    if bad:
         with ThreadPoolExecutor(max_workers=96) as ex:
-            for n, d in zip(names, ex.map(delay_of, names)):
-                dmap[n] = d
-        bad = [n for n in names if not dmap.get(n)]
-        print(f"  首轮可用 {len(names) - len(bad)}，重测 {len(bad)} 个…")
-        if bad:
-            with ThreadPoolExecutor(max_workers=96) as ex:
-                for n, d in zip(bad, ex.map(delay_of, bad)):
-                    if d:
-                        dmap[n] = d
-        for p in proxies:
-            d = dmap.get(p["name"])
-            if d:
-                p["_delay"] = d
-                alive.append(p)
-        try:
-            proc.kill()
-        except Exception:
-            pass
-        print(f"  实测延迟：{len(alive)}/{total} 可用")
-        if not alive:
-            print("  ! 全部超时，放弃剔除（避免生成空配置）", file=sys.stderr)
-            return proxies, total
-        return alive, total
-    print("  ! 无 mihomo，退化为 TCP 连通性检测", file=sys.stderr)
-
-    def check(p):
-        if str(p.get("type")) in UDP_TYPES:
-            return p
-        return p if tcp_ok(p) else None
-
-    with ThreadPoolExecutor(max_workers=64) as ex:
-        for r in ex.map(check, proxies):
-            if r:
-                alive.append(r)
-    print(f"  TCP 检测：{len(alive)}/{total} 可用")
-    return (alive or proxies), total
+            for i, d in ex.map(task, bad):
+                if d:
+                    dmap[i] = d
+    alive = []
+    for i, p in items:
+        d = dmap.get(i)
+        if d:
+            p["_delay"] = d
+            alive.append(p)
+    try:
+        proc.kill()
+    except Exception:
+        pass
+    print(f"  实测延迟：{len(alive)}/{total} 可用")
+    if not alive:
+        print("  ! 全部超时，停止生成", file=sys.stderr)
+        sys.exit(1)
+    return alive, total
 
 
 # ---------------------------------------------------------------- 地区分组
