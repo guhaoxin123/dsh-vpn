@@ -388,7 +388,8 @@ def sb_proxy(p):
     t = str(p.get("type", "")).lower()
     if t not in SB_TYPES:
         return None, None
-    name = str(p.get("name", "")).replace(",", " ").replace("=", "-").strip()
+    name = re.sub(r"[#,\"\\]", "", str(p.get("name", ""))).replace("=", "-")
+    name = re.sub(r"\s+", " ", name).strip()
     if not name:
         return None, None
     server = str(p.get("server", ""))
@@ -465,8 +466,15 @@ def write_surfboard(alive, region_groups):
         nm, line = sb_proxy(p)
         if not line:
             continue
-        used[nm] = True
-        alias[p["name"]] = nm
+        base, _, rest = line.partition(" = ")
+        cand, k = base, 2
+        while cand in used:
+            cand = f"{base}-{k}"
+            k += 1
+        if cand != base:
+            line = f"{cand} = {rest}"
+        used[cand] = True
+        alias[p["name"]] = cand
         lines.append(line)
         kept += 1
 
