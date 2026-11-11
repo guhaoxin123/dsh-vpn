@@ -211,6 +211,48 @@ def prune(proxies):
     return (alive or proxies), total
 
 
+
+# ---------------------------------------------------------------- 地区分组
+REGION_DEFS = [
+    ("HK", ["\U0001F1ED\U0001F1F0", "香港", "Hong Kong", "HKG", "HK"]),
+    ("SG", ["\U0001F1F8\U0001F1EC", "新加坡", "狮城", "Singapore", "SGP", "SG"]),
+    ("JP", ["\U0001F1EF\U0001F1F5", "日本", "东京", "大阪", "Japan", "Tokyo", "Osaka", "JPN", "JP"]),
+    ("US", ["\U0001F1FA\U0001F1F8", "美国", "洛杉矶", "圣何塞", "西雅图", "芝加哥", "达拉斯", "纽约",
+            "United States", "USA", "US"]),
+    ("TW", ["\U0001F1F9\U0001F1FC", "台湾", "台北", "Taiwan", "TPE", "TW"]),
+    ("KR", ["\U0001F1F0\U0001F1F7", "韩国", "首尔", "Korea", "Seoul", "ICN", "KR"]),
+    ("UK", ["\U0001F1EC\U0001F1E7", "英国", "伦敦", "Britain", "London", "GB", "UK"]),
+    ("DE", ["\U0001F1E9\U0001F1EA", "德国", "法兰克福", "Germany", "Frankfurt", "DE"]),
+    ("FR", ["\U0001F1EB\U0001F1F7", "法国", "巴黎", "France", "Paris", "FR"]),
+    ("CA", ["\U0001F1E8\U0001F1E6", "加拿大", "多伦多", "Canada", "Toronto", "CA"]),
+    ("AU", ["\U0001F1E6\U0001F1FA", "澳大利亚", "澳洲", "悉尼", "Australia", "Sydney", "AU"]),
+    ("NL", ["\U0001F1F3\U0001F1F1", "荷兰", "阿姆斯特丹", "Netherlands", "NL"]),
+    ("RU", ["\U0001F1F7\U0001F1FA", "俄罗斯", "莫斯科", "Russia", "RU"]),
+    ("IN", ["\U0001F1EE\U0001F1F3", "印度", "India", "IN"]),
+    ("TR", ["\U0001F1F9\U0001F1F7", "土耳其", "Turkey", "TR"]),
+]
+
+
+def _build_pattern(words):
+    parts = []
+    for w in words:
+        if w.isascii():
+            parts.append(r"\b" + re.escape(w) + r"\b")
+        else:
+            parts.append(re.escape(w))
+    return re.compile("|".join(parts), re.I)
+
+
+REGION_PATTERNS = [(name, _build_pattern(words)) for name, words in REGION_DEFS]
+
+
+def detect_region(name):
+    for gname, pat in REGION_PATTERNS:
+        if pat.search(name):
+            return gname
+    return "OTHER"
+
+
 # ---------------------------------------------------------------- 主流程
 def main():
     all_px, seen = [], set()
@@ -236,12 +278,23 @@ def main():
     alive.sort(key=lambda p: p.get("_delay") or 9999)
     for i, p in enumerate(alive, 1):
         old = str(p.get("name", "")).strip()[:40]
-        d = p.pop("_delay", None)
+        p.pop("_delay", None)
         p["name"] = f"{i:03d} {old}" if old else f"{i:03d}"
-        if d:
-            p["name"] += f" [{d}ms]"
-        p["name"] = p["name"][:60]
 
+    buckets = {}
+    for p in alive:
+        buckets.setdefault(detect_region(p["name"]), []).append(p["name"])
+
+    region_groups = []
+    for code, _ in REGION_DEFS:
+        if buckets.get(code):
+            region_groups.append({"name": code, "type": "select", "proxies": buckets[code]})
+    if buckets.get("OTHER"):
+        region_groups.append({"name": "OTHER", "type": "select", "proxies": buckets["OTHER"]})
+    for g in region_groups:
+        print(f"  分组 {g['name']}: {len(g['proxies'])} 个节点")
+
+    all_names = [p["name"] for p in alive]
     cfg = {
         "mixed-port": 7890, "allow-lan": False, "mode": "rule", "log-level": "info",
         "ipv6": False, "external-controller": "127.0.0.1:9090",
@@ -255,12 +308,11 @@ def main():
         "proxies": alive,
         "proxy-groups": [
             {"name": "🚀 节点选择", "type": "select",
-             "proxies": ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
-            {"name": "♻️ 自动选择", "type": "url-test",
-             "proxies": [p["name"] for p in alive],
+             "proxies": [g["name"] for g in region_groups] + ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
+        ] + region_groups + [
+            {"name": "♻️ 自动选择", "type": "url-test", "proxies": all_names,
              "url": TEST_URL, "interval": 300, "tolerance": 50},
-            {"name": "🔯 故障转移", "type": "fallback",
-             "proxies": [p["name"] for p in alive],
+            {"name": "🔯 故障转移", "type": "fallback", "proxies": all_names,
              "url": TEST_URL, "interval": 300},
         ],
         "rules": ["DOMAIN-SUFFIX,cn,DIRECT", "DOMAIN-KEYWORD,-cn,DIRECT",
