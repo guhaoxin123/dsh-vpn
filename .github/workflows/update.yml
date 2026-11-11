@@ -11,14 +11,35 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install pyyaml
-      - run: python merge.py
-      - name: commit
+
+      - name: 安装依赖
+        run: pip install pyyaml
+
+      - name: 下载 mihomo（用于逐节点实测延迟）
+        run: |
+          set -e
+          API=https://api.github.com/repos/MetaCubeX/mihomo/releases/latest
+          URL=$(curl -sSL "$API" | grep -o 'https://[^"]*linux-amd64-compatible[^"]*\.gz' | head -1)
+          if [ -z "$URL" ]; then
+            URL=$(curl -sSL "$API" | grep -o 'https://[^"]*linux-amd64-v[0-9][^"]*\.gz' | head -1)
+          fi
+          echo "asset: $URL"
+          curl -sSL "$URL" -o mihomo.gz
+          gunzip -f mihomo.gz
+          chmod +x mihomo
+          ./mihomo -v
+
+      - name: 合并 + 测速剔除 + 编号
+        run: python merge.py
+
+      - name: 提交
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
