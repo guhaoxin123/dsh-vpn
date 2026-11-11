@@ -12,20 +12,32 @@ import yaml
 from concurrent.futures import ThreadPoolExecutor
 
 SOURCES = [
-    ("sunmiao", "https://sunmiao4458.github.io/free-proxy-airport/clash.yaml"),
-    ("Au1rxx",  "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/clash.yaml"),
-    ("Pawdroid","https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"),
-    ("dalazhi", "https://raw.githubusercontent.com/dalazhi/v2ray/main/dalazhi.yaml"),
-    ("getNode", "https://raw.githubusercontent.com/a2470982985/getNode/main/clash.yaml"),
-    ("free18",  "https://cdn.jsdelivr.net/gh/free18/v2ray@main/c.yaml"),
-    ("anaer",   "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"),
+    ("sunmiao",   "https://sunmiao4458.github.io/free-proxy-airport/clash.yaml"),
+    ("Au1rxx",    "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/clash.yaml"),
+    ("anaer",     "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"),
+    ("free18",    "https://cdn.jsdelivr.net/gh/free18/v2ray@main/c.yaml"),
+    ("ripao",     "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"),
+    ("ripao-sub", "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub"),
+    ("ermaozi",   "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"),
+    ("mahdibland","https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"),
+    ("chengaopan","https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"),
+    ("NoMoreWalls","https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"),
+    ("ts-sf",     "https://raw.githubusercontent.com/ts-sf/fly/main/v2"),
+    ("MhdiTaheri","https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/mix"),
+    ("ALIILAPRO", "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/server.txt"),
+    ("freefq",    "https://raw.githubusercontent.com/freefq/free/master/v2"),
+    ("0xRadikal", "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/fast/clash.yaml"),
+    ("Ruk1ng001", "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"),
+    ("Delta",     "https://raw.githubusercontent.com/Delta-Kronecker/V2ray-Config/main/config/clash.yaml"),
+    ("Pawdroid",  "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"),
+    ("dalazhi",   "https://raw.githubusercontent.com/dalazhi/v2ray/main/dalazhi.yaml"),
 ]
 JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重置|网址|traffic|expire|official|"
                   r"官网地址|TG|telegram", re.I)
 TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snell"}
 UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
-TIMEOUT_MS = 8000
+TIMEOUT_MS = 6000
 CTRL_PORT = 19090
 
 
@@ -216,13 +228,13 @@ def prune(proxies):
     if proc is not None:
         names = [p["name"] for p in proxies]
         dmap = {}
-        with ThreadPoolExecutor(max_workers=32) as ex:
+        with ThreadPoolExecutor(max_workers=96) as ex:
             for n, d in zip(names, ex.map(delay_of, names)):
                 dmap[n] = d
         bad = [n for n in names if not dmap.get(n)]
         print(f"  首轮可用 {len(names) - len(bad)}，重测 {len(bad)} 个…")
         if bad:
-            with ThreadPoolExecutor(max_workers=32) as ex:
+            with ThreadPoolExecutor(max_workers=96) as ex:
                 for n, d in zip(bad, ex.map(delay_of, bad)):
                     if d:
                         dmap[n] = d
