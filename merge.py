@@ -325,5 +325,62 @@ def main():
     print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml")
 
 
+# ---- 补充国家：追加进上面的列表，然后重建匹配表 ----
+REGION_DEFS.extend([
+    ("IT", ["🇮🇹", "意大利", "Italy", "ITA"]),
+    ("ES", ["🇪🇸", "西班牙", "Spain", "ESP"]),
+    ("CH", ["🇨🇭", "瑞士", "Switzerland", "CHE"]),
+    ("SE", ["🇸🇪", "瑞典", "Sweden", "SWE"]),
+    ("NO", ["🇳🇴", "挪威", "Norway", "NOR"]),
+    ("DK", ["🇩🇰", "丹麦", "Denmark", "DNK"]),
+    ("FI", ["🇫🇮", "芬兰", "Finland", "FIN"]),
+    ("IE", ["🇮🇪", "爱尔兰", "Ireland", "IRL"]),
+    ("PT", ["🇵🇹", "葡萄牙", "Portugal", "PRT"]),
+    ("PL", ["🇵🇱", "波兰", "Poland", "POL"]),
+    ("CZ", ["🇨🇿", "捷克", "Czech", "CZE"]),
+    ("AT", ["🇦🇹", "奥地利", "Austria", "AUT"]),
+    ("BE", ["🇧🇪", "比利时", "Belgium", "BEL"]),
+    ("GR", ["🇬🇷", "希腊", "Greece", "GRC"]),
+    ("HU", ["🇭🇺", "匈牙利", "Hungary", "HUN"]),
+    ("RO", ["🇷🇴", "罗马尼亚", "Romania", "ROU"]),
+    ("BG", ["🇧🇬", "保加利亚", "Bulgaria", "BGR"]),
+    ("UA", ["🇺🇦", "乌克兰", "Ukraine", "UKR"]),
+    ("RS", ["🇷🇸", "塞尔维亚", "Serbia", "SRB"]),
+    ("HR", ["🇭🇷", "克罗地亚", "Croatia", "HRV"]),
+    ("SK", ["🇸🇰", "斯洛伐克", "Slovakia", "SVK"]),
+    ("LT", ["🇱🇹", "立陶宛", "Lithuania", "LTU"]),
+    ("LV", ["🇱🇻", "拉脱维亚", "Latvia", "LVA"]),
+    ("EE", ["🇪🇪", "爱沙尼亚", "Estonia", "EST"]),
+    ("MD", ["🇲🇩", "摩尔多瓦", "Moldova", "MDA"]),
+    ("BR", ["🇧🇷", "巴西", "Brazil", "BRA"]),
+    ("AR", ["🇦🇷", "阿根廷", "Argentina", "ARG"]),
+    ("CL", ["🇨🇱", "智利", "Chile", "CHL"]),
+    ("MX", ["🇲🇽", "墨西哥", "Mexico", "MEX"]),
+    ("CO", ["🇨🇴", "哥伦比亚", "Colombia", "COL"]),
+    ("VN", ["🇻🇳", "越南", "Vietnam", "VNM"]),
+    ("MY", ["🇲🇾", "马来西亚", "Malaysia", "MYS"]),
+    ("TH", ["🇹🇭", "泰国", "Thailand", "THA"]),
+    ("PH", ["🇵🇭", "菲律宾", "Philippines", "PHL"]),
+    ("ID", ["🇮🇩", "印尼", "印度尼西亚", "Indonesia", "IDN"]),
+    ("KH", ["🇰🇭", "柬埔寨", "Cambodia", "KHM"]),
+    ("NP", ["🇳🇵", "尼泊尔", "Nepal", "NPL"]),
+    ("AE", ["🇦🇪", "阿联酋", "迪拜", "UAE", "Dubai"]),
+    ("SA", ["🇸🇦", "沙特", "Saudi"]),
+    ("IL", ["🇮🇱", "以色列", "Israel", "ISR"]),
+    ("IR", ["🇮🇷", "伊朗", "Iran", "IRN"]),
+    ("PK", ["🇵🇰", "巴基斯坦", "Pakistan", "PAK"]),
+    ("BD", ["🇧🇩", "孟加拉", "Bangladesh", "BGD"]),
+    ("LK", ["🇱🇰", "斯里兰卡", "Sri Lanka", "LKA"]),
+    ("KZ", ["🇰🇿", "哈萨克", "Kazakh", "KAZ"]),
+    ("ZA", ["🇿🇦", "南非", "South Africa", "ZAF"]),
+    ("NG", ["🇳🇬", "尼日利亚", "Nigeria", "NGA"]),
+    ("EG", ["🇪🇬", "埃及", "Egypt", "EGY"]),
+    ("MA", ["🇲🇦", "摩洛哥", "Morocco", "MAR"]),
+    ("NZ", ["🇳🇿", "新西兰", "New Zealand", "NZL"]),
+])
+
+REGION_PATTERNS = [(name, _build_pattern(words)) for name, words in REGION_DEFS]
+
+
 if __name__ == "__main__":
     main()
