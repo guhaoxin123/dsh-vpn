@@ -142,30 +142,59 @@ def tcp_ok(p, to=4):
 
 
 def start_mihomo(proxies):
-    cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "warn",
-           "external-controller": f"127.0.0.1:{CTRL_PORT}",
-           "proxies": proxies, "rules": ["MATCH,DIRECT"]}
+    """启动 mihomo，遇到非法节点就剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
-    with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
-        yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
-    try:
-        proc = subprocess.Popen(["./mihomo", "-d", "runtime", "-f", "runtime/test-config.yaml"],
-                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except Exception as e:
-        print(f"  ! mihomo 启动失败: {e}", file=sys.stderr)
-        return None
-    for _ in range(30):
-        time.sleep(1)
+    for attempt in range(50):
+        cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "warn",
+               "external-controller": f"127.0.0.1:{CTRL_PORT}",
+               "proxies": proxies, "rules": ["MATCH,DIRECT"]}
+        with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
+            yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
+        errf = open("runtime/mihomo.err", "w")
         try:
-            urllib.request.urlopen(f"http://127.0.0.1:{CTRL_PORT}/version", timeout=3).read()
-            print("  mihomo API 就绪")
-            return proc
-        except Exception:
+            proc = subprocess.Popen(["./mihomo", "-d", "runtime", "-f", "runtime/test-config.yaml"],
+                                    stdout=subprocess.DEVNULL, stderr=errf)
+        except Exception as e:
+            print(f"  ! mihomo 无法执行: {e}", file=sys.stderr)
+            return None, proxies
+        ready = False
+        for _ in range(25):
+            time.sleep(1)
             if proc.poll() is not None:
-                print("  ! mihomo 进程已退出", file=sys.stderr)
-                return None
-    proc.kill()
-    return None
+                break
+            try:
+                urllib.request.urlopen(f"http://127.0.0.1:{CTRL_PORT}/version", timeout=3).read()
+                ready = True
+                break
+            except Exception:
+                pass
+        if ready:
+            print(f"  mihomo 就绪（{len(proxies)} 个节点，剔除非法 {attempt} 个）")
+            return proc, proxies
+        try:
+            proc.kill()
+        except Exception:
+            pass
+        errf.close()
+        try:
+            err = open("runtime/mihomo.err", encoding="utf-8", errors="ignore").read()
+        except Exception:
+            err = ""
+        bad = None
+        for line in err.splitlines():
+            for p in proxies:
+                if p["name"] and p["name"] in line:
+                    bad = p["name"]
+                    break
+            if bad:
+                break
+        if not bad:
+            print("  ! mihomo 启动失败，错误信息：", file=sys.stderr)
+            print("\n".join(err.splitlines()[-12:]), file=sys.stderr)
+            return None, proxies
+        print(f"  ! 剔除无效节点：{bad}")
+        proxies = [p for p in proxies if p["name"] != bad]
+    return None, proxies
 
 
 def delay_of(name):
@@ -182,34 +211,37 @@ def delay_of(name):
 
 def prune(proxies):
     total = len(proxies)
-    proc = start_mihomo(proxies)
+    proc, proxies = start_mihomo(proxies)
     alive = []
     if proc is not None:
-        args = [p["name"] for p in proxies]
         with ThreadPoolExecutor(max_workers=64) as ex:
-            results = list(ex.map(delay_of, args))
+            results = list(ex.map(delay_of, [p["name"] for p in proxies]))
         for p, d in zip(proxies, results):
             if d:
                 p["_delay"] = d
                 alive.append(p)
-        proc.kill()
+        try:
+            proc.kill()
+        except Exception:
+            pass
         print(f"  实测延迟：{len(alive)}/{total} 可用")
         if not alive:
             print("  ! 全部超时，放弃剔除（避免生成空配置）", file=sys.stderr)
             return proxies, total
         return alive, total
     print("  ! 无 mihomo，退化为 TCP 连通性检测", file=sys.stderr)
+
     def check(p):
         if str(p.get("type")) in UDP_TYPES:
             return p
         return p if tcp_ok(p) else None
+
     with ThreadPoolExecutor(max_workers=64) as ex:
         for r in ex.map(check, proxies):
             if r:
                 alive.append(r)
     print(f"  TCP 检测：{len(alive)}/{total} 可用")
     return (alive or proxies), total
-
 
 
 # ---------------------------------------------------------------- 地区分组
