@@ -153,12 +153,12 @@ def start_mihomo(proxies):
         errf = open("runtime/mihomo.err", "w")
         try:
             proc = subprocess.Popen(["./mihomo", "-d", "runtime", "-f", "runtime/test-config.yaml"],
-                                    stdout=subprocess.DEVNULL, stderr=errf)
+                                    stdout=errf, stderr=subprocess.STDOUT)
         except Exception as e:
             print(f"  ! mihomo 无法执行: {e}", file=sys.stderr)
             return None, proxies
         ready = False
-        for _ in range(25):
+        for _ in range(40):
             time.sleep(1)
             if proc.poll() is not None:
                 break
