@@ -50,4 +50,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add clash.yaml proxies.yaml
           git commit -m "auto update $(date -u +%F_%H:%M)" || echo "no change"
-          git push
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase --autostash origin/main || git rebase --abort || true
+            if git push origin HEAD:main; then break; fi
+            sleep 5
+          done
