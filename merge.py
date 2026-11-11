@@ -25,7 +25,7 @@ JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重�
 TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snell"}
 UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
-TIMEOUT_MS = 5000
+TIMEOUT_MS = 8000
 CTRL_PORT = 19090
 
 
@@ -214,9 +214,20 @@ def prune(proxies):
     proc, proxies = start_mihomo(proxies)
     alive = []
     if proc is not None:
-        with ThreadPoolExecutor(max_workers=64) as ex:
-            results = list(ex.map(delay_of, [p["name"] for p in proxies]))
-        for p, d in zip(proxies, results):
+        names = [p["name"] for p in proxies]
+        dmap = {}
+        with ThreadPoolExecutor(max_workers=32) as ex:
+            for n, d in zip(names, ex.map(delay_of, names)):
+                dmap[n] = d
+        bad = [n for n in names if not dmap.get(n)]
+        print(f"  首轮可用 {len(names) - len(bad)}，重测 {len(bad)} 个…")
+        if bad:
+            with ThreadPoolExecutor(max_workers=32) as ex:
+                for n, d in zip(bad, ex.map(delay_of, bad)):
+                    if d:
+                        dmap[n] = d
+        for p in proxies:
+            d = dmap.get(p["name"])
             if d:
                 p["_delay"] = d
                 alive.append(p)
