@@ -145,7 +145,7 @@ def start_mihomo(proxies):
     """启动 mihomo，遇到非法节点就剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
     for attempt in range(50):
-        cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "warn",
+        cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "error",
                "external-controller": f"127.0.0.1:{CTRL_PORT}",
                "proxies": proxies, "rules": ["MATCH,DIRECT"]}
         with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
