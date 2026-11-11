@@ -48,7 +48,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add clash.yaml proxies.yaml surfboard.conf
+          git add clash.yaml proxies.yaml surfboard.conf v2rayng.txt
           git commit -m "auto update $(date -u +%F_%H:%M)" || echo "no change"
           for i in 1 2 3; do
             git fetch origin main
