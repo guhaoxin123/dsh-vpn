@@ -2,8 +2,8 @@ name: update-clash-sub
 
 on:
   schedule:
-    - cron: "17 * * * *"
-    - cron: "47 * * * *"
+    - cron: "17 3 * * *"
+    - cron: "47 15 * * *"
   workflow_dispatch:
 
 permissions:
