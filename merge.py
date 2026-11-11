@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""拉取多个订阅源 -> 合并去重 -> 按顺序编号重命名 -> 输出 clash.yaml / proxies.yaml"""
-import base64, json, re, sys, time, urllib.parse, urllib.request
+"""
+dsh-vpn 订阅生成器 —— 由 DSH 编写
+流程：拉取多个公开订阅源 -> 解析(clash yaml / base64 v2ray) -> 去重
+      -> 用 mihomo 对每个节点实测延迟 -> 超时/失败的直接剔除
+      -> 按顺序编号命名 -> 输出 clash.yaml / proxies.yaml
+"""
+import base64, json, os, re, socket, subprocess, sys, time
+import urllib.parse, urllib.request
 import yaml
+from concurrent.futures import ThreadPoolExecutor
 
 SOURCES = [
     ("sunmiao", "https://sunmiao4458.github.io/free-proxy-airport/clash.yaml"),
@@ -13,18 +20,27 @@ SOURCES = [
     ("free18",  "https://cdn.jsdelivr.net/gh/free18/v2ray@main/c.yaml"),
     ("anaer",   "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"),
 ]
-JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重置|网址|traffic|expire|official", re.I)
+JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重置|网址|traffic|expire|official|"
+                  r"官网地址|TG|telegram", re.I)
+TCP_TYPES = {"ss", "vmess", "vless", "trojan", "http", "socks5", "anytls", "snell"}
+UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
+TEST_URL = "https://www.gstatic.com/generate_204"
+TIMEOUT_MS = 5000
+CTRL_PORT = 19090
 
+
+# ---------------------------------------------------------------- 抓取解析
 def fetch(url, tries=3):
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "clash-merge/1.0"})
+            req = urllib.request.Request(url, headers={"User-Agent": "dsh-vpn/1.0"})
             with urllib.request.urlopen(req, timeout=60) as r:
                 return r.read().decode("utf-8", "ignore")
         except Exception as e:
             print(f"  ! {url} try{i+1}: {e}", file=sys.stderr)
             time.sleep(2)
     return ""
+
 
 def from_clash(text):
     try:
@@ -34,16 +50,17 @@ def from_clash(text):
     if not isinstance(data, dict):
         return []
     out = list(data.get("proxies") or [])
-    # 有些源自身也是 provider 结构，尝试展开
     for p in (data.get("proxy-providers") or {}).values():
         if isinstance(p, dict) and isinstance(p.get("proxies"), list):
             out.extend(p["proxies"])
     return [p for p in out if isinstance(p, dict) and p.get("name") and p.get("server")]
 
+
 def b64d(s):
     s = s.strip().replace("-", "+").replace("_", "/")
     s += "=" * (-len(s) % 4)
     return base64.b64decode(s).decode("utf-8", "ignore")
+
 
 def conv_link(link):
     try:
@@ -52,7 +69,10 @@ def conv_link(link):
             name = urllib.parse.unquote(link.split("#", 1)[1]) if "#" in link else ""
             if "@" in body:
                 userinfo, host = body.split("@", 1)
-                method, _, pwd = b64d(userinfo).partition(":") if ":" not in userinfo else userinfo.partition(":")
+                if ":" in userinfo:
+                    method, _, pwd = userinfo.partition(":")
+                else:
+                    method, _, pwd = b64d(userinfo).partition(":")
                 host = host.split("/")[0].split("?")[0]
                 host, _, port = host.rpartition(":")
                 return {"name": name or host, "type": "ss", "server": host, "port": int(port),
@@ -85,13 +105,15 @@ def conv_link(link):
             if q.get("flow"):
                 p["flow"] = q["flow"]
             if q.get("type") == "ws":
-                p["ws-opts"] = {"path": q.get("path", "/"), "headers": {"Host": q.get("host", "")}}
+                p["ws-opts"] = {"path": q.get("path", "/"),
+                                "headers": {"Host": q.get("host", "")}}
             if q.get("type") == "grpc":
                 p["grpc-opts"] = {"grpc-service-name": q.get("serviceName", "")}
             return p
     except Exception:
         return None
     return None
+
 
 def from_v2ray(text):
     raw = text.strip()
@@ -109,6 +131,87 @@ def from_v2ray(text):
                 out.append(p)
     return out
 
+
+# ---------------------------------------------------------------- 测速剔除
+def tcp_ok(p, to=4):
+    try:
+        socket.create_connection((str(p["server"]), int(p["port"])), timeout=to).close()
+        return True
+    except Exception:
+        return False
+
+
+def start_mihomo(proxies):
+    cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "warn",
+           "external-controller": f"127.0.0.1:{CTRL_PORT}",
+           "proxies": proxies, "rules": ["MATCH,DIRECT"]}
+    os.makedirs("runtime", exist_ok=True)
+    with open("runtime/test-config.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
+    try:
+        proc = subprocess.Popen(["./mihomo", "-d", "runtime", "-f", "runtime/test-config.yaml"],
+                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"  ! mihomo 启动失败: {e}", file=sys.stderr)
+        return None
+    for _ in range(30):
+        time.sleep(1)
+        try:
+            urllib.request.urlopen(f"http://127.0.0.1:{CTRL_PORT}/version", timeout=3).read()
+            print("  mihomo API 就绪")
+            return proc
+        except Exception:
+            if proc.poll() is not None:
+                print("  ! mihomo 进程已退出", file=sys.stderr)
+                return None
+    proc.kill()
+    return None
+
+
+def delay_of(name):
+    q = urllib.parse.quote(name, safe="")
+    url = (f"http://127.0.0.1:{CTRL_PORT}/proxies/{q}/delay"
+           f"?timeout={TIMEOUT_MS}&url={urllib.parse.quote(TEST_URL, safe='')}")
+    try:
+        with urllib.request.urlopen(url, timeout=TIMEOUT_MS / 1000 + 8) as r:
+            d = json.loads(r.read().decode("utf-8", "ignore"))
+            return int(d.get("delay", 0)) or None
+    except Exception:
+        return None
+
+
+def prune(proxies):
+    total = len(proxies)
+    proc = start_mihomo(proxies)
+    alive = []
+    if proc is not None:
+        args = [p["name"] for p in proxies]
+        with ThreadPoolExecutor(max_workers=64) as ex:
+            results = list(ex.map(delay_of, args))
+        for p, d in zip(proxies, results):
+            if d:
+                p["_delay"] = d
+                alive.append(p)
+        proc.kill()
+        print(f"  实测延迟：{len(alive)}/{total} 可用")
+        if not alive:
+            print("  ! 全部超时，放弃剔除（避免生成空配置）", file=sys.stderr)
+            return proxies, total
+        return alive, total
+    print("  ! 无 mihomo，退化为 TCP 连通性检测", file=sys.stderr)
+    def check(p):
+        if str(p.get("type")) in UDP_TYPES:
+            return p
+        return p if tcp_ok(p) else None
+    with ThreadPoolExecutor(max_workers=64) as ex:
+        for r in ex.map(check, proxies):
+            if r:
+                alive.append(r)
+    print(f"  TCP 检测：{len(alive)}/{total} 可用")
+    return (alive or proxies), total
+
+
+# ---------------------------------------------------------------- 主流程
 def main():
     all_px, seen = [], set()
     for tag, url in SOURCES:
@@ -116,10 +219,7 @@ def main():
         if not text.strip():
             print(f"[skip] {tag}: 空内容")
             continue
-        px = from_clash(text)
-        if not px:
-            px = from_v2ray(text)
-        n0 = len(px)
+        px = from_clash(text) or from_v2ray(text)
         kept = 0
         for p in px:
             key = (str(p.get("type")), str(p.get("server")), str(p.get("port")))
@@ -128,12 +228,19 @@ def main():
             seen.add(key)
             all_px.append(p)
             kept += 1
-        print(f"[ok] {tag}: 解析 {n0}，去重保留 {kept}")
+        print(f"[ok] {tag}: 解析 {len(px)}，去重保留 {kept}")
 
-    for i, p in enumerate(all_px, 1):
+    print(f"合并后 {len(all_px)} 个节点，开始逐个测速…")
+    alive, total = prune(all_px)
+
+    alive.sort(key=lambda p: p.get("_delay") or 9999)
+    for i, p in enumerate(alive, 1):
         old = str(p.get("name", "")).strip()[:40]
+        d = p.pop("_delay", None)
         p["name"] = f"{i:03d} {old}" if old else f"{i:03d}"
-    print(f"总计 {len(all_px)} 个节点")
+        if d:
+            p["name"] += f" [{d}ms]"
+        p["name"] = p["name"][:60]
 
     cfg = {
         "mixed-port": 7890, "allow-lan": False, "mode": "rule", "log-level": "info",
@@ -145,13 +252,16 @@ def main():
                 "nameserver": ["223.5.5.5", "119.29.29.29", "https://doh.pub/dns-query"],
                 "fallback": ["tls://8.8.4.4:853", "tls://1.1.1.1:853"],
                 "fallback-filter": {"geoip": True, "geoip-code": "CN"}},
-        "proxies": all_px,
+        "proxies": alive,
         "proxy-groups": [
-            {"name": "🚀 节点选择", "type": "select", "proxies": ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
-            {"name": "♻️ 自动选择", "type": "url-test", "proxies": [p["name"] for p in all_px],
-             "url": "https://www.gstatic.com/generate_204", "interval": 300, "tolerance": 50},
-            {"name": "🔯 故障转移", "type": "fallback", "proxies": [p["name"] for p in all_px],
-             "url": "https://www.gstatic.com/generate_204", "interval": 300},
+            {"name": "🚀 节点选择", "type": "select",
+             "proxies": ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
+            {"name": "♻️ 自动选择", "type": "url-test",
+             "proxies": [p["name"] for p in alive],
+             "url": TEST_URL, "interval": 300, "tolerance": 50},
+            {"name": "🔯 故障转移", "type": "fallback",
+             "proxies": [p["name"] for p in alive],
+             "url": TEST_URL, "interval": 300},
         ],
         "rules": ["DOMAIN-SUFFIX,cn,DIRECT", "DOMAIN-KEYWORD,-cn,DIRECT",
                   "GEOIP,private,DIRECT,no-resolve", "GEOIP,CN,DIRECT", "MATCH,🚀 节点选择"],
@@ -159,8 +269,9 @@ def main():
     with open("clash.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
     with open("proxies.yaml", "w", encoding="utf-8") as f:
-        yaml.safe_dump({"proxies": all_px}, f, allow_unicode=True, sort_keys=False, width=4096)
-    print("已生成 clash.yaml / proxies.yaml")
+        yaml.safe_dump({"proxies": alive}, f, allow_unicode=True, sort_keys=False, width=4096)
+    print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml")
+
 
 if __name__ == "__main__":
     main()
