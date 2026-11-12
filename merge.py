@@ -39,6 +39,7 @@ UDP_TYPES = {"hysteria", "hysteria2", "tuic", "wireguard", "ssh"}
 TEST_URL = "https://www.gstatic.com/generate_204"
 TIMEOUT_MS = 10000
 MAX_DELAY = 2000   # 超过这个延迟(ms)的节点直接删除
+FAST_MS = 200      # 极速分组阈值(ms)
 CTRL_PORT = 19090
 
 
@@ -495,7 +496,7 @@ def sb_proxy(p):
     return None, None
 
 
-def write_surfboard(alive, region_groups):
+def write_surfboard(alive, region_groups, path="surfboard.conf"):
     lines = ["[General]", "loglevel = notify",
              "dns-server = 223.5.5.5, 119.29.29.29, https://doh.pub/dns-query",
              "skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, "
@@ -540,7 +541,7 @@ def write_surfboard(alive, region_groups):
 
     lines += ["", "[Rule]", "DOMAIN-SUFFIX,cn,DIRECT", "GEOIP,CN,DIRECT",
               "FINAL,🚀 节点选择", ""]
-    with open("surfboard.conf", "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print(f"  Surfboard：{kept} 个节点（跳过 {len(alive) - kept} 个不支持的协议）")
     return kept
@@ -660,7 +661,7 @@ def to_link(p):
     return None
 
 
-def write_v2rayng(alive):
+def write_v2rayng(alive, path="v2rayng.txt"):
     links, used = [], 0
     for p in alive:
         try:
@@ -671,10 +672,52 @@ def write_v2rayng(alive):
             links.append(line)
             used += 1
     body = base64.b64encode("\n".join(links).encode("utf-8")).decode()
-    with open("v2rayng.txt", "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write(body)
     print(f"  v2rayNG：{used} 个节点（跳过 {len(alive) - used} 个不支持的类型）")
     return used
+
+
+def build_region_groups(names, region_of):
+    """按地区给一批节点名分组"""
+    buckets = {}
+    for n in names:
+        buckets.setdefault(region_of.get(n, "OTHER"), []).append(n)
+    groups = []
+    for code, _ in REGION_DEFS:
+        if buckets.get(code):
+            groups.append({"name": code, "type": "select", "proxies": buckets[code]})
+    if buckets.get("OTHER"):
+        groups.append({"name": "OTHER", "type": "select", "proxies": buckets["OTHER"]})
+    return groups
+
+
+def build_cfg(alive, region_groups):
+    """生成 clash 配置结构"""
+    all_names = [p["name"] for p in alive]
+    return {
+        "mixed-port": 7890, "allow-lan": False, "mode": "rule", "log-level": "info",
+        "ipv6": False, "external-controller": "127.0.0.1:9090",
+        "profile": {"store-selected": True, "store-fake-ip": True},
+        "dns": {"enable": True, "ipv6": False, "enhanced-mode": "fake-ip",
+                "fake-ip-range": "198.18.0.1/16",
+                "default-nameserver": ["223.5.5.5", "119.29.29.29"],
+                "nameserver": ["223.5.5.5", "119.29.29.29", "https://doh.pub/dns-query"],
+                "fallback": ["tls://8.8.4.4:853", "tls://1.1.1.1:853"],
+                "fallback-filter": {"geoip": True, "geoip-code": "CN"}},
+        "proxies": alive,
+        "proxy-groups": [
+            {"name": "🚀 节点选择", "type": "select",
+             "proxies": [g["name"] for g in region_groups] + ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
+        ] + region_groups + [
+            {"name": "♻️ 自动选择", "type": "url-test", "proxies": all_names,
+             "url": TEST_URL, "interval": 300, "tolerance": 50},
+            {"name": "🔯 故障转移", "type": "fallback", "proxies": all_names,
+             "url": TEST_URL, "interval": 300},
+        ],
+        "rules": ["DOMAIN-SUFFIX,cn,DIRECT", "DOMAIN-KEYWORD,-cn,DIRECT",
+                  "GEOIP,private,DIRECT,no-resolve", "GEOIP,CN,DIRECT", "MATCH,🚀 节点选择"],
+    }
 
 
 def main():
@@ -698,11 +741,14 @@ def main():
     print(f"合并后 {len(all_px)} 个节点，开始逐个测速…")
     alive, total = prune(all_px)
 
-    alive.sort(key=lambda p: p.get("_delay") or 9999)
+    alive.sort(key=lambda p: p.get("_delay") or 99999)
+    fast_delay = {}
     for i, p in enumerate(alive, 1):
         old = str(p.get("name", "")).strip()[:40]
-        p.pop("_delay", None)
+        d = p.pop("_delay", None)
         p["name"] = f"{i:03d} {old}" if old else f"{i:03d}"
+        if isinstance(d, (int, float)) and d > 0:
+            fast_delay[p["name"]] = d
 
     region_of, unknown = {}, []
     for p in alive:
@@ -735,32 +781,7 @@ def main():
         region_groups.append({"name": "OTHER", "type": "select", "proxies": buckets["OTHER"]})
     for g in region_groups:
         print(f"  分组 {g['name']}: {len(g['proxies'])} 个节点")
-
-    all_names = [p["name"] for p in alive]
-    cfg = {
-        "mixed-port": 7890, "allow-lan": False, "mode": "rule", "log-level": "info",
-        "ipv6": False, "external-controller": "127.0.0.1:9090",
-        "profile": {"store-selected": True, "store-fake-ip": True},
-        "dns": {"enable": True, "ipv6": False, "enhanced-mode": "fake-ip",
-                "fake-ip-range": "198.18.0.1/16",
-                "default-nameserver": ["223.5.5.5", "119.29.29.29"],
-                "nameserver": ["223.5.5.5", "119.29.29.29", "https://doh.pub/dns-query"],
-                "fallback": ["tls://8.8.4.4:853", "tls://1.1.1.1:853"],
-                "fallback-filter": {"geoip": True, "geoip-code": "CN"}},
-        "proxies": alive,
-        "proxy-groups": [
-            {"name": "🚀 节点选择", "type": "select",
-             "proxies": [g["name"] for g in region_groups] + ["♻️ 自动选择", "🔯 故障转移", "DIRECT"]},
-        ] + region_groups + [
-            {"name": "♻️ 自动选择", "type": "url-test", "proxies": all_names,
-             "url": TEST_URL, "interval": 300, "tolerance": 50},
-            {"name": "🔯 故障转移", "type": "fallback", "proxies": all_names,
-             "url": TEST_URL, "interval": 300},
-        ],
-        "rules": ["DOMAIN-SUFFIX,cn,DIRECT", "DOMAIN-KEYWORD,-cn,DIRECT",
-                  "GEOIP,private,DIRECT,no-resolve", "GEOIP,CN,DIRECT", "MATCH,🚀 节点选择"],
-    }
-
+    cfg = build_cfg(alive, region_groups)
 
     with open("clash.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
@@ -769,6 +790,22 @@ def main():
     write_surfboard(alive, region_groups)
     write_v2rayng(alive)
     print(f"完成：原始 {total} -> 存活 {len(alive)}，已写出 clash.yaml / proxies.yaml / surfboard.conf / v2rayng.txt")
+
+    # ---- 极速分组：只保留实测延迟低于 200ms 的节点 ----
+    fast = [p for p in alive if 0 < fast_delay.get(p["name"], 99999) < FAST_MS]
+    if not fast:
+        print("  极速分组：没有满足条件的节点，跳过")
+    else:
+        os.makedirs("fast", exist_ok=True)
+        fast_groups = build_region_groups([p["name"] for p in fast], region_of)
+        with open("fast/clash.yaml", "w", encoding="utf-8") as f:
+            yaml.safe_dump(build_cfg(fast, fast_groups), f,
+                           allow_unicode=True, sort_keys=False, width=4096)
+        with open("fast/proxies.yaml", "w", encoding="utf-8") as f:
+            yaml.safe_dump({"proxies": fast}, f, allow_unicode=True, sort_keys=False, width=4096)
+        write_surfboard(fast, fast_groups, path="fast/surfboard.conf")
+        write_v2rayng(fast, path="fast/v2rayng.txt")
+        print(f"  极速分组：{len(fast)} 个节点（延迟 < {FAST_MS}ms）")
 
 
 # ---- 补充国家：追加进上面的列表，然后重建匹配表 ----
