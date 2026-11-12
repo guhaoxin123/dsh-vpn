@@ -166,6 +166,31 @@ SS_CIPHERS = {
 SUPPORTED_TYPES = TCP_TYPES | UDP_TYPES
 
 
+UUID_RE = re.compile(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
+                     r"[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+
+
+def _norm_b64u(s):
+    return str(s or "").strip().replace("+", "-").replace("/", "_").rstrip("=")
+
+
+def _fix_reality(p):
+    """规范化 REALITY 参数；返回 False 表示这个节点必须丢弃"""
+    ro = p.get("reality-opts")
+    if not isinstance(ro, dict):
+        return True
+    pk = _norm_b64u(ro.get("public-key"))
+    sid = str(ro.get("short-id") or "").strip().lower()
+    if len(pk) != 43 or re.fullmatch(r"[A-Za-z0-9_-]+", pk) is None:
+        return False
+    if sid and (len(sid) > 16 or len(sid) % 2 or
+                re.fullmatch(r"[0-9a-f]+", sid) is None):
+        return False
+    ro["public-key"] = pk
+    ro["short-id"] = sid
+    return True
+
+
 def sanitize(proxies):
     """丢弃字段明显损坏的节点，避免整份配置加载失败"""
     keep, drop = [], 0
@@ -183,6 +208,15 @@ def sanitize(proxies):
             drop += 1
             continue
         if t == "ss" and str(p.get("cipher", "")).lower() not in SS_CIPHERS:
+            drop += 1
+            continue
+        if t in ("vmess", "vless") and UUID_RE.match(str(p.get("uuid", ""))) is None:
+            drop += 1
+            continue
+        if t in ("vless", "vmess") and not _fix_reality(p):
+            drop += 1
+            continue
+        if t in ("trojan", "hysteria2", "hy2") and not str(p.get("password") or ""):
             drop += 1
             continue
         keep.append(p)
@@ -235,11 +269,21 @@ def start_mihomo(proxies):
         except Exception:
             err = ""
         m = re.search(r"proxy (n\d{5})", err) or re.search(r"name \"?(n\d{5})", err)
-        if not m:
+        i = None
+        if m:
+            i = int(m.group(1)[1:])
+        else:
+            m2 = re.search(r"proxy (\d+):", err)
+            if m2:
+                n = int(m2.group(1))
+                for cand in (n, n - 1):
+                    if cand in idxs:
+                        i = cand
+                        break
+        if i is None:
             print("  ! mihomo 启动失败，错误信息：", file=sys.stderr)
             print("\n".join(err.splitlines()[-8:]), file=sys.stderr)
             return None, {}
-        i = int(m.group(1)[1:])
         if i not in idxs:
             return None, {}
         print(f"  ! 剔除非法节点：{proxies[i].get('name', '?')}")
