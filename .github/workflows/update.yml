@@ -2,12 +2,11 @@ name: update-clash-sub
 
 on:
   schedule:
-    - cron: "17 0,3,6,9,12,15,18,21 * * *"
-    - cron: "47 1,4,7,10,13,16,19,22 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     inputs:
       force:
-        description: 强制运行（忽略 75 分钟冷却）
+        description: 强制运行（忽略 80 分钟冷却）
         type: boolean
         default: false
 
@@ -16,7 +15,7 @@ permissions:
 
 concurrency:
   group: update
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -25,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 冷却检查（75 分钟内更新过就跳过，避免重复跑）
+      - name: 冷却检查（80 分钟内更新过就跳过，避免重复跑）
         id: guard
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +38,7 @@ jobs:
           t = datetime.datetime.strptime(data[0]['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
           age = (datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() / 60
           force = os.environ.get('FORCE', '').lower() == 'true'
-          skip = age < 75 and not force
+          skip = age < 80 and not force
           print('距上次更新 %.0f 分钟 force=%s skip=%s' % (age, force, skip))
           open(os.environ['GITHUB_OUTPUT'], 'a').write('skip=%s\n' % ('true' if skip else 'false'))
           "
