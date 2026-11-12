@@ -85,7 +85,7 @@ jobs:
               n = split($2, a, ",")
               for (i = 2; i <= n; i++) {
                 gsub(/^ +| +$/, "", a[i])
-                if (a[i] != "" && index(a[i], "=") == 0) print a[i] > "/tmp/refs.txt"
+                if (a[i] != "" && index(a[i], "=") == 0 && a[i] != "DIRECT" && a[i] != "REJECT") print a[i] > "/tmp/refs.txt"
               }
             }
           ' surfboard.conf
