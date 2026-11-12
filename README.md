@@ -11,6 +11,15 @@
 - `v2rayng.txt` — v2rayNG / v2rayN / NekoBox 订阅（base64 链接）
 - `proxies.yaml` — 纯节点列表，可当 proxy-provider
 
+## 极速版（fast/）
+
+只保留实测延迟低于 **200ms** 的节点，同样是三件套，分组方式、规则、编号习惯都一样：
+
+- `fast/clash.yaml`
+- `fast/surfboard.conf`
+- `fast/v2rayng.txt`
+- `fast/proxies.yaml`
+
 ## 分组
 
 按地区自动分组（约 60 个国家/地区，名字里没写地区的按 IP 归属地识别，识别不出的进 `OTHER`），
@@ -26,6 +35,8 @@ https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/cl
 https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/surfboard.conf
 https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/v2rayng.txt
 ```
+
+极速版把路径换成 `main/fast/clash.yaml`、`main/fast/surfboard.conf`、`main/fast/v2rayng.txt`。
 
 备用：把 `https://ghfast.top/` 换成 `https://gh-proxy.com/` 或
 `https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/`。
