@@ -5,13 +5,18 @@ on:
     - cron: "17 0,3,6,9,12,15,18,21 * * *"
     - cron: "47 1,4,7,10,13,16,19,22 * * *"
   workflow_dispatch:
+    inputs:
+      force:
+        description: 强制运行（忽略 75 分钟冷却）
+        type: boolean
+        default: false
 
 permissions:
   contents: write
 
 concurrency:
   group: update
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -20,14 +25,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: 冷却检查（75 分钟内更新过就跳过，避免重复跑）
+        id: guard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          python -c "
+          import json, os, urllib.request, datetime
+          url = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/commits?path=clash.yaml&per_page=1'
+          req = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN']})
+          data = json.load(urllib.request.urlopen(req, timeout=20))
+          t = datetime.datetime.strptime(data[0]['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
+          age = (datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() / 60
+          force = os.environ.get('FORCE', '').lower() == 'true'
+          skip = age < 75 and not force
+          print('距上次更新 %.0f 分钟 force=%s skip=%s' % (age, force, skip))
+          open(os.environ['GITHUB_OUTPUT'], 'a').write('skip=%s\n' % ('true' if skip else 'false'))
+          "
+
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != 'true'
         with:
           python-version: "3.11"
 
       - name: 安装依赖
+        if: steps.guard.outputs.skip != 'true'
         run: pip install pyyaml
 
       - name: 下载 mihomo（用于逐节点实测延迟）
+        if: steps.guard.outputs.skip != 'true'
         run: |
           set -e
           API=https://api.github.com/repos/MetaCubeX/mihomo/releases/latest
@@ -42,9 +69,37 @@ jobs:
           ./mihomo -v
 
       - name: 合并 + 测速剔除 + 编号 + 地区分组
+        if: steps.guard.outputs.skip != 'true'
         run: python merge.py
 
+      - name: 自检（分组引用必须都能找到）
+        if: steps.guard.outputs.skip != 'true'
+        run: |
+          set -e
+          awk -F' = ' '
+            /^\[Proxy\]/ { sec = "p"; next }
+            /^\[Proxy Group\]/ { sec = "g"; next }
+            /^\[/ { sec = "" }
+            sec == "p" && NF >= 2 { print $1 > "/tmp/nodes.txt" }
+            sec == "g" && NF >= 2 {
+              print $1 > "/tmp/groups.txt"
+              n = split($2, a, ",")
+              for (i = 2; i <= n; i++) {
+                gsub(/^ +| +$/, "", a[i])
+                if (a[i] != "" && index(a[i], "=") == 0) print a[i] > "/tmp/refs.txt"
+              }
+            }
+          ' surfboard.conf
+          sort -u /tmp/nodes.txt > /tmp/nodes.s
+          sort -u /tmp/groups.txt > /tmp/groups.s
+          sort -u /tmp/refs.txt > /tmp/refs.s
+          echo "节点 $(wc -l < /tmp/nodes.s) 个 / 分组 $(wc -l < /tmp/groups.s) 个"
+          miss=$(comm -23 /tmp/refs.s /tmp/nodes.s | comm -23 - /tmp/groups.s)
+          if [ -n "$miss" ]; then echo "缺失引用："; echo "$miss" | head -5; exit 1; fi
+          echo "引用全部存在"
+
       - name: 提交
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
