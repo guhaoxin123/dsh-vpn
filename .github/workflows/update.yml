@@ -75,34 +75,40 @@ jobs:
         if: steps.guard.outputs.skip != 'true'
         run: |
           set -e
-          awk -F' = ' '
-            /^\[Proxy\]/ { sec = "p"; next }
-            /^\[Proxy Group\]/ { sec = "g"; next }
-            /^\[/ { sec = "" }
-            sec == "p" && NF >= 2 { print $1 > "/tmp/nodes.txt" }
-            sec == "g" && NF >= 2 {
-              print $1 > "/tmp/groups.txt"
-              n = split($2, a, ",")
-              for (i = 2; i <= n; i++) {
-                gsub(/^ +| +$/, "", a[i])
-                if (a[i] != "" && index(a[i], "=") == 0 && a[i] != "DIRECT" && a[i] != "REJECT") print a[i] > "/tmp/refs.txt"
+          check() {
+            f="$1"
+            rm -f /tmp/nodes.txt /tmp/groups.txt /tmp/refs.txt
+            awk -F' = ' '
+              /^\[Proxy\]/ { sec = "p"; next }
+              /^\[Proxy Group\]/ { sec = "g"; next }
+              /^\[/ { sec = "" }
+              sec == "p" && NF >= 2 { print $1 > "/tmp/nodes.txt" }
+              sec == "g" && NF >= 2 {
+                print $1 > "/tmp/groups.txt"
+                n = split($2, a, ",")
+                for (i = 2; i <= n; i++) {
+                  gsub(/^ +| +$/, "", a[i])
+                  if (a[i] != "" && index(a[i], "=") == 0 && a[i] != "DIRECT" && a[i] != "REJECT") print a[i] > "/tmp/refs.txt"
+                }
               }
-            }
-          ' surfboard.conf
-          sort -u /tmp/nodes.txt > /tmp/nodes.s
-          sort -u /tmp/groups.txt > /tmp/groups.s
-          sort -u /tmp/refs.txt > /tmp/refs.s
-          echo "节点 $(wc -l < /tmp/nodes.s) 个 / 分组 $(wc -l < /tmp/groups.s) 个"
-          miss=$(comm -23 /tmp/refs.s /tmp/nodes.s | comm -23 - /tmp/groups.s)
-          if [ -n "$miss" ]; then echo "缺失引用："; echo "$miss" | head -5; exit 1; fi
-          echo "引用全部存在"
+            ' "$f"
+            sort -u /tmp/nodes.txt > /tmp/nodes.s
+            sort -u /tmp/groups.txt > /tmp/groups.s
+            sort -u /tmp/refs.txt > /tmp/refs.s
+            echo "$f 节点 $(wc -l < /tmp/nodes.s) 个 / 分组 $(wc -l < /tmp/groups.s) 个"
+            miss=$(comm -23 /tmp/refs.s /tmp/nodes.s | comm -23 - /tmp/groups.s)
+            if [ -n "$miss" ]; then echo "$f 缺失引用："; echo "$miss" | head -5; exit 1; fi
+            echo "$f 引用全部存在"
+          }
+          check surfboard.conf
+          if [ -f fast/surfboard.conf ]; then check fast/surfboard.conf; fi
 
       - name: 提交
         if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add clash.yaml proxies.yaml surfboard.conf v2rayng.txt
+          git add clash.yaml proxies.yaml surfboard.conf v2rayng.txt fast
           git commit -m "auto update $(date -u +%F_%H:%M)" || echo "no change"
           for i in 1 2 3; do
             git fetch origin main
