@@ -6,7 +6,7 @@ dsh-vpn 订阅生成器 —— 由 DSH 编写
       -> 用 mihomo 对每个节点实测延迟 -> 超时/失败的直接剔除
       -> 按顺序编号命名 -> 输出 clash.yaml / proxies.yaml
 """
-import base64, json, os, re, socket, subprocess, sys, time
+import base64, calendar, json, os, re, socket, subprocess, sys, time
 import urllib.parse, urllib.request
 import yaml
 from concurrent.futures import ThreadPoolExecutor
@@ -31,6 +31,8 @@ SOURCES = [
     ("Delta",     "https://raw.githubusercontent.com/Delta-Kronecker/V2ray-Config/main/config/clash.yaml"),
     ("Pawdroid",  "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"),
     ("dalazhi",   "https://raw.githubusercontent.com/dalazhi/v2ray/main/dalazhi.yaml"),
+    ("zhuhaiuk",  "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml"),
+    ("v2raydog",  "https://raw.githubusercontent.com/v2raydog-node/free-nodes/main/clash.yaml"),
 ]
 JUNK = re.compile(r"剩余|流量|到期|过期|官网|订阅|客服|更新|重置|网址|traffic|expire|official|"
                   r"官网地址|TG|telegram", re.I)
@@ -41,6 +43,50 @@ TIMEOUT_MS = 10000
 MAX_DELAY = 2000   # 超过这个延迟(ms)的节点直接删除
 FAST_MS = 200      # 极速分组阈值(ms)
 CTRL_PORT = 19090
+PHONE_LATENCY_FILE = "phone-latency.txt"
+PHONE_MAX_AGE_H = 12
+
+
+def node_key(p):
+    """节点身份：类型|服务器|端口，用来和手机实测结果对齐"""
+    return "%s|%s|%s" % (p.get("type", ""), p.get("server", ""), p.get("port", ""))
+
+
+def load_phone_latency(path=PHONE_LATENCY_FILE, max_age_h=PHONE_MAX_AGE_H):
+    """读取手机实测结果：首行 "# updated ISO时间"，其余每行 类型|服务器|端口|延迟(ms)"""
+    if not os.path.exists(path):
+        print("  没有手机实测文件，按 CI 测速结果生成")
+        return {}
+    updated, out = None, {}
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("#"):
+                m = re.search(r"updated\s+(\S+)", line)
+                if m:
+                    try:
+                        updated = calendar.timegm(time.strptime(m.group(1), "%Y-%m-%dT%H:%M:%SZ"))
+                    except ValueError:
+                        pass
+                continue
+            parts = line.split("|")
+            if len(parts) != 4:
+                continue
+            try:
+                d = int(parts[3])
+            except ValueError:
+                continue
+            if d > 0:
+                out["%s|%s|%s" % (parts[0], parts[1], parts[2])] = d
+    if updated is not None:
+        age = (time.time() - updated) / 3600.0
+        if age > max_age_h:
+            print("  手机实测结果已过期（%.1f 小时前），忽略" % age)
+            return {}
+        print("  手机实测结果：%d 个可用节点，%.1f 小时前更新" % (len(out), age))
+    return out
 
 
 # ---------------------------------------------------------------- 抓取解析
@@ -740,6 +786,18 @@ def main():
 
     print(f"合并后 {len(all_px)} 个节点，开始逐个测速…")
     alive, total = prune(all_px)
+    # ---- 手机实测优先：只保留在你自己网络里能连上的节点 ----
+    phone = load_phone_latency()
+    if phone:
+        hits = [p for p in alive if node_key(p) in phone]
+        if len(hits) >= 20:
+            for p in hits:
+                p["_delay"] = phone[node_key(p)]
+            print("[ok] 采用手机实测：%d 个节点（CI 侧另有 %d 个通过，你的网络上连不上）"
+                  % (len(hits), len(alive) - len(hits)))
+            alive = hits
+        else:
+            print("  手机实测只命中 %d 个（少于 20），本次按 CI 测速结果生成" % len(hits))
 
     alive.sort(key=lambda p: p.get("_delay") or 99999)
     fast_delay = {}
