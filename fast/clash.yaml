@@ -26,272 +26,271 @@ dns:
     geoip: true
     geoip-code: CN
 proxies:
-- name: 001 🇷🇴罗马尼亚 原生IP 6.05MB/s 380 linuxdo@onimaii
-  password: freeuser1
-  port: 9251
-  server: dl1-us.freeconnect.link
-  tls: true
-  type: http
-  username: freeuser1
-- name: 002 hysteria2-1827187993
-  password: bce6c821-200d-421f-bf3d-7159e5246ea0
-  port: 33333
-  server: hy2.123266.xyz
-  skip-cert-verify: true
-  sni: hy2.123266.xyz
-  type: hysteria2
-- name: 003 hysteria2-1853166912
+- name: 001 hysteria2-1853166912
   password: gf1:gfhysteria2024
   port: 443
   server: 66.94.121.46
   skip-cert-verify: true
   sni: 66.94.121.46
   type: hysteria2
+- ip: 172.16.0.2/32
+  ipv6: 2606:4700:110:8e4e:939b:b987:39aa:c46c/128
+  mtu: 1280
+  name: 002 ❓Other_1|2.2MB/s
+  port: 8742
+  private-key: OEysS/3kryZt7O/RobQFlmPatDWuUl9bwef0IoMX/Uo=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 0
+  - 0
+  - 0
+  server: 8.6.112.207
+  type: wireguard
+  udp: true
+- ip: 172.16.0.2/32
+  ipv6: 2606:4700:110:8e4e:939b:b987:39aa:c46c/128
+  mtu: 1280
+  name: 003 ❓Other_2|1.3MB/s
+  port: 4198
+  private-key: OEysS/3kryZt7O/RobQFlmPatDWuUl9bwef0IoMX/Uo=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 0
+  - 0
+  - 0
+  server: 8.6.112.200
+  type: wireguard
+  udp: true
+- ip: 172.16.0.2/32
+  keepalive: '5'
+  mtu: 1280
+  name: 004 🇨🇳CN_1|1.2MB/s
+  persistent-keepalive: '5'
+  port: 500
+  private-key: 6MOHNyxgcVe2ohk/L50VCvNoAD1dKsVQ+DO/r0GLgk8=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 228
+  - 192
+  - 229
+  server: 162.159.192.4
+  type: wireguard
+  udp: true
+  wnoise: quic
+  wnoisecount: '5'
+  wnoisedelay: '5'
+  wpayloadsize: 40-90
+- ip: 172.16.0.2/32
+  keepalive: '5'
+  mtu: 1280
+  name: 005 🇨🇳CN_2|1.3MB/s
+  persistent-keepalive: '5'
+  port: 987
+  presharedkey: ''
+  private-key: GJTd46xB/fjfi6vyJmpxUiNrNdjZTW0Qhi7b0PkER1Y=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 175
+  - 93
+  - 41
+  server: 188.114.97.6
+  type: wireguard
+  udp: true
+  wnoise: quic
+  wnoisecount: '15'
+  wnoisedelay: 1-2
+  wpayloadsize: 5-10
+- name: 006 US 🇺🇸 | @Raydikalx | 49B65F
+  server: blog.findlocaljobnetworkandbuildcommunityconnections.com
+  port: 443
+  type: trojan
+  password: dba20dcb635e430fa4d3bfc303a149d2
+  udp: true
+  sni: blog.findlocaljobnetworkandbuildcommunityconnections.com
+  network: tcp
 - client-fingerprint: chrome
   flow: xtls-rprx-vision
-  name: 004 vless-1883103905
-  network: raw
-  port: 443
+  name: 007 vless-1853340740
+  network: tcp
+  port: 23576
   reality-opts:
-    public-key: xPnpkXu5qfwIArlHKvJsqKJnGdGbJK1tT2GzWMyLohA
-    short-id: 9c56fddf237e8eaf
-  server: 195.211.98.43
-  servername: www.cloudflare.com
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  server: 15.204.97.214
+  servername: fuck.rkn
   tls: true
   type: vless
   udp: true
-  uuid: 1b4b11d5-4c2d-4533-9a55-636757cdee94
-- type: vless
-  name: 005 🇺🇸_美国 (21)
-  server: 47.253.226.114
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: 008 US 🇺🇸 | @Raydikalx | 66830B
+  server: 15.204.97.216
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: fuck.rkn
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  network: tcp
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 009 vless-1853340423
+  network: tcp
+  port: 23576
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  server: 15.204.97.206
+  servername: fuck.rkn
+  tls: true
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: 010 US 🇺🇸 | @Raydikalx | 168CE3
+  server: 15.204.97.195
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: fuck.rkn
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  network: tcp
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 011 vless-1853340437
+  network: tcp
+  port: 23576
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  server: ww13.levikogjgfdd.ir
+  servername: fuck.rkn
+  tls: true
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 012 vless-1853340242
+  network: tcp
+  port: 23576
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  server: 15.204.97.219
+  servername: fuck.rkn
+  tls: true
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: 013 hysteria2-1827187993
+  password: bce6c821-200d-421f-bf3d-7159e5246ea0
+  port: 33333
+  server: hy2.123266.xyz
+  skip-cert-verify: true
+  sni: hy2.123266.xyz
+  type: hysteria2
+- name: 014 CA 🇨🇦 | @Raydikalx | 7DDFEA
+  server: 104.18.79.242
   port: 443
-  uuid: 055a1ce8-2a16-4a0d-a2c2-22826c9b2413
+  type: vless
+  uuid: bb2a729c-6185-4170-8769-6f5b9f64d5b8
+  udp: true
+  tls: true
+  servername: cloud-sync-3d1512-gw.maziarkish.workers.dev
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: /11290579a72cdb4e?ed=2560
+    headers:
+      Host: cloud-sync-3d1512-gw.maziarkish.workers.dev
+- type: vless
+  name: 015 🇺🇸_美国 (39)
+  server: 15.204.97.197
+  port: 23576
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
   flow: xtls-rprx-vision
   udp: true
   tls: true
-  servername: www.cloudflare.com
-  sni: www.cloudflare.com
+  servername: fuck.rkn
+  sni: fuck.rkn
   skip-cert-verify: true
   client-fingerprint: chrome
   reality-opts:
-    public-key: Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc
-    short-id: ''
-- type: vless
-  name: 006 🇺🇸_美国 (60)
-  server: 172.66.0.172
-  port: 2083
-  uuid: d342d11e-d424-4583-b36e-524ab1f0afa4
-  udp: true
-  tls: true
-  servername: wk1.f1w.de5.net
-  sni: wk1.f1w.de5.net
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+- name: 016 🇺🇸US-🚀@VPNine1
+  password: yO8pug5XmwkBXBAjleYIaVt
+  port: 443
+  server: 192.255.152.147
   skip-cert-verify: true
+  sni: 192.255.152.147
+  tls: false
+  type: hysteria2
+- name: 017 CA 🇨🇦 | @Raydikalx | B70F5E
+  server: info.github.com
+  port: 8443
+  type: trojan
+  password: krOXKzNRRIROWi
+  udp: true
+  sni: kaMran06-v3QDLI.KAMRaN-06.WOrKErs.dEV
   client-fingerprint: chrome
   network: ws
   ws-opts:
     path: /
     headers:
-      Host: wk1.f1w.de5.net
-- name: 007 美国 501
+      Host: kaMran06-v3QDLI.KAMRaN-06.WOrKErs.dEV
+- name: 018 CA 🇨🇦 | @Raydikalx | AC46E8
+  server: hackernoon.com
+  port: 2052
   type: vless
-  network: ws
-  server: 104.16.80.1
-  port: 443
-  uuid: 462f23ba-3286-4601-813d-878bf26b4fcb
-  servername: nmdx.ccwu.cc
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: nmdx.ccwu.cc
-    path: /proxyip=proxyip.oracle.cmliussss.net
-- name: 008 HK 🇭🇰 | @Raydikalx | EE7A5A
-  type: vmess
-  server: 206.237.11.17
-  port: 50376
-  uuid: 9091fd64-7e8e-4b7a-8ae7-84474f234926
-  alterId: 0
-  cipher: auto
+  uuid: 1658394c-bc07-4db2-ac14-c6e22ee3ad46
   udp: true
   tls: false
-  servername: ''
-  network: none
-- name: 009 巴西 026
-  type: vless
-  network: ws
-  server: 188.114.96.9
-  port: 443
-  uuid: 2e305ebe-f6e6-4689-b32f-cd04ab5ff541
-  servername: idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev
-    path: /vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 010 vless-1853350171
-  network: raw
-  port: 28190
-  reality-opts:
-    public-key: ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno
-    short-id: ''
-  server: 159.89.87.21
-  servername: aws.amazon.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 14c80e0e-f7ce-4991-94fc-99a1db4a9b1e
-- name: 011 US_speednode_0040
-  port: 443
-  server: 38.247.141.135
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-- name: 012 @DeltaKroneckerGithub_1619
-  type: trojan
-  server: 199.232.78.159
-  port: 443
-  password: jcTG9WSWMJAmR4rv10xpww
-  sni: cdn.akamai.steamstatic.com
-  skip-cert-verify: true
-  udp: true
+  servername: rayAn69-P9fr6z6w-v3.raYan-69.worKers.deV
   network: ws
   ws-opts:
-    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
+    path: /
     headers:
-      Host: copy_az_channel_NUFiLTER_10i.global.ssl.fastly.net.
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 013 vless-1827147089
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.35
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- name: 014 美国 528
-  type: vless
-  network: ws
-  server: 172.64.147.91
-  port: 443
-  uuid: 5dc15e15-f285-4a9d-959b-0e4fbdd77b63
-  servername: powered-by-surena.configfarsi695fce27aa549.workers.dev
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: powered-by-surena.configfarsi695fce27aa549.workers.dev
-    path: /?ed
-- name: 015 🇺🇸 美国 | USA
-  server: 107.149.232.92
-  port: 443
-  type: hysteria2
-  password: fanvpn.net
-  auth: fanvpn.net
-  sni: www.bing.com
-  up: 100
-  down: 200
-  skip-cert-verify: true
-  alpn:
-  - h3
-  udp: true
-- alterId: 0
-  cipher: auto
-  name: 016 vmess-1827158757
-  network: tcp
-  port: 18000
-  server: 169.197.142.22
-  type: vmess
-  udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-- client-fingerprint: random
-  flow: xtls-rprx-vision
-  name: 017 vless-1891839087
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.74
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+      Host: rayAn69-P9fr6z6w-v3.raYan-69.worKers.deV
 - type: vless
-  name: 018 🇺🇸_美国 (71)
-  server: 103.116.7.67
-  port: 2083
-  uuid: 40af9131-d540-448a-bc56-5bba147a1dc3
+  name: 019 ❓未知丨yoyapai.com (42)
+  server: www.gov.se
+  port: 8080
+  uuid: 989d58b8-d2ea-4d28-b5ff-0f3cd078f2cf
   udp: true
-  tls: true
-  servername: proxy-1cu.pages.dev
-  sni: proxy-1cu.pages.dev
-  skip-cert-verify: true
-  client-fingerprint: random
+  tls: false
+  servername: www.gov.se
+  sni: www.gov.se
+  skip-cert-verify: false
   network: ws
   ws-opts:
     path: /
     headers:
-      Host: proxy-1cu.pages.dev
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 019 vless-1828036218
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: uTmb-ytXsx8p0fkBz7A76SHpWk7_oVutIA4LGTE8BQk
-    short-id: f98843107912e782
-  server: 209.200.246.148
-  servername: www.cloudflare.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: ca52e2b6-fb9f-4dac-b6dc-49da9923f251
-- client-fingerprint: chrome
-  encryption: none
-  name: 020 🇨🇦[www.v2nodes.com] vless-CA
+      Host: sdf23g-billowing-moon-348e.mzm468gc.workers.dev
+- encryption: none
+  name: 020 🇸🇬[www.v2nodes.com] vless-SG-8...
   network: ws
-  port: 443
-  server: stf839dvvyog9d2qa4-b8z6ahgn7b7qi.pages.dev
-  servername: stf839dvvyog9d2qa4-b8z6ahgn7b7qi.pages.dev
+  port: 8443
+  server: cf.090227.xyz
+  servername: liusuyan.cc.cd
   tls: true
   type: vless
-  uuid: b2f2f9f2-1864-48ea-839b-22815faff1f1
+  uuid: 889fa37f-6bce-4674-8a49-1cc435e11de7
   ws-opts:
-    path: /
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 021 vless-1827162772
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.231
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- name: 022 US 🇺🇸 | @Raydikalx | 225C18
+    headers:
+      Host: liusuyan.cc.cd
+    path: /proxyip=ProxyIP.SG.CMLiussss.Net
+- name: 021 US 🇺🇸 | @Raydikalx | 225C18
   server: panel.apexkey.store
   port: 2053
   type: vless
@@ -304,127 +303,87 @@ proxies:
     short-id: '68'
   client-fingerprint: chrome
   network: tcp
-- name: 023 美国 420
-  type: vless
-  network: ws
-  server: 172.66.44.78
-  port: 443
-  uuid: 0d5a2112-789f-4755-88e6-61a1a8f8067b
-  servername: 14f7f5F0.MRBL69bLaCk.PagEs.dev
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: 14f7f5F0.MRBL69bLaCk.PagEs.dev
-    path: /I0IHonn0TGa2xaOO?ed
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 024 vless-1879373946
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.168
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- client-fingerprint: ios
-  flow: xtls-rprx-vision
-  name: 025 vless-1828293967
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.202
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- type: vless
-  name: 026 🇺🇸_美国 (59)
-  server: 103.116.7.100
-  port: 2087
-  uuid: 40af9131-d540-448a-bc56-5bba147a1dc3
-  udp: true
-  tls: true
-  servername: proxy-1cu.pages.dev
-  sni: proxy-1cu.pages.dev
-  skip-cert-verify: true
-  client-fingerprint: android
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: proxy-1cu.pages.dev
-- type: vless
-  name: 027 🇸🇨_塞舌尔 (9)
-  server: 154.211.8.152
+- name: 022 US 🇺🇸 | @Raydikalx | 1D5827
+  server: 147.224.54.25
   port: 2053
-  uuid: 40af9131-d540-448a-bc56-5bba147a1dc3
-  udp: true
-  tls: true
-  servername: proxy-1cu.pages.dev
-  sni: proxy-1cu.pages.dev
-  skip-cert-verify: true
-  client-fingerprint: qq
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: proxy-1cu.pages.dev
-- name: 028 美国 414
   type: vless
-  network: ws
-  server: 172.67.65.56
-  port: 2053
-  uuid: 099244b9-2168-4dbd-870e-cbbe9d6eb573
-  servername: whitecreeper.pages.dev
-  skip-cert-verify: false
-  tls: true
+  uuid: cdb7fa1d-6e7a-467c-da9c-da363c7bf779
   udp: true
-  tfo: false
+  tls: true
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: DEFJSLdILrvauMpwtpvFZddadpt3rNtv03Dui2EkmRk
+    short-id: '68'
+  client-fingerprint: firefox
+  network: tcp
+- name: 023 CA 🇨🇦 | @Raydikalx | B7BFCE
+  server: equityapartments.com
+  port: 2083
+  type: trojan
+  password: RXR0MNWOjvFH
+  udp: true
+  sni: raYAnCOnfiG01-dPbXh49m-t1.raYAn-cONfig-01.workERs.dEV
   client-fingerprint: chrome
+  network: ws
   ws-opts:
+    path: /?ed=2560
     headers:
-      Host: whitecreeper.pages.dev
-    path: /proxyip
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 029 vless-1869872045
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
-    short-id: 0990d22f
-  server: 167.17.69.171
-  servername: www.cloudflare.com
-  tls: true
-  type: vless
+      Host: raYAnCOnfiG01-dPbXh49m-t1.raYAn-cONfig-01.workERs.dEV
+- name: 024 CA 🇨🇦 | @Raydikalx | DC5B1B
+  server: freedom.to
+  port: 2053
+  type: trojan
+  password: IDgAbZbs8cZw
   udp: true
-  uuid: 00144519-7e0d-476b-8d28-435576af9262
-- client-fingerprint: safari
-  flow: xtls-rprx-vision
-  name: 030 vless-1947416912
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: SmgYcFIvvFXW3xh4gvGhIJuQsaZvWkAylcjB6TEddEs
-    short-id: 896f52ba2cfca903
-  server: 47.251.108.158
-  servername: www.cloudflare.com
-  tls: true
+  sni: rAyan02-1d7cmk9v-t3.rayAn-02.worKers.dEV
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: rAyan02-1d7cmk9v-t3.rayAn-02.worKers.dEV
+- name: 025 US 🇺🇸 | @Raydikalx | 4C9871
+  server: 216.227.161.95
+  port: 7443
   type: vless
+  uuid: 218fd696-e3a2-4c33-b397-a5f13a82969e
   udp: true
-  uuid: 975fc322-6e38-434b-a53c-d39fed49b9a9
-- name: 031 US 🇺🇸 | @Raydikalx | 135FC7
+  tls: true
+  servername: media3.abvphelp.cc
+  reality-opts:
+    public-key: uNqGvaJEIFTFQvAxsTDhetPxkIWzJuBtxXsK0yFMYzM
+    short-id: 48d5cf47
+  client-fingerprint: chrome
+  network: grpc
+  grpc-opts:
+    grpc-service-name: grpc
+- name: 026 US 🇺🇸 | @Raydikalx | 5B619D
+  server: 198.247.127.131
+  port: 443
+  type: vless
+  uuid: 59548d2d-5d7c-4328-aa81-0d5614da0c1b
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: addons.mozilla.org
+  reality-opts:
+    public-key: vmHHRwA9ER6c8dfgtL-gh2HBMCvjySy1xLimqYpLiCI
+    short-id: ''
+  client-fingerprint: chrome
+  network: tcp
+- name: 027 @DeltaKroneckerGithub_591
+  type: vless
+  server: 3h-unitedstates3.09vpn.com
+  port: 8443
+  uuid: e3e51680-b29b-453b-b5bc-53989694db5e
+  udp: true
+  tls: true
+  skip-cert-verify: true
+  servername: 3h-unitedstates3.09vpn.com
+  network: ws
+  ws-opts:
+    path: /vless/
+- name: 028 US 🇺🇸 | @Raydikalx | 135FC7
   server: 198.44.36.36
   port: 443
   type: vless
@@ -438,159 +397,190 @@ proxies:
     short-id: 55a7e6ff3ccf94c9
   client-fingerprint: chrome
   network: tcp
-- name: 032 US 🇺🇸 | @Raydikalx | 6C8E25
-  server: 192.177.26.55
+- name: 029 🇺🇸US_332|113KB/s|R002-260618 [378a982ee2
   port: 443
-  type: vless
-  uuid: 7ad63b26-bf70-4872-8fab-ebaf73a1e19d
-  udp: true
+  server: 137.175.22.116
+  skip-cert-verify: true
+  sub_tag: R002-260618
   tls: true
-  flow: xtls-rprx-vision
-  servername: repo-16.topp-con.xyz
-  reality-opts:
-    public-key: cC6kqzQ1mdCXyPey8xRXS7TQ1S4kF3nJW-h1ItJ4SH8
-    short-id: bdaddda4cbc8c7bf
-  client-fingerprint: chrome
-  network: tcp
-- name: 033 trojan-1943481633
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
-  port: 443
-  server: 169.197.140.171
-  skip-cert-verify: false
-  sni: cdn.discoverfreshgraduatejobsstartyourprofessionaljourney.com
-  type: trojan
+  type: http
   udp: true
-- name: 034 🇺🇸US_1|3.3MB/s|P002-260618 [1f04858a3534
+  x-toolall-mihomo: true
+- name: 030 CA 🇨🇦 | @Raydikalx | F667E7
+  server: singapore.com
+  port: 443
+  type: trojan
+  password: bpb-trojan
+  udp: true
+  sni: kargar001.pages.dev
+  client-fingerprint: randomized
+  network: ws
+  ws-opts:
+    path: /tr?ed=2560
+    headers:
+      Host: kargar001.pages.dev
+- cipher: aes-256-gcm
+  name: '031 🇭🇰[www.v2nodes.com] ss-HK-1621... #1'
+  password: AMok40FfaM+Ikwre16psBpVk6JHxsQZw
+  port: 8388
+  server: 209.248.57.105
+  type: ss
+- name: 032 🇺🇸US-216.106.178.169-0269 | 45.021MB
+  server: 216.106.178.169
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+- name: 033 🇺🇸US_292|855KB/s|R002-260618 [ebfd5d9ae7
   password: 'null'
   port: 9002
-  server: 138.199.35.202
+  server: 138.199.35.205
   skip-cert-verify: true
-  sub_tag: P002-260618
+  sub_tag: R002-260618
   tls: true
   type: http
   udp: true
   username: 'null'
   x-toolall-mihomo: true
-- name: 035 荷兰 018
-  type: vless
-  network: ws
-  server: 188.164.248.110
+- name: 034 🇺🇸美国 原生IP 0.59MB/s 212 linuxdo@onimaii [
+  password: 84tmvo2o
+  port: 62000
+  server: 23.230.200.36
+  type: socks5
+  username: uoca86uz
+- name: 035 🇺🇸US_33|749KB/s|R002-260618 [fe85937b3b4
+  port: 9002
+  server: 138.199.35.214
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 036 US 🇺🇸 | @Raydikalx | 58BE1E
+  server: 143.246.60.254
   port: 443
-  uuid: 13134515-adc7-404b-8d2a-f9ad99e8dcbd
-  servername: imanvipreserved.pages.dev
+  type: vless
+  uuid: fa895069-bfe5-42c9-9f30-f918e1e442c1
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: ccJ6xUaUhUxN6GEj6a1vqsQDNDTJJX1KYSURY5pJpBE
+    short-id: eb68848e2575a1f4
+  client-fingerprint: chrome
+  network: tcp
+- name: 037 🇺🇸US_312|721KB/s [ee98ba87e968]
+  password: ''
+  port: 9002
+  server: 138.199.35.208
   skip-cert-verify: true
   tls: true
+  type: http
   udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: imanvipreserved.pages.dev
-    path: /flow=
+  username: ''
+  x-toolall-mihomo: true
 proxy-groups:
 - name: 🚀 节点选择
   type: select
   proxies:
   - HK
+  - SG
   - US
   - CA
-  - NL
-  - RO
-  - BR
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
 - name: HK
   type: select
   proxies:
-  - 008 HK 🇭🇰 | @Raydikalx | EE7A5A
+  - '031 🇭🇰[www.v2nodes.com] ss-HK-1621... #1'
+- name: SG
+  type: select
+  proxies:
+  - 020 🇸🇬[www.v2nodes.com] vless-SG-8...
 - name: US
   type: select
   proxies:
-  - 002 hysteria2-1827187993
-  - 003 hysteria2-1853166912
-  - 004 vless-1883103905
-  - 005 🇺🇸_美国 (21)
-  - 006 🇺🇸_美国 (60)
-  - 007 美国 501
-  - 010 vless-1853350171
-  - 011 US_speednode_0040
-  - 012 @DeltaKroneckerGithub_1619
-  - 013 vless-1827147089
-  - 014 美国 528
-  - 015 🇺🇸 美国 | USA
-  - 016 vmess-1827158757
-  - 017 vless-1891839087
-  - 018 🇺🇸_美国 (71)
-  - 021 vless-1827162772
-  - 022 US 🇺🇸 | @Raydikalx | 225C18
-  - 023 美国 420
-  - 024 vless-1879373946
-  - 025 vless-1828293967
-  - 026 🇺🇸_美国 (59)
-  - 027 🇸🇨_塞舌尔 (9)
-  - 028 美国 414
-  - 029 vless-1869872045
-  - 030 vless-1947416912
-  - 031 US 🇺🇸 | @Raydikalx | 135FC7
-  - 032 US 🇺🇸 | @Raydikalx | 6C8E25
-  - 033 trojan-1943481633
-  - 034 🇺🇸US_1|3.3MB/s|P002-260618 [1f04858a3534
+  - 001 hysteria2-1853166912
+  - 002 ❓Other_1|2.2MB/s
+  - 003 ❓Other_2|1.3MB/s
+  - 006 US 🇺🇸 | @Raydikalx | 49B65F
+  - 007 vless-1853340740
+  - 008 US 🇺🇸 | @Raydikalx | 66830B
+  - 009 vless-1853340423
+  - 010 US 🇺🇸 | @Raydikalx | 168CE3
+  - 011 vless-1853340437
+  - 012 vless-1853340242
+  - 013 hysteria2-1827187993
+  - 015 🇺🇸_美国 (39)
+  - 016 🇺🇸US-🚀@VPNine1
+  - 021 US 🇺🇸 | @Raydikalx | 225C18
+  - 022 US 🇺🇸 | @Raydikalx | 1D5827
+  - 025 US 🇺🇸 | @Raydikalx | 4C9871
+  - 026 US 🇺🇸 | @Raydikalx | 5B619D
+  - 027 @DeltaKroneckerGithub_591
+  - 028 US 🇺🇸 | @Raydikalx | 135FC7
+  - 029 🇺🇸US_332|113KB/s|R002-260618 [378a982ee2
+  - 032 🇺🇸US-216.106.178.169-0269 | 45.021MB
+  - 033 🇺🇸US_292|855KB/s|R002-260618 [ebfd5d9ae7
+  - 034 🇺🇸美国 原生IP 0.59MB/s 212 linuxdo@onimaii [
+  - 035 🇺🇸US_33|749KB/s|R002-260618 [fe85937b3b4
+  - 036 US 🇺🇸 | @Raydikalx | 58BE1E
+  - 037 🇺🇸US_312|721KB/s [ee98ba87e968]
 - name: CA
   type: select
   proxies:
-  - 019 vless-1828036218
-  - 020 🇨🇦[www.v2nodes.com] vless-CA
-- name: NL
-  type: select
-  proxies:
-  - 035 荷兰 018
-- name: RO
-  type: select
-  proxies:
-  - 001 🇷🇴罗马尼亚 原生IP 6.05MB/s 380 linuxdo@onimaii
-- name: BR
-  type: select
-  proxies:
-  - 009 巴西 026
+  - 004 🇨🇳CN_1|1.2MB/s
+  - 005 🇨🇳CN_2|1.3MB/s
+  - 014 CA 🇨🇦 | @Raydikalx | 7DDFEA
+  - 017 CA 🇨🇦 | @Raydikalx | B70F5E
+  - 018 CA 🇨🇦 | @Raydikalx | AC46E8
+  - 019 ❓未知丨yoyapai.com (42)
+  - 023 CA 🇨🇦 | @Raydikalx | B7BFCE
+  - 024 CA 🇨🇦 | @Raydikalx | DC5B1B
+  - 030 CA 🇨🇦 | @Raydikalx | F667E7
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
-  - 001 🇷🇴罗马尼亚 原生IP 6.05MB/s 380 linuxdo@onimaii
-  - 002 hysteria2-1827187993
-  - 003 hysteria2-1853166912
-  - 004 vless-1883103905
-  - 005 🇺🇸_美国 (21)
-  - 006 🇺🇸_美国 (60)
-  - 007 美国 501
-  - 008 HK 🇭🇰 | @Raydikalx | EE7A5A
-  - 009 巴西 026
-  - 010 vless-1853350171
-  - 011 US_speednode_0040
-  - 012 @DeltaKroneckerGithub_1619
-  - 013 vless-1827147089
-  - 014 美国 528
-  - 015 🇺🇸 美国 | USA
-  - 016 vmess-1827158757
-  - 017 vless-1891839087
-  - 018 🇺🇸_美国 (71)
-  - 019 vless-1828036218
-  - 020 🇨🇦[www.v2nodes.com] vless-CA
-  - 021 vless-1827162772
-  - 022 US 🇺🇸 | @Raydikalx | 225C18
-  - 023 美国 420
-  - 024 vless-1879373946
-  - 025 vless-1828293967
-  - 026 🇺🇸_美国 (59)
-  - 027 🇸🇨_塞舌尔 (9)
-  - 028 美国 414
-  - 029 vless-1869872045
-  - 030 vless-1947416912
-  - 031 US 🇺🇸 | @Raydikalx | 135FC7
-  - 032 US 🇺🇸 | @Raydikalx | 6C8E25
-  - 033 trojan-1943481633
-  - 034 🇺🇸US_1|3.3MB/s|P002-260618 [1f04858a3534
-  - 035 荷兰 018
+  - 001 hysteria2-1853166912
+  - 002 ❓Other_1|2.2MB/s
+  - 003 ❓Other_2|1.3MB/s
+  - 004 🇨🇳CN_1|1.2MB/s
+  - 005 🇨🇳CN_2|1.3MB/s
+  - 006 US 🇺🇸 | @Raydikalx | 49B65F
+  - 007 vless-1853340740
+  - 008 US 🇺🇸 | @Raydikalx | 66830B
+  - 009 vless-1853340423
+  - 010 US 🇺🇸 | @Raydikalx | 168CE3
+  - 011 vless-1853340437
+  - 012 vless-1853340242
+  - 013 hysteria2-1827187993
+  - 014 CA 🇨🇦 | @Raydikalx | 7DDFEA
+  - 015 🇺🇸_美国 (39)
+  - 016 🇺🇸US-🚀@VPNine1
+  - 017 CA 🇨🇦 | @Raydikalx | B70F5E
+  - 018 CA 🇨🇦 | @Raydikalx | AC46E8
+  - 019 ❓未知丨yoyapai.com (42)
+  - 020 🇸🇬[www.v2nodes.com] vless-SG-8...
+  - 021 US 🇺🇸 | @Raydikalx | 225C18
+  - 022 US 🇺🇸 | @Raydikalx | 1D5827
+  - 023 CA 🇨🇦 | @Raydikalx | B7BFCE
+  - 024 CA 🇨🇦 | @Raydikalx | DC5B1B
+  - 025 US 🇺🇸 | @Raydikalx | 4C9871
+  - 026 US 🇺🇸 | @Raydikalx | 5B619D
+  - 027 @DeltaKroneckerGithub_591
+  - 028 US 🇺🇸 | @Raydikalx | 135FC7
+  - 029 🇺🇸US_332|113KB/s|R002-260618 [378a982ee2
+  - 030 CA 🇨🇦 | @Raydikalx | F667E7
+  - '031 🇭🇰[www.v2nodes.com] ss-HK-1621... #1'
+  - 032 🇺🇸US-216.106.178.169-0269 | 45.021MB
+  - 033 🇺🇸US_292|855KB/s|R002-260618 [ebfd5d9ae7
+  - 034 🇺🇸美国 原生IP 0.59MB/s 212 linuxdo@onimaii [
+  - 035 🇺🇸US_33|749KB/s|R002-260618 [fe85937b3b4
+  - 036 US 🇺🇸 | @Raydikalx | 58BE1E
+  - 037 🇺🇸US_312|721KB/s [ee98ba87e968]
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
