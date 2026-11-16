@@ -276,7 +276,7 @@ def start_mihomo(proxies):
     """用 n00001 这类纯索引名启动 mihomo，报错时按索引剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
     idxs = list(range(len(proxies)))
-    for _ in range(60):
+    for _ in range(250):
         keys = [f"n{i:05d}" for i in idxs]
         cfg = {"mixed-port": 7891, "mode": "rule", "log-level": "error",
                "external-controller": f"127.0.0.1:{CTRL_PORT}", "ipv6": False,
@@ -333,7 +333,10 @@ def start_mihomo(proxies):
             return None, {}
         if i not in idxs:
             return None, {}
-        print(f"  ! 剔除非法节点：{proxies[i].get('name', '?')}")
+        key = f"n{i:05d}"
+        hint = [ln for ln in err.splitlines() if key in ln]
+        note = ("  原因: " + hint[0][-120:]) if hint else ""
+        print(f"  ! 剔除非法节点：{proxies[i].get('name', '?')}{note}")
         idxs.remove(i)
     return None, {}
 
