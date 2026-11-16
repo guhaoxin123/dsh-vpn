@@ -786,6 +786,11 @@ def main():
 
     print(f"合并后 {len(all_px)} 个节点，开始逐个测速…")
     alive, total = prune(all_px)
+    # ---- 候选池：CI 侧通过的节点，供手机端实测（不参与最终输出）----
+    _pool = [{k: v for k, v in p.items() if not k.startswith("_")} for p in alive]
+    with open("pool.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump({"proxies": _pool}, f, allow_unicode=True, sort_keys=False, width=4096)
+    print(f"  候选池 pool.yaml：{len(_pool)} 个节点，供手机端实测")
     # ---- 手机实测优先：只保留在你自己网络里能连上的节点 ----
     phone = load_phone_latency()
     if phone:
