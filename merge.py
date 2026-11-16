@@ -270,6 +270,50 @@ def sanitize(proxies):
     return keep
 
 
+SIG_KEYS = ("type", "cipher", "security", "network", "tls", "flow", "encryption", "plugin")
+
+
+def _sig(p):
+    return tuple(str(p.get(k, "")) for k in SIG_KEYS)
+
+
+def _cfg_ok(items, tag):
+    """用 mihomo -t 试解析一小段配置，判断这组参数能否被接受"""
+    names = [f"{tag}{i:05d}" for i in range(len(items))]
+    cfg = {"mixed-port": 7892, "mode": "rule", "log-level": "error",
+           "ipv6": False,
+           "proxies": [dict(p, name=n) for p, n in zip(items, names)],
+           "proxy-groups": [{"name": "G", "type": "select", "proxies": names}],
+           "rules": ["MATCH,DIRECT"]}
+    path = "runtime/vcheck.yaml"
+    try:
+        os.makedirs("runtime", exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
+        r = subprocess.run(["./mihomo", "-t", "-d", "runtime", "-f", path],
+                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=90)
+        return b"test is successful" in r.stdout
+    except Exception:
+        return False
+
+
+def drop_bad_combos(proxies):
+    """同一类参数组合只要代表节点解析失败，就整类丢弃，避免逐个重启试错"""
+    groups = {}
+    for p in proxies:
+        groups.setdefault(_sig(p), []).append(p)
+    print(f"  参数组合预检：{len(groups)} 类 / {len(proxies)} 个节点…")
+    bad = set()
+    for sig, items in groups.items():
+        if not _cfg_ok(items[:3], "c"):
+            bad.add(sig)
+    if not bad:
+        return proxies
+    kept = [p for p in proxies if _sig(p) not in bad]
+    print(f"  参数组合预检：剔除 {len(proxies) - len(kept)} 个节点（{len(bad)} 类不受支持）")
+    return kept
+
+
 def start_mihomo(proxies):
     """用 n00001 这类纯索引名启动 mihomo，报错时按索引剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
@@ -364,6 +408,10 @@ def prune(proxies):
     print(f"  TCP 预筛：{len(proxies)}/{total} 可达")
     if not proxies:
         print("  ! 无可用节点，停止生成", file=sys.stderr)
+        sys.exit(1)
+    proxies = drop_bad_combos(proxies)
+    if not proxies:
+        print("  ! 预检后无可用节点，停止生成", file=sys.stderr)
         sys.exit(1)
 
     proc, kmap = start_mihomo(proxies)
