@@ -314,6 +314,54 @@ def drop_bad_combos(proxies):
     return kept
 
 
+def shrink_invalid(proxies):
+    """反复用 mihomo -t 解析整份配置，按报错逐个剔除非法节点，直到可解析"""
+    os.makedirs("runtime", exist_ok=True)
+    path = "runtime/vcheck.yaml"
+    bad = 0
+    for _ in range(600):
+        names = [f"n{i:05d}" for i in range(len(proxies))]
+        cfg = {"mixed-port": 7892, "mode": "rule", "log-level": "error",
+               "ipv6": False,
+               "proxies": [dict(p, name=n) for p, n in zip(proxies, names)],
+               "proxy-groups": [{"name": "G", "type": "select", "proxies": names}],
+               "rules": ["MATCH,DIRECT"]}
+        with open(path, "w", encoding="utf-8") as f:
+            yaml.safe_dump(cfg, f, allow_unicode=True, sort_keys=False, width=4096)
+        try:
+            r = subprocess.run(["./mihomo", "-t", "-d", "runtime", "-f", path],
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
+        except Exception as e:
+            print(f"  ! 解析校验执行失败: {e}", file=sys.stderr)
+            return proxies
+        out = r.stdout.decode("utf-8", "ignore")
+        if "test is successful" in out:
+            if bad:
+                print(f"  解析校验：剔除 {bad} 个非法节点，剩 {len(proxies)} 个")
+            return proxies
+        idx = None
+        m = re.search(r"n(\d{5})", out)
+        if m:
+            idx = int(m.group(1))
+        else:
+            m2 = re.search(r"proxy (\d+):", out)
+            if m2:
+                idx = int(m2.group(1))
+        if idx is None or idx >= len(proxies):
+            print("  ! 解析校验无法定位非法节点，错误信息：", file=sys.stderr)
+            print("\n".join(out.splitlines()[-5:]), file=sys.stderr)
+            return proxies
+        reason = ""
+        for ln in out.splitlines():
+            if "level=error" in ln or "unsupported" in ln or "not found" in ln:
+                reason = "  原因: " + ln.strip()[-90:]
+                break
+        print(f"  ! 剔除非法节点：{proxies[idx].get('name', '?')}{reason}")
+        proxies = proxies[:idx] + proxies[idx + 1:]
+        bad += 1
+    return proxies
+
+
 def start_mihomo(proxies):
     """用 n00001 这类纯索引名启动 mihomo，报错时按索引剔除后重试"""
     os.makedirs("runtime", exist_ok=True)
@@ -409,7 +457,7 @@ def prune(proxies):
     if not proxies:
         print("  ! 无可用节点，停止生成", file=sys.stderr)
         sys.exit(1)
-    proxies = drop_bad_combos(proxies)
+    proxies = shrink_invalid(proxies)
     if not proxies:
         print("  ! 预检后无可用节点，停止生成", file=sys.stderr)
         sys.exit(1)
