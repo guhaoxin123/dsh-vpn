@@ -6,33 +6,33 @@
 
 ## 订阅地址
 
-`raw.githubusercontent.com` 国内直连不通，地址前面统一加加速镜像 `https://ghfast.top/`。
+`raw.githubusercontent.com` 国内直连不通，地址前面统一加加速镜像 `https://gh-proxy.com/`。
 
 **Clash / Mihomo**
 
 ```
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/clash.yaml
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/clash.yaml
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/clash.yaml
 ```
 
 **Surfboard / Surge**
 
 ```
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/surfboard.conf
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/surfboard.conf
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/surfboard.conf
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/surfboard.conf
 ```
 
 **v2rayNG / v2rayN / NekoBox**
 
 ```
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/v2rayng.txt
-https://ghfast.top/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/v2rayng.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/v2rayng.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/v2rayng.txt
 ```
 
 每组两条：上面是完整版（全部存活节点），下面带 `fast/` 的是极速版（只保留实测延迟低于 200ms 的节点）。
 
-镜像连不上时，把 `https://ghfast.top/` 换成 `https://gh-proxy.com/`，
-或用 `https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/clash.yaml` 这种形式。
+镜像连不上时，换一个其它加速域名（前缀写法一样），或者用 `https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/clash.yaml` 这种形式，
+具体哪个能用看当天网络。
 
 ## 分组
 
