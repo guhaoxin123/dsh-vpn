@@ -1,52 +1,47 @@
 proxies:
-- name: 001 TW - zhuhai.uk
-  type: http
-  server: 114.33.6.158
-  port: 443
-  tls: true
-  sni: 114.33.6.158
-  skip-cert-verify: true
-- name: 002 SG - zhuhai.uk 02
-  type: http
-  server: 43.160.239.37
-  port: 443
-  tls: true
-  sni: 43.160.239.37
-  skip-cert-verify: true
-- name: 003 @DeltaKroneckerGithub_404
+- name: 001 @DeltaKroneckerGithub_387
   type: vless
-  server: 104.21.89.181
+  server: 3.113.213.171
   port: 443
-  uuid: a25a71d1-10ed-4383-855a-f269a34ca691
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
   udp: true
   tls: true
   skip-cert-verify: true
-  servername: ave-qualifications-choices-populations.trycloudflare.com
-  client-fingerprint: chrome
+  servername: jp3.yohototo.top
+  client-fingerprint: unsafe
   network: ws
   ws-opts:
-    path: /a8b8606819ef
+    path: /tyxyws
     headers:
-      Host: ave-qualifications-choices-populations.trycloudflare.com
-- name: 004 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
+      Host: jp3.yohototo.top
+- name: 002 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.30
   type: socks5
   username: route164JIa2CBPxfy
-- name: 005 HK - zhuhai.uk 02
-  type: http
-  server: 38.76.140.254
-  port: 8443
+- name: 003 @DeltaKroneckerGithub_579
+  type: vless
+  server: 207.65.189.9
+  port: 443
+  uuid: 57715fc4-f787-4e90-9eb2-53fa515fbf37
+  udp: true
   tls: true
   skip-cert-verify: true
-- name: 006 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
+  servername: spsudu.pages.dev
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: spsudu.pages.dev
+- name: 004 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.140
   type: socks5
   username: ks878449260d
-- name: 007 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+- name: 005 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
   password: ''
   port: 443
   server: fan.571589.xyz
@@ -57,38 +52,25 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 008 HK - zhuhai.uk
+- name: 006 HK - zhuhai.uk
   type: http
   server: fan.240104.xyz
   port: 443
   tls: true
   sni: fan.240104.xyz
-  skip-cert-verify: true
-- name: 009 TH - zhuhai.uk 02
-  type: socks5
-  server: 168.222.8.78
-  port: 42000
-  username: JPjarpW3
-  password: ao3W5ZML
-- name: 010 D🔴🇵🇭hos_dokng.com_19b515e6
+- name: 007 D🔴🇵🇭hos_dokng.com_19b515e6
   password: s6a1j38q
   port: 42000
   server: 103.18.230.88
   type: socks5
   username: uv4oakg5
-- name: 011 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
+- name: 008 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.202
   type: socks5
   username: route164JIa2CBPxfy
-- name: 012 TH - zhuhai.uk
-  type: socks5
-  server: 82.47.154.22
-  port: 42000
-  username: userMGEj
-  password: KsySvCAP
-- name: 013 🇩🇪 德国 | DEU 10
+- name: 009 🇩🇪 德国 | DEU 10
   server: 104.18.139.67
   port: 443
   type: vless
@@ -103,7 +85,7 @@ proxies:
     path: /api
     host: norway.xn--nlqaa425dbaab446bbabd698meae.online
   udp: true
-- name: 014 美国 364
+- name: 010 美国 363
   type: vmess
   network: ws
   server: 172.64.145.93
@@ -117,7 +99,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 015 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
+- name: 011 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
   password: ''
   port: 9443
   server: 38.95.111.226
@@ -127,7 +109,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 016 美国 373
+- name: 012 美国 402
   type: vmess
   network: ws
   server: 172.67.190.164
@@ -141,35 +123,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 017 🇩🇪 德国 | DEU 8
-  server: 104.18.138.67
-  port: 443
-  type: vless
-  uuid: 0280c276-641b-49af-b699-4931c30ac137
-  tls: true
-  alpn:
-  - h2
-  servername: norway.xn--nlqaa425dbaab446bbabd698meae.online.
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /api
-    host: norway.xn--nlqaa425dbaab446bbabd698meae.online
-  udp: true
-- name: 018 US 🇺🇸 | @Raydikalx | 275AE9
-  server: 8.6.112.0
-  port: 443
-  type: trojan
-  password: XnjwEJbEbqBt8bjlrKZPwg
-  udp: true
-  sni: cf.lunex-vpn.xyz
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /Lunex
-    headers:
-      Host: cf.lunex-vpn.xyz
-- name: 019 美国 365
+- name: 013 美国 364
   type: vmess
   network: ws
   server: 104.18.42.163
@@ -183,20 +137,28 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 020 🇩🇪DE_1|1.1MB/s
+- name: 014 🇩🇪DE_1|1.1MB/s
   port: 443
   server: 172.64.68.89
   skip-cert-verify: true
   sni: 172.64.68.89
   tls: true
   type: http
-- name: 021 SG - zhuhai.uk
-  type: socks5
-  server: 47.236.168.243
-  port: 1080
-  username: '8888'
-  password: '8888'
-- name: 022 A🟢🇸🇬res[💬]_dokng.com_903162eb
+- name: 015 🆔ar14n24b 🔒 VL-WS-N/A ❔ XX 2ms
+  type: vless
+  server: 162.159.237.118
+  port: 2083
+  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
+  udp: true
+  network: ws
+  tls: true
+  servername: vipfree.dr-ping.ir
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: vipfree.dr-ping.ir
+- name: 016 A🟢🇸🇬res[💬]_dokng.com_903162eb
   password: ''
   port: 9443
   server: 149.88.99.209
@@ -206,7 +168,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 023 FR 🇫🇷 | @Raydikalx | 43C1C4
+- name: 017 FR 🇫🇷 | @Raydikalx | 43C1C4
   server: 138.124.251.98
   port: 443
   type: vless
@@ -221,7 +183,7 @@ proxies:
   client-fingerprint: chrome
   network: tcp
 - type: vless
-  name: 024 🇩🇪_DE_德国->🇫🇷_FR_法国_IPV4
+  name: 018 🇩🇪_DE_德国->🇫🇷_FR_法国_IPV4
   server: 163.245.42.87
   port: 443
   uuid: b9bfa54d-bc44-4592-a6d6-89a9665d286f
@@ -234,42 +196,47 @@ proxies:
   reality-opts:
     public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
     short-id: ''
-- name: 025 D🔴🇺🇸hos[🎮🐙]_dokng.com_4e17894f
+- name: 019 D🔴🇺🇸hos[🎮🐙]_dokng.com_4e17894f
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
   type: http
   username: fQ67Dpe5dU
-- name: 026 A🟢🇹🇭res_dokng.com_441fecdf
+- name: 020 US_speednode_0040
+  port: 443
+  server: 38.247.141.135
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+- name: 021 A🟢🇹🇭res_dokng.com_441fecdf
   password: fAgE2jqK
   port: 42000
   server: 151.246.108.69
   type: socks5
   username: h87527jJ
-- name: 027 DE_speednode_0004
+- name: 022 🆔ar14n24b 🔒 VL-WS-N/A 🇺🇸 US 5ms
+  type: vless
+  server: 172.64.79.163
+  port: 2083
+  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
+  udp: true
+  network: ws
+  tls: true
+  servername: vipfree.dr-ping.ir
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: vipfree.dr-ping.ir
+- name: 023 DE_speednode_0004
   port: 443
   server: 213.109.163.119
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 028 US - zhuhai.uk 13
-  type: http
-  server: 209.148.53.153
-  port: 8090
-  username: 'null'
-  password: None
-  tls: true
-  skip-cert-verify: true
-- name: 029 IT - zhuhai.uk
-  type: http
-  server: 93.42.177.250
-  port: 443
-  username: 'null'
-  password: 'null'
-  tls: true
-  skip-cert-verify: true
-- name: 030 NL_speednode_0022
+- name: 024 NL_speednode_0022
   password: 'null'
   port: 443
   server: 103.97.88.154
@@ -278,7 +245,21 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 031 🇦🇹AT_1|1.1MB/s|R002-260618
+- name: 025 🆔ar14n24b 🔒 VL-WS-N/A ❔ XX 127ms
+  type: vless
+  server: 162.159.160.117
+  port: 2083
+  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
+  udp: true
+  network: ws
+  tls: true
+  servername: vipfree.dr-ping.ir
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: vipfree.dr-ping.ir
+- name: 026 🇦🇹AT_1|1.1MB/s|R002-260618
   port: 443
   server: 146.70.244.2
   skip-cert-verify: true
@@ -287,23 +268,14 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 032 US - zhuhai.uk 14
-  type: http
-  server: 24.142.229.178
-  port: 8090
-  username: 'null'
-  password: 'null'
-  tls: true
-  sni: 24.142.229.178
-  skip-cert-verify: true
-- name: 033 LV_speednode_0020
+- name: 027 LV_speednode_0020
   port: 443
   server: 185.219.159.15
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 034 FR_speednode_0010
+- name: 028 FR_speednode_0010
   password: 'null'
   port: 23856
   server: 51.159.225.196
@@ -312,7 +284,7 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 035 FR 🇫🇷 | @Raydikalx | C2FD56
+- name: 029 FR 🇫🇷 | @Raydikalx | C2FD56
   server: 163.245.42.85
   port: 443
   type: vless
@@ -326,37 +298,24 @@ proxies:
     short-id: ''
   client-fingerprint: firefox
   network: tcp
-- name: 036 D🔴🇺🇸hos_dokng.com_342cda1e
+- name: 030 D🔴🇺🇸hos_dokng.com_342cda1e
   port: 44499
   server: 45.61.188.134
   type: socks5
-- name: 037 D🔴🇺🇸hos_dokng.com_a6052a43
+- name: 031 D🔴🇺🇸hos_dokng.com_a6052a43
   password: l1tlrdx52v
   port: 62000
   server: 66.253.2.69
   type: socks5
   username: u_rb1dba2
-- name: 038 美国 006
-  type: vless
-  network: ws
-  server: 198.202.24.142
-  port: 2083
-  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
-  servername: vipfree.dr-ping.ir
-  tls: true
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: vipfree.dr-ping.ir
-    path: /
-- name: 039 FR_speednode_0008
+- name: 032 FR_speednode_0008
   port: 19362
   server: 51.159.225.197
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 040 C🟠🇬🇷hos[🤖💬🎵]_dokng.com_4cc1e630
+- name: 033 C🟠🇬🇷hos[🤖💬🎵]_dokng.com_4cc1e630
   password: ''
   port: 443
   server: 149.22.85.78
@@ -366,7 +325,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 041 LV_speednode_0021
+- name: 034 LV_speednode_0021
   password: None
   port: 443
   server: 185.219.159.16
@@ -374,7 +333,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 042 🇨🇿CZ_1|1.6MB/s
+- name: 035 🇨🇿CZ_1|1.6MB/s
   port: 443
   server: 185.216.35.66
   skip-cert-verify: true
@@ -382,24 +341,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 043 🇩🇪 德国 | DEU 7
-  server: 191.217.206.147
-  port: 8443
-  type: vless
-  uuid: 67864856-8730-40cc-9e1a-a0df697d912b
-  tls: true
-  reality-opts:
-    public-key: 1SldfhWqqF_Rg9QlPKQqufcHi5GhkxwcEV5HGyOy4Qg
-    short-id: 64ad711102f56ca2
-  servername: de.krabvpn.pro
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /assets/6c0f3ad762cb7ff51b454076
-    host: de.krabvpn.pro
-    mode: auto
-  udp: true
-- name: 044 🇺🇸US_1|1.1MB/s
+- name: 036 🇺🇸US_1|1.1MB/s
   port: 443
   server: 149.88.21.129
   skip-cert-verify: true
@@ -407,13 +349,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 045 US - zhuhai.uk 08
-  type: http
-  server: 74.208.250.147
-  port: 8443
-  tls: true
-  skip-cert-verify: true
-- name: 046 C🟠🇦🇱hos[🤖💬🔮🎵]_dokng.com_5c5a81ec
+- name: 037 C🟠🇦🇱hos[🤖💬🔮🎵]_dokng.com_5c5a81ec
   password: None
   port: 443
   server: 87.120.103.242
@@ -423,44 +359,27 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 047 US - zhuhai.uk 12
-  type: http
-  server: 162.244.227.36
-  port: 443
-  username: 'null'
-  password: 'null'
-  tls: true
-  sni: 162.244.227.36
-  skip-cert-verify: true
-- name: 048 🇮🇹 意大利 | ITA 4
+- name: 038 🇮🇹 意大利 | ITA 4
   server: 202.50.253.81
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 049 US - zhuhai.uk 07
-  type: http
-  server: 107.151.238.27
-  port: 443
-  username: testuser1
-  password: e4b72b531a2d10900519
-  tls: true
-  sni: 6b97ee1b.acsnet.co
-- name: 050 NL_speednode_0026
+- name: 039 NL_speednode_0026
   port: 9002
   server: 84.17.47.125
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 051 D🔴🇫🇷hos[📺]_dokng.com_238d1eea
+- name: 040 D🔴🇫🇷hos[📺]_dokng.com_238d1eea
   password: Zn5mR7vA
   port: 42000
   server: 144.56.22.78
   type: socks5
   username: L8wP3kQx
-- name: 052 🇵🇱 波兰 | POL 2
+- name: 041 🇵🇱 波兰 | POL 2
   server: 80.47.10.106
   port: 443
   type: vless
@@ -473,49 +392,49 @@ proxies:
   client-fingerprint: firefox
   network: tcp
   udp: true
-- name: 053 🇮🇹 意大利 | ITA 6
+- name: 042 🇮🇹 意大利 | ITA 6
   server: 202.50.253.18
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 054 🇮🇹 意大利 | ITA
+- name: 043 🇮🇹 意大利 | ITA
   server: 202.50.253.99
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 055 DK_speednode_0005
+- name: 044 DK_speednode_0005
   port: 9002
   server: 158.173.154.5
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 056 🇮🇹 意大利 | ITA 2
+- name: 045 🇮🇹 意大利 | ITA 2
   server: 202.50.253.45
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 057 D🔴🇺🇸hos[🤖💬🎵]_dokng.com_568f056a
+- name: 046 D🔴🇺🇸hos[🤖💬🎵]_dokng.com_568f056a
   port: 443
   server: 149.34.248.65
   skip-cert-verify: true
   sni: 149.34.248.65
   tls: true
   type: http
-- name: 058 🇮🇹 意大利 | ITA 5
+- name: 047 🇮🇹 意大利 | ITA 5
   server: 202.50.253.90
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 059 🇩🇪DE_2|1.2MB/s|P002-260618
+- name: 048 🇩🇪DE_2|1.2MB/s|P002-260618
   password: None
   port: 443
   server: 149.36.50.1
@@ -527,7 +446,7 @@ proxies:
   x-toolall-mihomo: true
 - client-fingerprint: chrome
   flow: xtls-rprx-vision
-  name: 060 vless-1853963040
+  name: 049 vless-1853963040
   network: raw
   port: 443
   reality-opts:
@@ -539,7 +458,7 @@ proxies:
   type: vless
   udp: true
   uuid: b9bfa54d-bc44-4592-a6d6-89a9665d286f
-- name: 061 D🔴🇳🇱hos[🤖💬🔮🎵]_dokng.com_33ffe908
+- name: 050 D🔴🇳🇱hos[🤖💬🔮🎵]_dokng.com_33ffe908
   password: 'null'
   port: 9002
   server: 84.17.47.146
@@ -547,7 +466,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 062 D🔴🇳🇱hos[🤖💬🔮📦]_dokng.com_47dbdd00
+- name: 051 D🔴🇳🇱hos[🤖💬🔮📦]_dokng.com_47dbdd00
   password: 'null'
   port: 9002
   server: 84.17.47.147
@@ -556,20 +475,20 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 063 D🔴🇺🇸hos_dokng.com_3dc5b537
+- name: 052 D🔴🇺🇸hos_dokng.com_3dc5b537
   password: 7i1dheg6
   port: 62000
   server: 216.132.114.194
   type: socks5
   username: utdr8wvs
-- name: 064 NL_speednode_0023
+- name: 053 NL_speednode_0023
   port: 9002
   server: 84.17.47.124
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 065 NL_speednode_0027
+- name: 054 NL_speednode_0027
   password: None
   port: 9002
   server: 84.17.47.123
@@ -577,7 +496,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 066 🇳🇱NL_1|1.2MB/s
+- name: 055 🇳🇱NL_1|1.2MB/s
   port: 443
   server: 149.36.51.129
   skip-cert-verify: true
@@ -585,7 +504,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 067 NL_speednode_0024
+- name: 056 NL_speednode_0024
   password: None
   port: 9002
   server: 84.17.47.148
@@ -593,65 +512,44 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 068 D🔴🇺🇸hos_dokng.com_60b20da2
+- name: 057 🇮🇹 意大利 | ITA 7
+  server: 202.50.253.72
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
+- name: 058 D🔴🇺🇸hos_dokng.com_60b20da2
   password: r1703057as
   port: 62000
   server: 216.132.114.182
   type: socks5
   username: u_rf6ba87
-- alpn:
-  - h2
-  client-fingerprint: edge
-  grpc-opts:
-    grpc-mode: gun
-    grpc-service-name: glush.de1.v1
-  name: 069 🇩🇪 德国 | DEU 11
-  network: grpc
-  port: 443
-  server: almanac.filnex.baby
-  servername: morningfen.merlano.monster
-  tls: true
-  type: vless
-  udp: true
-  uuid: 25ac78e7-6d1d-4c9a-a450-c01a4871769f
-- name: 070 D🔴🇯🇵hos_dokng.com_4900a88a
+- name: 059 D🔴🇯🇵hos_dokng.com_4900a88a
   password: EGJDy5Kg
   port: 42000
   server: 103.248.150.50
   type: socks5
   username: paZFN3JA
-- client-fingerprint: chrome
-  name: 071 🇫🇮[www.v2nodes.com] vless-FI-1...
-  network: ws
-  port: 2083
-  server: 104.17.145.145
-  servername: vipfree.dr-ping.ir
-  tls: true
-  type: vless
-  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
-  ws-opts:
-    headers:
-      Host: vipfree.dr-ping.ir
-    path: /
-- name: 072 C🟠🇲🇽hos_dokng.com_12126395
+- name: 060 C🟠🇲🇽hos_dokng.com_12126395
   password: sZnD8GTz
   port: 42000
   server: 144.225.47.106
   type: socks5
   username: DJy1T0dt
-- name: 073 A🟢🇲🇽res_dokng.com_1aa34d5e
+- name: 061 A🟢🇲🇽res_dokng.com_1aa34d5e
   password: 2j7CCZQb
   port: 62000
   server: 94.194.164.203
   type: socks5
   username: rVkkraqT
-- name: 074 C🟠🇲🇽hos[🔍]_dokng.com_aff11c5d
+- name: 062 C🟠🇲🇽hos[🔍]_dokng.com_aff11c5d
   password: sZnD8GTz
   port: 42000
   server: 144.225.47.68
   type: socks5
   username: DJy1T0dt
-- name: 075 D🔴🇫🇷hos[🤖💬🎮✈️]_dokng.com_9ccf3749
+- name: 063 D🔴🇫🇷hos[🤖💬🎮✈️]_dokng.com_9ccf3749
   port: 443
   server: 149.102.245.65
   skip-cert-verify: true
@@ -660,40 +558,55 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 076 🇮🇹 意大利 | ITA 3
+- name: 064 🇮🇹 意大利 | ITA 3
   server: 202.50.253.54
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- client-fingerprint: firefox
-  grpc-opts:
-    grpc-mode: gun
-    grpc-service-name: glush.de1.v1
-  name: 077 🇩🇪 德国 | DEU 12
-  network: grpc
+- name: 065 @DeltaKroneckerGithub_1091
+  type: trojan
+  server: 167.82.76.31
   port: 443
-  server: 129.101.100.49
-  servername: fernglade.gerqix.online
-  tls: true
-  type: vless
+  password: auRVImItMy7CqRAY7FC8Wg
+  sni: cdn.akamai.steamstatic.com
+  skip-cert-verify: true
   udp: true
-  uuid: 25ac78e7-6d1d-4c9a-a450-c01a4871769f
-- name: 078 FR_speednode_0009
+  network: ws
+  ws-opts:
+    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
+    headers:
+      Host: copy_az_channel_NUFiLTER_17i.global.ssl.fastly.net.
+- type: vless
+  name: 066 🇸🇪_瑞典 (4) (2)
+  server: 136.148.208.221
+  port: 443
+  uuid: 4201786b-d99b-4147-a5f0-20d47acddb81
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: 8a2e72t.nl20.h1clayd.shop
+  sni: 8a2e72t.nl20.h1clayd.shop
+  skip-cert-verify: false
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: VZS639V1i-35g7VXb9EoTYL-Srm7858sxcvFAunncmA
+    short-id: 8d0d0679f42ffd98
+- name: 067 FR_speednode_0009
   port: 8090
   server: 83.206.1.225
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 079 D🔴🇸🇬hos[🤖💬🔮🎵]_dokng.com_185196af
+- name: 068 D🔴🇸🇬hos[🤖💬🔮🎵]_dokng.com_185196af
   port: 443
   server: 154.26.139.24
   skip-cert-verify: true
   tls: true
   type: http
-- name: 080 @DeltaKroneckerGithub_12
+- name: 069 @DeltaKroneckerGithub_12
   type: vless
   server: tg.skvoz-dpi.com
   port: 443
@@ -707,19 +620,41 @@ proxies:
     public-key: mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0
     short-id: 93ae75024604f796
   flow: xtls-rprx-vision
-- name: 081 A🟢🇹🇭res_dokng.com_021435aa
+- name: 070 A🟢🇹🇭res_dokng.com_021435aa
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.245
   type: socks5
   username: ks878449260d
-- name: 082 A🟢🇻🇳res_dokng.com_11eacb89
-  password: jHsK2gqs
-  port: 62000
-  server: 103.184.113.190
-  type: socks5
-  username: qT46DZLv
-- name: 083 C🟠🇬🇷hos[🤖📺🎵]_dokng.com_8d8bfa9f
+- name: 071 🆔ar14n24b 🔒 VL-WS-N/A ❔ XX 2ms
+  type: vless
+  server: 172.67.67.89
+  port: 2083
+  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
+  udp: true
+  network: ws
+  tls: true
+  servername: vipfree.dr-ping.ir
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: vipfree.dr-ping.ir
+- name: 072 🆔ar14n24b 🔒 VL-WS-N/A 🇺🇸 US 2ms
+  type: vless
+  server: 104.18.63.135
+  port: 2083
+  uuid: a6ad7987-f17e-41fa-a752-72db9a725eb2
+  udp: true
+  network: ws
+  tls: true
+  servername: vipfree.dr-ping.ir
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: vipfree.dr-ping.ir
+- name: 073 C🟠🇬🇷hos[🤖📺🎵]_dokng.com_8d8bfa9f
   password: ''
   port: 443
   server: 149.22.85.65
@@ -729,28 +664,27 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 084 @DeltaKroneckerGithub_815
+- name: 074 🆔ar14n24b 🔒 VL-WS-N/A ❔ XX 215ms
   type: vless
   server: 147.45.175.81
   port: 443
   uuid: c90395e6-2140-47ad-a54d-9b166729d3ef
   udp: true
-  tls: true
-  skip-cert-verify: true
-  servername: xsru1.ddnsfree.com
-  client-fingerprint: edge
   network: ws
+  tls: true
+  servername: xsru2.freeddns.org
+  client-fingerprint: firefox
   ws-opts:
     path: /wsru
     headers:
-      Host: xsru1.ddnsfree.com
-- name: 085 A🟢🇹🇭res[🎮✈️]_dokng.com_bf81894b
+      Host: xsru2.freeddns.org
+- name: 075 A🟢🇹🇭res[🎮✈️]_dokng.com_bf81894b
   password: 1pB7HV6u
   port: 42000
   server: 151.246.109.158
   type: socks5
   username: AJ3d9gJw
-- name: 086 巴西 005
+- name: 076 巴西 003
   type: vless
   network: grpc
   server: 201.24.116.192
@@ -763,32 +697,34 @@ proxies:
   grpc-opts:
     grpc-mode: gun
     grpc-service-name: mobile.api.Event
-- name: 087 US - zhuhai.uk 06
+- name: 077 @DeltaKroneckerGithub_706
+  type: vless
+  server: willow.filnex.baby
+  port: 443
+  uuid: 25ac78e7-6d1d-4c9a-a450-c01a4871769f
+  udp: true
+  tls: true
+  skip-cert-verify: true
+  servername: willowcroft.moltex.click
+  client-fingerprint: firefox
+  network: ws
+  ws-opts:
+    path: /api/de1/stream
+- name: 078 US - zhuhai.uk 03
   type: http
   server: 23.133.176.14
   port: 443
-  username: 'null'
-  password: 'null'
   tls: true
   sni: 23.133.176.14
   skip-cert-verify: true
-- name: 088 DK_speednode_0006
+- name: 079 DK_speednode_0006
   port: 9002
   server: 158.173.154.1
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 089 DE - zhuhai.uk
-  type: http
-  server: 158.173.154.3
-  port: 9002
-  username: 'null'
-  password: 'null'
-  tls: true
-  sni: 158.173.154.3
-  skip-cert-verify: true
-- name: 090 🇫🇷FR_1|1013KB/s|P002-260618
+- name: 080 🇫🇷FR_1|1013KB/s|P002-260618
   password: None
   port: 9443
   server: 138.199.47.247
@@ -798,7 +734,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 091 @DeltaKroneckerGithub_636
+- name: 081 @DeltaKroneckerGithub_636
   type: vless
   server: xsru1.ddnsfree.com
   port: 443
@@ -811,32 +747,16 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: grpc-ru
-- client-fingerprint: random
+- name: 082 俄罗斯 004
+  type: vless
+  network: grpc
+  server: xssite.webredirect.org
+  port: 443
+  uuid: c90395e6-2140-47ad-a54d-9b166729d3ef
+  servername: xssite.webredirect.org
+  tls: true
+  udp: true
+  client-fingerprint: random
   grpc-opts:
     grpc-mode: gun
     grpc-service-name: grpc-ru
-  name: 092 🇷🇺 俄罗斯 | RUS 2
-  network: grpc
-  port: 443
-  server: xssite.webredirect.org
-  servername: xssite.webredirect.org
-  tls: true
-  type: vless
-  udp: true
-  uuid: c90395e6-2140-47ad-a54d-9b166729d3ef
-- alpn:
-  - http/1.1
-  client-fingerprint: firefox
-  name: '093 🇩🇪 德国 | DEU #4'
-  network: ws
-  port: 443
-  server: harbor.gerqix.online
-  servername: harbor.gerqix.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 25ac78e7-6d1d-4c9a-a450-c01a4871769f
-  ws-opts:
-    headers:
-      Host: harbor.gerqix.online
-    path: /api/de1/stream

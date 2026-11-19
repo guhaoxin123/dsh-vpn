@@ -26,54 +26,49 @@ dns:
     geoip: true
     geoip-code: CN
 proxies:
-- name: 001 TW - zhuhai.uk
-  type: http
-  server: 114.33.6.158
-  port: 443
-  tls: true
-  sni: 114.33.6.158
-  skip-cert-verify: true
-- name: 002 SG - zhuhai.uk 02
-  type: http
-  server: 43.160.239.37
-  port: 443
-  tls: true
-  sni: 43.160.239.37
-  skip-cert-verify: true
-- name: 003 @DeltaKroneckerGithub_404
+- name: 001 @DeltaKroneckerGithub_387
   type: vless
-  server: 104.21.89.181
+  server: 3.113.213.171
   port: 443
-  uuid: a25a71d1-10ed-4383-855a-f269a34ca691
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
   udp: true
   tls: true
   skip-cert-verify: true
-  servername: ave-qualifications-choices-populations.trycloudflare.com
-  client-fingerprint: chrome
+  servername: jp3.yohototo.top
+  client-fingerprint: unsafe
   network: ws
   ws-opts:
-    path: /a8b8606819ef
+    path: /tyxyws
     headers:
-      Host: ave-qualifications-choices-populations.trycloudflare.com
-- name: 004 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
+      Host: jp3.yohototo.top
+- name: 002 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.30
   type: socks5
   username: route164JIa2CBPxfy
-- name: 005 HK - zhuhai.uk 02
-  type: http
-  server: 38.76.140.254
-  port: 8443
+- name: 003 @DeltaKroneckerGithub_579
+  type: vless
+  server: 207.65.189.9
+  port: 443
+  uuid: 57715fc4-f787-4e90-9eb2-53fa515fbf37
+  udp: true
   tls: true
   skip-cert-verify: true
-- name: 006 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
+  servername: spsudu.pages.dev
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: spsudu.pages.dev
+- name: 004 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.140
   type: socks5
   username: ks878449260d
-- name: 007 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+- name: 005 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
   password: ''
   port: 443
   server: fan.571589.xyz
@@ -84,38 +79,25 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 008 HK - zhuhai.uk
+- name: 006 HK - zhuhai.uk
   type: http
   server: fan.240104.xyz
   port: 443
   tls: true
   sni: fan.240104.xyz
-  skip-cert-verify: true
-- name: 009 TH - zhuhai.uk 02
-  type: socks5
-  server: 168.222.8.78
-  port: 42000
-  username: JPjarpW3
-  password: ao3W5ZML
-- name: 010 D🔴🇵🇭hos_dokng.com_19b515e6
+- name: 007 D🔴🇵🇭hos_dokng.com_19b515e6
   password: s6a1j38q
   port: 42000
   server: 103.18.230.88
   type: socks5
   username: uv4oakg5
-- name: 011 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
+- name: 008 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.202
   type: socks5
   username: route164JIa2CBPxfy
-- name: 012 TH - zhuhai.uk
-  type: socks5
-  server: 82.47.154.22
-  port: 42000
-  username: userMGEj
-  password: KsySvCAP
-- name: 013 🇩🇪 德国 | DEU 10
+- name: 009 🇩🇪 德国 | DEU 10
   server: 104.18.139.67
   port: 443
   type: vless
@@ -130,7 +112,7 @@ proxies:
     path: /api
     host: norway.xn--nlqaa425dbaab446bbabd698meae.online
   udp: true
-- name: 014 美国 364
+- name: 010 美国 363
   type: vmess
   network: ws
   server: 172.64.145.93
@@ -144,7 +126,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 015 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
+- name: 011 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
   password: ''
   port: 9443
   server: 38.95.111.226
@@ -154,7 +136,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 016 美国 373
+- name: 012 美国 402
   type: vmess
   network: ws
   server: 172.67.190.164
@@ -168,35 +150,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 017 🇩🇪 德国 | DEU 8
-  server: 104.18.138.67
-  port: 443
-  type: vless
-  uuid: 0280c276-641b-49af-b699-4931c30ac137
-  tls: true
-  alpn:
-  - h2
-  servername: norway.xn--nlqaa425dbaab446bbabd698meae.online.
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /api
-    host: norway.xn--nlqaa425dbaab446bbabd698meae.online
-  udp: true
-- name: 018 US 🇺🇸 | @Raydikalx | 275AE9
-  server: 8.6.112.0
-  port: 443
-  type: trojan
-  password: XnjwEJbEbqBt8bjlrKZPwg
-  udp: true
-  sni: cf.lunex-vpn.xyz
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /Lunex
-    headers:
-      Host: cf.lunex-vpn.xyz
-- name: 019 美国 365
+- name: 013 美国 364
   type: vmess
   network: ws
   server: 104.18.42.163
@@ -210,7 +164,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 020 🇩🇪DE_1|1.1MB/s
+- name: 014 🇩🇪DE_1|1.1MB/s
   port: 443
   server: 172.64.68.89
   skip-cert-verify: true
@@ -222,13 +176,9 @@ proxy-groups:
   type: select
   proxies:
   - HK
-  - SG
   - JP
   - US
-  - TW
-  - UK
   - DE
-  - CA
   - TH
   - PH
   - ♻️ 自动选择
@@ -237,76 +187,52 @@ proxy-groups:
 - name: HK
   type: select
   proxies:
-  - 005 HK - zhuhai.uk 02
-  - 008 HK - zhuhai.uk
-- name: SG
-  type: select
-  proxies:
-  - 002 SG - zhuhai.uk 02
+  - 006 HK - zhuhai.uk
 - name: JP
   type: select
   proxies:
-  - 007 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+  - 001 @DeltaKroneckerGithub_387
+  - 003 @DeltaKroneckerGithub_579
+  - 005 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
 - name: US
   type: select
   proxies:
-  - 014 美国 364
-  - 015 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
-  - 016 美国 373
-  - 018 US 🇺🇸 | @Raydikalx | 275AE9
-  - 019 美国 365
-- name: TW
-  type: select
-  proxies:
-  - 001 TW - zhuhai.uk
-- name: UK
-  type: select
-  proxies:
-  - 009 TH - zhuhai.uk 02
-  - 012 TH - zhuhai.uk
+  - 010 美国 363
+  - 011 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
+  - 012 美国 402
+  - 013 美国 364
 - name: DE
   type: select
   proxies:
-  - 013 🇩🇪 德国 | DEU 10
-  - 017 🇩🇪 德国 | DEU 8
-  - 020 🇩🇪DE_1|1.1MB/s
-- name: CA
-  type: select
-  proxies:
-  - 003 @DeltaKroneckerGithub_404
+  - 009 🇩🇪 德国 | DEU 10
+  - 014 🇩🇪DE_1|1.1MB/s
 - name: TH
   type: select
   proxies:
-  - 004 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
-  - 006 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
-  - 011 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
+  - 002 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
+  - 004 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
+  - 008 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
 - name: PH
   type: select
   proxies:
-  - 010 D🔴🇵🇭hos_dokng.com_19b515e6
+  - 007 D🔴🇵🇭hos_dokng.com_19b515e6
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
-  - 001 TW - zhuhai.uk
-  - 002 SG - zhuhai.uk 02
-  - 003 @DeltaKroneckerGithub_404
-  - 004 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
-  - 005 HK - zhuhai.uk 02
-  - 006 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
-  - 007 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
-  - 008 HK - zhuhai.uk
-  - 009 TH - zhuhai.uk 02
-  - 010 D🔴🇵🇭hos_dokng.com_19b515e6
-  - 011 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
-  - 012 TH - zhuhai.uk
-  - 013 🇩🇪 德国 | DEU 10
-  - 014 美国 364
-  - 015 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
-  - 016 美国 373
-  - 017 🇩🇪 德国 | DEU 8
-  - 018 US 🇺🇸 | @Raydikalx | 275AE9
-  - 019 美国 365
-  - 020 🇩🇪DE_1|1.1MB/s
+  - 001 @DeltaKroneckerGithub_387
+  - 002 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
+  - 003 @DeltaKroneckerGithub_579
+  - 004 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
+  - 005 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+  - 006 HK - zhuhai.uk
+  - 007 D🔴🇵🇭hos_dokng.com_19b515e6
+  - 008 A🟢🇹🇭res[🔮🎮🐙🔍]_dokng.com_c58cd50f
+  - 009 🇩🇪 德国 | DEU 10
+  - 010 美国 363
+  - 011 D🔴🇺🇸hos[🤖🔮📺]_dokng.com_4cc7e454
+  - 012 美国 402
+  - 013 美国 364
+  - 014 🇩🇪DE_1|1.1MB/s
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
