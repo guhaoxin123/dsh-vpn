@@ -5,84 +5,95 @@ proxies:
   server: 103.14.164.30
   type: socks5
   username: route164JIa2CBPxfy
-- name: 002 KR - zhuhai.uk
-  type: socks5
-  server: 183.106.215.208
-  port: 1080
+- type: vless
+  name: 002 🇯🇵_日本 (13)
+  server: 207.65.189.9
+  port: 443
+  uuid: 57715fc4-f787-4e90-9eb2-53fa515fbf37
+  udp: true
+  tls: true
+  servername: spsudu.pages.dev
+  sni: spsudu.pages.dev
+  skip-cert-verify: false
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: spsudu.pages.dev
 - name: 003 A🟢🇹🇭res_dokng.com_021435aa
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.245
   type: socks5
   username: ks878449260d
-- name: 004 HK - zhuhai.uk 02
+- name: 004 HK - zhuhai.uk
   type: http
   server: fan.240104.xyz
   port: 443
   tls: true
   sni: fan.240104.xyz
   skip-cert-verify: true
-- name: 005 TH - zhuhai.uk 02
-  type: socks5
-  server: 109.66.136.35
-  port: 62000
-  username: r3ZzP8WW
-  password: zdnivBaI
-- name: 006 A🟢🇻🇳res_dokng.com_11eacb89
+- name: 005 A🟢🇻🇳res_dokng.com_11eacb89
   password: jHsK2gqs
   port: 62000
   server: 103.184.113.190
   type: socks5
   username: qT46DZLv
-- name: 007 美国 402
-  type: vmess
-  network: ws
+- type: vmess
+  name: 006 🇺🇸 机场推荐:dafei.de 美国 15_IPV4
   server: 172.67.190.164
   port: 443
   uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
   cipher: auto
+  alterId: 0
+  tls: true
+  servername: guanwang.awsno.com
+  sni: guanwang.awsno.com
+  client-fingerprint: chrome
+  network: ws
   ws-opts:
+    path: /hls/cctv5phd.m3u8
     headers:
       Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 008 🇩🇪DE_5|1.7MB/s
+- name: 007 🇩🇪DE_5|1.7MB/s
   port: 443
   server: 172.64.69.89
   skip-cert-verify: true
   tls: true
   type: http
-- name: 009 巴西 046
-  type: vmess
-  network: ws
+- type: vmess
+  name: 008 🇺🇸 机场推荐:dafei.de 美国 89_IPV4
   server: 188.114.99.137
   port: 443
   uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
   cipher: auto
+  alterId: 0
+  tls: true
+  servername: guanwang.awsno.com
+  sni: guanwang.awsno.com
+  client-fingerprint: chrome
+  network: ws
   ws-opts:
+    path: /hls/cctv5phd.m3u8
     headers:
       Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 010 美国 363
-  type: vmess
-  network: ws
+- type: vmess
+  name: 009 @DeltaKroneckerGithub_3021_IPV4
   server: 172.64.145.93
   port: 443
   uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
   cipher: auto
+  alterId: 0
+  tls: true
+  servername: guanwang.awsno.com
+  sni: guanwang.awsno.com
+  network: ws
   ws-opts:
+    path: /hls/cctv5phd.m3u8
     headers:
       Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 011 🇸🇬[www.v2nodes.com] vless-SG-3...
+- name: 010 🇸🇬[www.v2nodes.com] vless-SG-3...
   network: ws
   port: 8443
   server: 172.64.154.113
@@ -94,7 +105,7 @@ proxies:
     headers:
       Host: freeceshi6.frii.site
     path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
-- name: 012 🇩🇪DE_4|2.9MB/s
+- name: 011 🇩🇪DE_4|2.9MB/s
   port: 443
   server: 172.64.68.89
   skip-cert-verify: true
