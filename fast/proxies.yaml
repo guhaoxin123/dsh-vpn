@@ -1,113 +1,103 @@
 proxies:
-- name: 001 🇺🇸US-172.111.38.72-0116 | 38.939MB
-  server: 172.111.38.72
-  port: 19999
-  type: ss
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 002 vless-1854038780
-  network: raw
+- name: 001 🇹🇭TH_1|2.0MB/s
+  password: VAwyJQX0iKMJiyCw5UVK9wGH
+  port: 42000
+  server: 103.14.164.30
+  type: socks5
+  username: route164JIa2CBPxfy
+- name: 002 KR - zhuhai.uk
+  type: socks5
+  server: 183.106.215.208
+  port: 1080
+- name: 003 A🟢🇹🇭res_dokng.com_021435aa
+  password: YlRoWvE0dL_cUqS94wPeKnA4
+  port: 62000
+  server: 87.84.49.245
+  type: socks5
+  username: ks878449260d
+- name: 004 HK - zhuhai.uk 02
+  type: http
+  server: fan.240104.xyz
   port: 443
-  reality-opts:
-    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
-    short-id: a3a578ab
-  server: 185.95.231.156
-  servername: www.apple.com
   tls: true
-  type: vless
-  udp: true
-  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 003 vless-1869872045
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
-    short-id: 0990d22f
-  server: 167.17.69.171
-  servername: www.cloudflare.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 00144519-7e0d-476b-8d28-435576af9262
-- cipher: aes-256-gcm
-  name: 004 🇨🇦[www.v2nodes.com] ss-CA-1538...
-  password: zDNVedRFPQexG9v
-  port: 445
-  server: 51.222.12.127
-  type: ss
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 005 vless-1828036218
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: uTmb-ytXsx8p0fkBz7A76SHpWk7_oVutIA4LGTE8BQk
-    short-id: f98843107912e782
-  server: 209.200.246.148
-  servername: www.cloudflare.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: ca52e2b6-fb9f-4dac-b6dc-49da9923f251
-- cipher: chacha20-ietf-poly1305
-  name: 006 shadowsocks-1827146529
-  password: eDfN7SODQceIOmIAbtJJtK
-  port: 443
-  server: 198.98.53.130
-  type: ss
-  udp: true
-- name: 007 CA 🇨🇦 | @Raydikalx | 1B234A
-  server: 184.107.179.150
-  port: 8443
-  type: vless
-  uuid: e45b8261-88c9-4181-aab4-72093dfae6b9
-  udp: true
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.kpn.com
-  reality-opts:
-    public-key: FZvOenkKu_0DspnZA7Nc7xgWhR0_Z0MvqhntPqPchV4
-    short-id: 40a4615253b8f75d
-  client-fingerprint: firefox
-  network: tcp
-- name: 008 🇨🇦CA-15.235.57.6-0177 | 13.938MB
-  server: 15.235.57.6
-  port: 8080
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: kxhnt5jtykd328cg
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 009 vless-1827319616
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.163
-  servername: yahoo.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- name: 010 hysteria2-1910185368
-  password: d4ca9415f0eac7897472e1e5b86d2e96
-  port: 443
-  server: promo.betust.net
-  skip-cert-verify: false
-  sni: ''
-  type: hysteria2
-- alpn:
-  - h3
-  name: '011 @OutlineReleasedKey #2'
-  password: 549766c3-fa5f-471e-8031-ffc1f8d5064f
-  port: 443
-  server: 212.34.137.105
+  sni: fan.240104.xyz
   skip-cert-verify: true
-  sni: shorts.blog-forme.ru
-  tls: false
-  type: hysteria2
+- name: 005 TH - zhuhai.uk 02
+  type: socks5
+  server: 109.66.136.35
+  port: 62000
+  username: r3ZzP8WW
+  password: zdnivBaI
+- name: 006 A🟢🇻🇳res_dokng.com_11eacb89
+  password: jHsK2gqs
+  port: 62000
+  server: 103.184.113.190
+  type: socks5
+  username: qT46DZLv
+- name: 007 美国 402
+  type: vmess
+  network: ws
+  server: 172.67.190.164
+  port: 443
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  skip-cert-verify: true
+  tls: true
+  alterId: 0
+  cipher: auto
+  ws-opts:
+    headers:
+      Host: guanwang.awsno.com
+    path: /hls/cctv5phd.m3u8
+- name: 008 🇩🇪DE_5|1.7MB/s
+  port: 443
+  server: 172.64.69.89
+  skip-cert-verify: true
+  tls: true
+  type: http
+- name: 009 巴西 046
+  type: vmess
+  network: ws
+  server: 188.114.99.137
+  port: 443
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  skip-cert-verify: true
+  tls: true
+  alterId: 0
+  cipher: auto
+  ws-opts:
+    headers:
+      Host: guanwang.awsno.com
+    path: /hls/cctv5phd.m3u8
+- name: 010 美国 363
+  type: vmess
+  network: ws
+  server: 172.64.145.93
+  port: 443
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  skip-cert-verify: true
+  tls: true
+  alterId: 0
+  cipher: auto
+  ws-opts:
+    headers:
+      Host: guanwang.awsno.com
+    path: /hls/cctv5phd.m3u8
+- name: 011 🇸🇬[www.v2nodes.com] vless-SG-3...
+  network: ws
+  port: 8443
+  server: 172.64.154.113
+  servername: freeceshi6.frii.site
+  tls: true
+  type: vless
+  uuid: 53bbdad4-2f4e-45db-8df4-fa491a6a7227
+  ws-opts:
+    headers:
+      Host: freeceshi6.frii.site
+    path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
+- name: 012 🇩🇪DE_4|2.9MB/s
+  port: 443
+  server: 172.64.68.89
+  skip-cert-verify: true
+  sni: 172.64.68.89
+  tls: true
+  type: http
