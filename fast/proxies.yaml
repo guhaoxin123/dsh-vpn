@@ -1,23 +1,30 @@
 proxies:
-- name: 001 A🟢🇹🇭res[🎮]_dokng.com_a8a9e262
-  password: VAwyJQX0iKMJiyCw5UVK9wGH
-  port: 42000
-  server: 103.14.164.30
+- name: 001 D🔴🇸🇬hos[🤖💬🧩🎵]_dokng.com_45ce638e
+  port: 5555
+  server: 103.248.228.166
   type: socks5
-  username: route164JIa2CBPxfy
 - name: 002 A🟢🇹🇭res_dokng.com_021435aa
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.245
   type: socks5
   username: ks878449260d
-- name: 003 A🟢🇹🇭res[🤖🔮🎮🐙]_dokng.com_8be67b1a
+- name: 003 A🟢🇹🇭res_dokng.com_bd4cb820
+  password: VAwyJQX0iKMJiyCw5UVK9wGH
+  port: 42000
+  server: 103.14.164.30
+  sub_tag: R002-260618
+  type: socks5
+  udp: true
+  username: route164JIa2CBPxfy
+  x-toolall-mihomo: true
+- name: 004 A🟢🇹🇭res_dokng.com_8be67b1a
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.140
   type: socks5
   username: ks878449260d
-- name: 004 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+- name: 005 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
   password: ''
   port: 443
   server: fan.571589.xyz
@@ -28,37 +35,67 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 005 KR - zhuhai.uk
-  type: http
-  server: 152.69.230.221
+- name: 006 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
   port: 443
-  tls: true
+  server: 152.69.230.221
   skip-cert-verify: true
-- name: 006 HK - zhuhai.uk
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 007 HK - zhuhai.uk
   type: http
   server: 202.85.53.25
   port: 443
   tls: true
+  sni: 202.85.53.25
   skip-cert-verify: true
-- name: 007 D🔴🇵🇭hos_dokng.com_19b515e6
+- name: 008 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
+  password: 'null'
+  port: 443
+  server: fan.240104.xyz
+  sni: fan.240104.xyz
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+  username: 'null'
+  x-toolall-mihomo: true
+- name: 009 D🔴🇵🇭hos_dokng.com_dffdda48
   password: s6a1j38q
   port: 42000
   server: 103.18.230.88
+  sub_tag: R002-260618
   type: socks5
+  udp: true
   username: uv4oakg5
-- name: 008 A🟢🇻🇳res_dokng.com_11eacb89
+  x-toolall-mihomo: true
+- name: 010 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
+  password: mpbK00Pl
+  port: 42000
+  server: 192.204.15.192
+  type: socks5
+  username: X3s3JteD
+- name: 011 C🟠🇹🇭hos_dokng.com_5acf8d13
+  password: KT5hiU8o
+  port: 42000
+  server: 104.234.70.82
+  type: socks5
+  username: rnt2L4XO
+- name: 012 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
+  port: 443
+  server: 14.225.71.128
+  skip-cert-verify: true
+  tls: true
+  type: http
+- name: 013 A🟢🇻🇳res_dokng.com_11eacb89
   password: jHsK2gqs
   port: 62000
   server: 103.184.113.190
   type: socks5
   username: qT46DZLv
-- name: 009 D🔴🇺🇸hos[🎮🐙]_dokng.com_4e17894f
-  password: gs4BXwT6SW
-  port: 10988
-  server: 154.26.192.123
-  type: http
-  username: fQ67Dpe5dU
-- name: 010 🇺🇸US_1|1.2MB/s
+- name: 014 🇺🇸US_1|1.2MB/s
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -66,7 +103,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 011 @DeltaKroneckerGithub_230
+- name: 015 @DeltaKroneckerGithub_230
   type: vless
   server: 172.64.154.113
   port: 8443
@@ -81,20 +118,20 @@ proxies:
     path: /proxyip=ProxyIP.JP.CMLiussss.net
     headers:
       Host: freeceshi6.frii.site
-- name: 012 🇩🇪DE_1|2.4MB/s
+- name: 016 🇩🇪DE_1|2.4MB/s
   port: 443
   server: 172.64.68.89
   skip-cert-verify: true
   sni: 172.64.68.89
   tls: true
   type: http
-- name: 013 🇩🇪DE_2|1017KB/s
+- name: 017 🇩🇪DE_2|1017KB/s
   port: 443
   server: 172.64.69.89
   skip-cert-verify: true
   tls: true
   type: http
-- name: 014 🇺🇸 美国 | USA 5
+- name: 018 🇺🇸 美国 | USA 4
   server: 192.74.236.148
   port: 30004
   type: vmess
