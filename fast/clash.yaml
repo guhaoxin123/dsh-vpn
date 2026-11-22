@@ -26,26 +26,11 @@ dns:
     geoip: true
     geoip-code: CN
 proxies:
-- name: 001 D🔴🇸🇬hos[🤖💬🧩🎵]_dokng.com_45ce638e
-  port: 5555
-  server: 103.248.228.166
-  type: socks5
-- name: 002 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
+- name: 001 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
   port: 9090
   server: 128.199.116.219
   type: http
-- name: 003 A🟢🇮🇩res[🤖💬🔮🧩]_dokng.com_d1da622b
-  password: 'null'
-  port: 443
-  server: 178.248.73.58
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  username: 'null'
-  x-toolall-mihomo: true
-- name: 004 A🟢🇮🇩res_dokng.com_9bb962cb
+- name: 002 A🟢🇮🇩res_dokng.com_9bb962cb
   password: RRWtX6XP
   port: 62000
   server: 203.84.138.59
@@ -54,7 +39,7 @@ proxies:
   udp: true
   username: 9tcjLp2W
   x-toolall-mihomo: true
-- name: 005 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
+- name: 003 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
   port: 443
   server: 103.86.116.118
   skip-cert-verify: true
@@ -63,7 +48,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 006 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
+- name: 004 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
   port: 443
   server: 152.69.230.221
   skip-cert-verify: true
@@ -72,25 +57,19 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 007 A🟢🇹🇭res_dokng.com_c58cd50f
+- name: 005 A🟢🇹🇭res_dokng.com_c58cd50f
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.202
   type: socks5
   username: route164JIa2CBPxfy
-- name: 008 A🟢🇹🇭res_dokng.com_021435aa
+- name: 006 A🟢🇹🇭res_dokng.com_021435aa
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
   server: 87.84.49.245
   type: socks5
   username: ks878449260d
-- name: 009 ID - zhuhai.uk
-  type: socks5
-  server: 198.87.102.86
-  port: 62000
-  username: Q7rN4d2S
-  password: KzL82W3E
-- name: 010 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
+- name: 007 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
   password: ''
   port: 8443
   server: 38.76.140.254
@@ -100,7 +79,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 011 A🟢🇹🇭res_dokng.com_bd4cb820
+- name: 008 A🟢🇹🇭res_dokng.com_bd4cb820
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
   server: 103.14.164.30
@@ -109,7 +88,7 @@ proxies:
   udp: true
   username: route164JIa2CBPxfy
   x-toolall-mihomo: true
-- name: 012 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+- name: 009 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
   password: ''
   port: 443
   server: fan.571589.xyz
@@ -120,13 +99,13 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 013 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
+- name: 010 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
   port: 443
   server: 14.225.71.128
   skip-cert-verify: true
   tls: true
   type: http
-- name: 014 D🔴🇵🇭hos_dokng.com_dffdda48
+- name: 011 D🔴🇵🇭hos_dokng.com_dffdda48
   password: s6a1j38q
   port: 42000
   server: 103.18.230.88
@@ -135,7 +114,7 @@ proxies:
   udp: true
   username: uv4oakg5
   x-toolall-mihomo: true
-- name: 015 A🟢🇹🇭res_dokng.com_bc7e86e5
+- name: 012 A🟢🇹🇭res_dokng.com_bc7e86e5
   password: zdnivBaI
   port: 62000
   server: 109.66.136.194
@@ -144,31 +123,31 @@ proxies:
   udp: true
   username: r3ZzP8WW
   x-toolall-mihomo: true
-- name: 016 C🟠🇹🇭hos_dokng.com_5acf8d13
+- name: 013 C🟠🇹🇭hos_dokng.com_5acf8d13
   password: KT5hiU8o
   port: 42000
   server: 104.234.70.82
   type: socks5
   username: rnt2L4XO
-- name: 017 A🟢🇹🇭res_dokng.com_3254c865
+- name: 014 A🟢🇹🇭res_dokng.com_3254c865
   password: ao3W5ZML
   port: 42000
   server: 168.222.8.66
   type: socks5
   username: JPjarpW3
-- name: 018 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
+- name: 015 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.135
   type: socks5
   username: X3s3JteD
-- name: 019 A🟢🇹🇭res_dokng.com_18746d5d
+- name: 016 A🟢🇹🇭res_dokng.com_18746d5d
   password: zdnivBaI
   port: 62000
   server: 109.66.136.42
   type: socks5
   username: r3ZzP8WW
-- name: 020 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
+- name: 017 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
   password: 'null'
   port: 443
   server: fan.240104.xyz
@@ -179,43 +158,19 @@ proxies:
   udp: true
   username: 'null'
   x-toolall-mihomo: true
-- name: 021 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
+- name: 018 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.192
   type: socks5
   username: X3s3JteD
-- name: 022 TH - zhuhai.uk 03
-  type: socks5
-  server: 82.47.152.95
-  port: 42000
-  username: userLjVB
-  password: Ks4Iab43
-- name: 023 A🟢🇹🇭res_dokng.com_63f8b36e
+- name: 019 A🟢🇹🇭res_dokng.com_63f8b36e
   password: Ks4Iab43
   port: 42000
   server: 82.47.152.151
   type: socks5
   username: userLjVB
-- name: 024 TH - zhuhai.uk 02
-  type: socks5
-  server: 82.47.152.113
-  port: 42000
-  username: userLjVB
-  password: Ks4Iab43
-- name: 025 TH - zhuhai.uk
-  type: socks5
-  server: 168.222.8.119
-  port: 42000
-  username: JPjarpW3
-  password: ao3W5ZML
-- name: 026 A🟢🇻🇳res_dokng.com_11eacb89
-  password: jHsK2gqs
-  port: 62000
-  server: 103.184.113.190
-  type: socks5
-  username: qT46DZLv
-- name: 027 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
+- name: 020 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
   password: ''
   port: 8443
   server: 14.225.71.128
@@ -226,7 +181,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 028 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
+- name: 021 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
   port: 343
   server: 133.18.200.207
   skip-cert-verify: true
@@ -235,48 +190,14 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 029 🇺🇸 美国 | USA
-  server: 162.35.101.177
-  port: 443
-  type: vless
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
-  tls: true
-  reality-opts:
-    public-key: cO3wYHISTeorXcM8ffaDCDdqZ-olBQL-GyZqb-W7rTk
-    short-id: bd8f712209a9c283
-  servername: 0592efg.us8.h1clayd.click
-  client-fingerprint: edge
-  network: grpc
-  grpc-opts:
-    grpc-mode: gun
-    grpc-service-name: 99f2107b03f8
-  udp: true
-- name: 030 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
+- name: 022 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
   port: 8443
   server: 64.176.51.83
   skip-cert-verify: true
   sni: 64.176.51.83
   tls: true
   type: http
-- name: 031 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_b7625f20
-  port: 443
-  server: 137.175.22.16
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 032 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_e8a5e243
-  port: 443
-  server: 137.175.22.56
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 033 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
+- name: 023 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
   port: 9002
   server: 138.199.35.206
   skip-cert-verify: true
@@ -285,7 +206,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 034 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
+- name: 024 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
   password: 'null'
   port: 9002
   server: 138.199.35.211
@@ -296,34 +217,7 @@ proxies:
   udp: true
   username: 'null'
   x-toolall-mihomo: true
-- name: 035 美国 373
-  type: vmess
-  network: ws
-  server: 104.27.0.1
-  port: 443
-  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
-  cipher: auto
-  ws-opts:
-    headers:
-      Host: vmess.lbw666.dpdns.org
-    path: /ws
-- name: 036 美国 375
-  type: vmess
-  network: ws
-  server: 104.21.7.133
-  port: 80
-  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
-  skip-cert-verify: true
-  alterId: 0
-  cipher: auto
-  ws-opts:
-    headers:
-      Host: vmess.lbw666.dpdns.org
-    path: /ws
-- name: 037 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
+- name: 025 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
   password: 'null'
   port: 9002
   server: 138.199.35.216
@@ -334,68 +228,7 @@ proxies:
   udp: true
   username: 'null'
   x-toolall-mihomo: true
-- name: 038 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_6272ab77
-  port: 443
-  server: 137.175.22.72
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 039 巴西 010
-  type: vmess
-  network: ws
-  server: 188.114.99.137
-  port: 8443
-  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
-  cipher: auto
-  ws-opts:
-    headers:
-      Host: v2ray1.dozapp.xyz
-    path: /lMnsZUN4/
-- name: 040 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_471ebd29
-  port: 443
-  server: 137.175.22.85
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 041 @DeltaKroneckerGithub_82
-  type: vless
-  server: 104.16.10.84
-  port: 443
-  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
-  udp: true
-  tls: true
-  skip-cert-verify: true
-  servername: jp3.yohototo.top
-  client-fingerprint: unsafe
-  network: ws
-  ws-opts:
-    path: /tyxyws
-    headers:
-      Host: jp3.yohototo.top
-- name: 042 美国 368
-  type: vmess
-  network: ws
-  server: 104.24.0.1
-  port: 8443
-  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
-  cipher: auto
-  ws-opts:
-    headers:
-      Host: v2ray1.dozapp.xyz
-    path: /lMnsZUN4/
-- name: 043 🇩🇪DE_3|1.0MB/s
+- name: 026 🇩🇪DE_3|1.0MB/s
   password: 'null'
   port: 443
   server: 172.64.69.89
@@ -403,7 +236,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 044 美国 518
+- name: 027 美国 518
   type: vless
   network: ws
   server: 172.64.154.113
@@ -419,7 +252,7 @@ proxies:
     headers:
       Host: freeceshi6.frii.site
     path: /proxyip=ProxyIP.JP.CMLiussss.net
-- name: 045 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
+- name: 028 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
   port: 9002
   server: 138.199.35.204
   skip-cert-verify: true
@@ -428,16 +261,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 046 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_fa48c427
-  port: 443
-  server: 137.175.22.40
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 047 🇩🇪 德国 | DEU 7
+- name: 029 🇩🇪 德国 | DEU 7
   server: 189.24.115.30
   port: 443
   type: vless
@@ -449,7 +273,7 @@ proxies:
   servername: navi.bankrate.com
   client-fingerprint: chrome
   network: tcp
-- name: 048 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
+- name: 030 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
   password: ''
   port: 9443
   server: 38.95.111.226
@@ -459,7 +283,13 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 049 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
+- name: 031 D🔴🇮🇹hos_dokng.com_c59918d2
+  password: 'null'
+  port: 9050
+  server: 45.61.129.165
+  type: socks5
+  username: 'null'
+- name: 032 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
   port: 9002
   server: 138.199.35.218
   skip-cert-verify: true
@@ -469,82 +299,30 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 050 C🟠🇺🇸hos_dokng.com_54966195
+- name: 033 C🟠🇺🇸hos_dokng.com_54966195
   password: kingstar123++
   port: 62000
   server: 23.230.200.250
   type: socks5
   username: kingstar123
-- name: 051 🇺🇸 美国 | USA 9
+- name: 034 美国 018
+  type: vmess
+  network: http
   server: 192.204.58.87
   port: 52080
-  type: vmess
   uuid: 700dc5c3-9b7b-4ac8-8ee5-010ca3d03789
+  skip-cert-verify: true
+  tls: false
+  udp: true
   alterId: 0
   cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: http
   http-opts:
-    method: GET
-    path:
-    - /3x
     headers:
       Host:
       - mmsc.vnet.mobi
-  udp: true
-- name: 052 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_ffebf486
-  password: 'null'
-  port: 443
-  server: fan.365747.xyz
-  sni: fan.365747.xyz
-  tls: true
-  type: http
-  username: 'null'
-- name: 053 A🟢🇻🇳res_dokng.com_0a65daba
-  password: jHsK2gqs
-  port: 62000
-  server: 103.184.113.236
-  sub_tag: R002-260618
-  type: socks5
-  udp: true
-  username: qT46DZLv
-  x-toolall-mihomo: true
-- name: 054 🇺🇸 美国 | USA 8
-  server: 192.204.58.87
-  port: 2053
-  type: vmess
-  uuid: 286a45bc-f3aa-4a2d-8e6e-21fb824d9eeb
-  alterId: 0
-  cipher: auto
-  tls: false
-  alpn:
-  - ''
-  skip-cert-verify: true
-  network: http
-  http-opts:
     method: GET
     path:
     - /3x
-  udp: true
-- name: 055 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_1a8c4f1c
-  port: 443
-  server: 137.175.22.45
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 056 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_cc0b62b7
-  port: 443
-  server: 137.175.22.96
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
 proxy-groups:
 - name: 🚀 节点选择
   type: select
@@ -554,10 +332,8 @@ proxy-groups:
   - JP
   - US
   - KR
-  - UK
   - DE
-  - CA
-  - BR
+  - IT
   - VN
   - TH
   - PH
@@ -568,157 +344,107 @@ proxy-groups:
 - name: HK
   type: select
   proxies:
-  - 010 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
-  - 020 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
+  - 007 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
+  - 017 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
 - name: SG
   type: select
   proxies:
-  - 001 D🔴🇸🇬hos[🤖💬🧩🎵]_dokng.com_45ce638e
-  - 002 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
+  - 001 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
 - name: JP
   type: select
   proxies:
-  - 012 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
-  - 028 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
-  - 030 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
+  - 009 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+  - 021 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
+  - 022 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
 - name: US
   type: select
   proxies:
-  - 029 🇺🇸 美国 | USA
-  - 031 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_b7625f20
-  - 032 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_e8a5e243
-  - 033 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
-  - 034 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
-  - 035 美国 373
-  - 036 美国 375
-  - 037 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
-  - 038 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_6272ab77
-  - 040 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_471ebd29
-  - 042 美国 368
-  - 044 美国 518
-  - 045 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
-  - 046 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_fa48c427
-  - 048 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
-  - 049 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
-  - 050 C🟠🇺🇸hos_dokng.com_54966195
-  - 051 🇺🇸 美国 | USA 9
-  - 052 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_ffebf486
-  - 054 🇺🇸 美国 | USA 8
-  - 055 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_1a8c4f1c
-  - 056 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_cc0b62b7
+  - 023 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
+  - 024 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
+  - 025 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
+  - 027 美国 518
+  - 028 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
+  - 030 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
+  - 032 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
+  - 033 C🟠🇺🇸hos_dokng.com_54966195
+  - 034 美国 018
 - name: KR
   type: select
   proxies:
-  - 006 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
-- name: UK
-  type: select
-  proxies:
-  - 009 ID - zhuhai.uk
-  - 022 TH - zhuhai.uk 03
-  - 024 TH - zhuhai.uk 02
-  - 025 TH - zhuhai.uk
+  - 004 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
 - name: DE
   type: select
   proxies:
-  - 043 🇩🇪DE_3|1.0MB/s
-  - 047 🇩🇪 德国 | DEU 7
-- name: CA
+  - 026 🇩🇪DE_3|1.0MB/s
+  - 029 🇩🇪 德国 | DEU 7
+- name: IT
   type: select
   proxies:
-  - 041 @DeltaKroneckerGithub_82
-- name: BR
-  type: select
-  proxies:
-  - 039 巴西 010
+  - 031 D🔴🇮🇹hos_dokng.com_c59918d2
 - name: VN
   type: select
   proxies:
-  - 013 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
-  - 026 A🟢🇻🇳res_dokng.com_11eacb89
-  - 027 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
-  - 053 A🟢🇻🇳res_dokng.com_0a65daba
+  - 010 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
+  - 020 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
 - name: TH
   type: select
   proxies:
-  - 007 A🟢🇹🇭res_dokng.com_c58cd50f
-  - 008 A🟢🇹🇭res_dokng.com_021435aa
-  - 011 A🟢🇹🇭res_dokng.com_bd4cb820
-  - 015 A🟢🇹🇭res_dokng.com_bc7e86e5
-  - 016 C🟠🇹🇭hos_dokng.com_5acf8d13
-  - 017 A🟢🇹🇭res_dokng.com_3254c865
-  - 018 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
-  - 019 A🟢🇹🇭res_dokng.com_18746d5d
-  - 021 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
-  - 023 A🟢🇹🇭res_dokng.com_63f8b36e
+  - 005 A🟢🇹🇭res_dokng.com_c58cd50f
+  - 006 A🟢🇹🇭res_dokng.com_021435aa
+  - 008 A🟢🇹🇭res_dokng.com_bd4cb820
+  - 012 A🟢🇹🇭res_dokng.com_bc7e86e5
+  - 013 C🟠🇹🇭hos_dokng.com_5acf8d13
+  - 014 A🟢🇹🇭res_dokng.com_3254c865
+  - 015 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
+  - 016 A🟢🇹🇭res_dokng.com_18746d5d
+  - 018 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
+  - 019 A🟢🇹🇭res_dokng.com_63f8b36e
 - name: PH
   type: select
   proxies:
-  - 014 D🔴🇵🇭hos_dokng.com_dffdda48
+  - 011 D🔴🇵🇭hos_dokng.com_dffdda48
 - name: ID
   type: select
   proxies:
-  - 003 A🟢🇮🇩res[🤖💬🔮🧩]_dokng.com_d1da622b
-  - 004 A🟢🇮🇩res_dokng.com_9bb962cb
-  - 005 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
+  - 002 A🟢🇮🇩res_dokng.com_9bb962cb
+  - 003 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
-  - 001 D🔴🇸🇬hos[🤖💬🧩🎵]_dokng.com_45ce638e
-  - 002 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
-  - 003 A🟢🇮🇩res[🤖💬🔮🧩]_dokng.com_d1da622b
-  - 004 A🟢🇮🇩res_dokng.com_9bb962cb
-  - 005 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
-  - 006 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
-  - 007 A🟢🇹🇭res_dokng.com_c58cd50f
-  - 008 A🟢🇹🇭res_dokng.com_021435aa
-  - 009 ID - zhuhai.uk
-  - 010 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
-  - 011 A🟢🇹🇭res_dokng.com_bd4cb820
-  - 012 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
-  - 013 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
-  - 014 D🔴🇵🇭hos_dokng.com_dffdda48
-  - 015 A🟢🇹🇭res_dokng.com_bc7e86e5
-  - 016 C🟠🇹🇭hos_dokng.com_5acf8d13
-  - 017 A🟢🇹🇭res_dokng.com_3254c865
-  - 018 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
-  - 019 A🟢🇹🇭res_dokng.com_18746d5d
-  - 020 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
-  - 021 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
-  - 022 TH - zhuhai.uk 03
-  - 023 A🟢🇹🇭res_dokng.com_63f8b36e
-  - 024 TH - zhuhai.uk 02
-  - 025 TH - zhuhai.uk
-  - 026 A🟢🇻🇳res_dokng.com_11eacb89
-  - 027 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
-  - 028 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
-  - 029 🇺🇸 美国 | USA
-  - 030 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
-  - 031 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_b7625f20
-  - 032 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_e8a5e243
-  - 033 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
-  - 034 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
-  - 035 美国 373
-  - 036 美国 375
-  - 037 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
-  - 038 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_6272ab77
-  - 039 巴西 010
-  - 040 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_471ebd29
-  - 041 @DeltaKroneckerGithub_82
-  - 042 美国 368
-  - 043 🇩🇪DE_3|1.0MB/s
-  - 044 美国 518
-  - 045 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
-  - 046 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_fa48c427
-  - 047 🇩🇪 德国 | DEU 7
-  - 048 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
-  - 049 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
-  - 050 C🟠🇺🇸hos_dokng.com_54966195
-  - 051 🇺🇸 美国 | USA 9
-  - 052 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_ffebf486
-  - 053 A🟢🇻🇳res_dokng.com_0a65daba
-  - 054 🇺🇸 美国 | USA 8
-  - 055 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_1a8c4f1c
-  - 056 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_cc0b62b7
+  - 001 D🔴🇸🇬hos[🐙]_dokng.com_e5f1db4e
+  - 002 A🟢🇮🇩res_dokng.com_9bb962cb
+  - 003 D🔴🇮🇩hos[🤖💬🔮📺]_dokng.com_33704a70
+  - 004 D🔴🇰🇷hos[🤖💬🧩🎵]_dokng.com_f751c493
+  - 005 A🟢🇹🇭res_dokng.com_c58cd50f
+  - 006 A🟢🇹🇭res_dokng.com_021435aa
+  - 007 D🔴🇭🇰hos[🧩📺🎭🎵]_dokng.com_d82b6f51
+  - 008 A🟢🇹🇭res_dokng.com_bd4cb820
+  - 009 D🔴🇯🇵hos[🤖💬🔮🧩]_dokng.com_0f4839b8
+  - 010 D🔴🇻🇳hos[🤖💬🔮📺]_dokng.com_99423bae
+  - 011 D🔴🇵🇭hos_dokng.com_dffdda48
+  - 012 A🟢🇹🇭res_dokng.com_bc7e86e5
+  - 013 C🟠🇹🇭hos_dokng.com_5acf8d13
+  - 014 A🟢🇹🇭res_dokng.com_3254c865
+  - 015 A🟢🇹🇭res[🤖]_dokng.com_5d41bcce
+  - 016 A🟢🇹🇭res_dokng.com_18746d5d
+  - 017 D🔴🇭🇰hos[🎵🎮✈️🐙]_dokng.com_dabbadb6
+  - 018 A🟢🇹🇭res[💬✈️🐙]_dokng.com_72bd5c3a
+  - 019 A🟢🇹🇭res_dokng.com_63f8b36e
+  - 020 D🔴🇻🇳hos[🤖💬🔮🎵]_dokng.com_c355101a
+  - 021 U⚪🏳️ukn[🔮✈️🐙🔍]_dokng.com_e96854b9
+  - 022 D🔴🇯🇵hos[🤖💬🧩🎵]_dokng.com_d8303f72
+  - 023 D🔴🇺🇸hos[💬🧩📺🎵]_dokng.com_652faead
+  - 024 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_e25ed24c
+  - 025 D🔴🇺🇸hos[🤖💬🧩🎵]_dokng.com_4451c444
+  - 026 🇩🇪DE_3|1.0MB/s
+  - 027 美国 518
+  - 028 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_ff574ef6
+  - 029 🇩🇪 德国 | DEU 7
+  - 030 D🔴🇺🇸hos[🤖💬🔮🧩]_dokng.com_4cc7e454
+  - 031 D🔴🇮🇹hos_dokng.com_c59918d2
+  - 032 D🔴🇺🇸hos[🤖💬🧩📺]_dokng.com_73b58d08
+  - 033 C🟠🇺🇸hos_dokng.com_54966195
+  - 034 美国 018
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
