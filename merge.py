@@ -829,9 +829,9 @@ def build_region_groups(names, region_of):
     groups = []
     for code, _ in REGION_DEFS:
         if buckets.get(code):
-            groups.append({"name": code, "type": "select", "proxies": buckets[code]})
+            groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
     if buckets.get("OTHER"):
-        groups.append({"name": "OTHER", "type": "select", "proxies": buckets["OTHER"]})
+        groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
     return groups
 
 
@@ -939,9 +939,9 @@ def main():
     region_groups = []
     for code, _ in REGION_DEFS:
         if buckets.get(code):
-            region_groups.append({"name": code, "type": "select", "proxies": buckets[code]})
+            region_groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
     if buckets.get("OTHER"):
-        region_groups.append({"name": "OTHER", "type": "select", "proxies": buckets["OTHER"]})
+        region_groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
     for g in region_groups:
         print(f"  分组 {g['name']}: {len(g['proxies'])} 个节点")
     cfg = build_cfg(alive, region_groups)
