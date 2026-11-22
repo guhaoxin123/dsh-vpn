@@ -903,17 +903,11 @@ def main():
 
     alive.sort(key=lambda p: p.get("_delay") or 99999)
     fast_delay = {}
-    for i, p in enumerate(alive, 1):
-        old = str(p.get("name", "")).strip()[:40]
-        d = p.pop("_delay", None)
-        p["name"] = f"{i:03d} {old}" if old else f"{i:03d}"
-        if isinstance(d, (int, float)) and d > 0:
-            fast_delay[p["name"]] = d
-
-    region_of, unknown = {}, []
+    # 地区信息原本藏在节点名里：先识别地区，再统一改成「地区+序号」，例如 新加坡1
+    unknown = []
     for p in alive:
-        r = detect_region(p["name"])
-        region_of[p["name"]] = r
+        r = detect_region(str(p.get("name", "")))
+        p["_region"] = r
         if r == "OTHER":
             unknown.append(p)
     if unknown:
@@ -926,13 +920,22 @@ def main():
             cc = geo.get(str(p["server"]), "")
             cc = alias.get(cc, cc)
             if cc in known:
-                region_of[p["name"]] = cc
+                p["_region"] = cc
                 fixed += 1
         print(f"  归属地识别 {fixed}/{len(unknown)}")
+    region_of = {}
+    seq = {}
+    for p in alive:
+        r = p.pop("_region", "OTHER")
+        seq[r] = seq.get(r, 0) + 1
+        p["name"] = f"{REGION_CN.get(r, '其他')}{seq[r]}"
+        region_of[p["name"]] = r
+        d = p.pop("_delay", None)
+        if isinstance(d, (int, float)) and d > 0:
+            fast_delay[p["name"]] = d
     buckets = {}
     for p in alive:
         buckets.setdefault(region_of[p["name"]], []).append(p["name"])
-
     region_groups = []
     for code, _ in REGION_DEFS:
         if buckets.get(code):
@@ -1023,6 +1026,9 @@ REGION_DEFS.extend([
 ])
 
 REGION_PATTERNS = [(name, _build_pattern(words)) for name, words in REGION_DEFS]
+
+# 地区代码 -> 中文名（节点重命名用，取 REGION_DEFS 每项的第二个词）
+REGION_CN = {code: words[1] for code, words in REGION_DEFS}
 
 
 
