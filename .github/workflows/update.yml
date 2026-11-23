@@ -54,15 +54,24 @@ jobs:
 
       - name: 下载 mihomo（用于逐节点实测延迟）
         if: steps.guard.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
           API=https://api.github.com/repos/MetaCubeX/mihomo/releases/latest
-          URL=$(curl -sSL "$API" | grep -o 'https://[^"]*linux-amd64-compatible[^"]*\.gz' | head -1)
+          URL=""
+          for i in 1 2 3 4 5; do
+            URL=$(curl -sSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "$API" | grep -o 'https://[^"]*linux-amd64-compatible[^"]*\.gz' | head -1)
+            if [ -n "$URL" ]; then break; fi
+            echo "第 $i 次没拿到下载地址，10 秒后重试"
+            sleep 10
+          done
           if [ -z "$URL" ]; then
-            URL=$(curl -sSL "$API" | grep -o 'https://[^"]*linux-amd64-v[0-9][^"]*\.gz' | head -1)
+            echo "::error::无法从 GitHub API 取到 mihomo 下载地址"
+            exit 1
           fi
           echo "asset: $URL"
-          curl -sSL "$URL" -o mihomo.gz
+          curl -fSL --retry 3 --retry-delay 3 "$URL" -o mihomo.gz
           gunzip -f mihomo.gz
           chmod +x mihomo
           ./mihomo -v
