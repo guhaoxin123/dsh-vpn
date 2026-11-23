@@ -29,9 +29,19 @@ https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/
 https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/v2rayng.txt
 ```
 
-每组两条：上面是完整版（全部存活节点），下面带 `fast/` 的是极速版（只保留实测延迟低于 200ms 的节点）。
+**轻连 / ql 混合链接**
 
-镜像连不上时，换一个其它加速域名（前缀写法一样），或者用 `https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/clash.yaml` 这种形式，
+```
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/ql.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/fast/ql.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/ql-packed.txt
+```
+
+`ql.txt` 一行一条，全选粘贴进轻连的「粘贴导入」即可；`ql-packed.txt` 是整段 `ql://` base64 版，适合一次性发一整串。两个都支持混着放 vmess / vless / trojan / ss / hysteria2 / tuic / socks5 / http。
+
+带 `fast/` 的是极速版（只保留实测延迟低于 200ms 的节点），其余是完整版（全部存活节点）。
+
+镜像连不上时，换一个其它加速域名（前缀写法一样），或者用 `https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/clash.yaml`、`https://fastly.jsdelivr.net/gh/guhaoxin123/dsh-vpn@main/ql.txt` 这种形式，
 具体哪个能用看当天网络。
 
 ## 分组
@@ -55,3 +65,4 @@ https://gh-proxy.com/https://raw.githubusercontent.com/guhaoxin123/dsh-vpn/main/
 - Clash：配置 → 新建 → 从 URL 导入，自动更新间隔填 60 分钟
 - Surfboard：配置 → 从 URL 导入，填对应地址
 - v2rayNG：订阅设置 → 添加订阅 → 填对应地址 → 更新订阅
+- 轻连：管理订阅 → 粘贴导入，把 `ql.txt`（或 `ql-packed.txt`）整段粘进去，预览显示「ql 混合链接 / 可识别节点：N」后确认即可
