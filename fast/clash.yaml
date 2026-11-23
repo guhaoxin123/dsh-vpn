@@ -27,43 +27,14 @@ dns:
     geoip-code: CN
 proxies:
 - name: 香港1
-  type: http
-  server: 119.28.24.235
-  port: 3128
-  tls: true
-  skip-cert-verify: true
-- name: 新加坡1
-  port: 5555
-  server: 103.248.228.166
-  type: socks5
-- name: 台湾1
-  password: e2413369-16de-4c90-97c5-b39b8d6b71cd
+  server: 5641sdds.df6h451rh.xin
   port: 443
-  server: im.frnhk.xyz
-  skip-cert-verify: true
-  sni: im.frnhk.xyz
   type: anytls
+  password: 0324fbc29561
+  client-fingerprint: chrome
   udp: true
-- name: 印尼1
-  password: 'null'
-  port: 443
-  server: 178.248.73.58
+  sni: images.ctfassets.net
   skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  username: 'null'
-  x-toolall-mihomo: true
-- name: 印尼2
-  port: 443
-  server: 103.86.116.118
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
 - name: 泰国1
   password: YlRoWvE0dL_cUqS94wPeKnA4
   port: 62000
@@ -71,46 +42,22 @@ proxies:
   type: socks5
   username: ks878449260d
 - name: 韩国1
-  port: 1080
-  server: 183.106.215.208
   type: socks5
+  server: 183.106.215.208
+  port: 1080
 - name: 泰国2
   password: VAwyJQX0iKMJiyCw5UVK9wGH
   port: 42000
-  server: 103.14.164.202
-  type: socks5
-  username: route164JIa2CBPxfy
-- name: 泰国3
-  password: VAwyJQX0iKMJiyCw5UVK9wGH
-  port: 42000
   server: 103.14.164.30
-  sub_tag: R002-260618
   type: socks5
-  udp: true
   username: route164JIa2CBPxfy
-  x-toolall-mihomo: true
 - name: 韩国2
-  port: 443
+  type: http
   server: 152.69.230.221
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 泰国4
-  password: YlRoWvE0dL_cUqS94wPeKnA4
-  port: 62000
-  server: 87.84.49.140
-  type: socks5
-  username: ks878449260d
-- name: 日本1
-  type: http
-  server: fan.587475.xyz
   port: 443
   tls: true
-  sni: fan.587475.xyz
-- name: 日本2
+  skip-cert-verify: true
+- name: 日本1
   password: ''
   port: 443
   server: fan.571589.xyz
@@ -121,104 +68,41 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 泰国5
-  password: zdnivBaI
-  port: 62000
-  server: 109.66.136.194
-  sub_tag: R002-260618
-  type: socks5
-  udp: true
-  username: r3ZzP8WW
-  x-toolall-mihomo: true
-- name: 菲律宾1
-  password: s6a1j38q
-  port: 42000
-  server: 103.18.230.88
-  sub_tag: R002-260618
-  type: socks5
-  udp: true
-  username: uv4oakg5
-  x-toolall-mihomo: true
-- name: 越南1
-  port: 443
-  server: 14.225.71.128
-  skip-cert-verify: true
-  tls: true
-  type: http
-- name: 泰国6
-  password: mpbK00Pl
-  port: 42000
-  server: 192.204.15.135
-  type: socks5
-  username: X3s3JteD
-- name: 泰国7
+- name: 泰国3
   password: Ks4Iab43
   port: 42000
   server: 82.47.152.151
   type: socks5
   username: userLjVB
-- name: 泰国8
-  password: ao3W5ZML
-  port: 42000
-  server: 168.222.8.66
-  type: socks5
-  username: JPjarpW3
-- name: 泰国9
+- name: 泰国4
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.192
   type: socks5
   username: X3s3JteD
 - name: 香港2
-  password: 'null'
-  port: 443
-  server: fan.240104.xyz
-  sni: fan.240104.xyz
-  sub_tag: R002-260618
-  tls: true
   type: http
-  udp: true
-  username: 'null'
-  x-toolall-mihomo: true
-- name: 泰国10
+  server: fan.240104.xyz
+  port: 443
+  tls: true
+- name: 泰国5
   password: KT5hiU8o
   port: 42000
   server: 104.234.70.82
   type: socks5
   username: rnt2L4XO
-- name: 越南2
-  password: ''
-  port: 8443
-  server: 14.225.71.128
-  skip-cert-verify: true
-  sub_tag: K001-260618
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
-- name: 泰国11
+- name: 越南1
+  password: jHsK2gqs
+  port: 62000
+  server: 103.184.113.236
+  type: socks5
+  username: qT46DZLv
+- name: 泰国6
   password: zdnivBaI
   port: 62000
   server: 109.66.136.42
   type: socks5
   username: r3ZzP8WW
-- name: 美国1
-  port: 443
-  server: 137.175.22.85
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 日本3
-  port: 8443
-  server: 64.176.51.83
-  skip-cert-verify: true
-  sni: 64.176.51.83
-  tls: true
-  type: http
 - name: 德国1
   password: 'null'
   port: 443
@@ -227,24 +111,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国2
-  port: 443
-  server: 137.175.22.72
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 美国3
-  port: 443
-  server: 137.175.22.84
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
 - name: 德国2
   password: 'null'
   port: 443
@@ -269,16 +135,7 @@ proxies:
     path: '%2Fproxyip%3DProxyIP.JP.CMLiussss.net'
     headers:
       Host: freeceshi6.frii.site
-- name: 美国4
-  port: 443
-  server: 137.175.22.56
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 美国5
+- name: 美国1
   password: 'null'
   port: 9002
   server: 138.199.35.218
@@ -289,7 +146,7 @@ proxies:
   udp: true
   username: 'null'
   x-toolall-mihomo: true
-- name: 美国6
+- name: 美国2
   password: 'null'
   port: 9002
   server: 138.199.35.206
@@ -297,7 +154,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国7
+- name: 美国3
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -305,7 +162,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国8
+- name: 美国4
   password: None
   port: 9002
   server: 138.199.35.216
@@ -313,7 +170,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国9
+- name: 美国5
   port: 9002
   server: 138.199.35.211
   skip-cert-verify: true
@@ -322,7 +179,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国10
+- name: 美国6
   type: vless
   server: 69.17.3.150
   port: 2001
@@ -335,25 +192,21 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: UCLOUD
-- name: 美国11
+- name: 美国7
+  server: 43.110.39.161
   port: 443
-  server: 137.175.22.96
-  skip-cert-verify: true
-  sub_tag: R002-260618
+  type: vless
+  uuid: da39704f-79b2-460e-b77f-8d12397b3112
   tls: true
-  type: http
+  flow: xtls-rprx-vision
+  reality-opts:
+    public-key: OsXk2qNUNsQsjMHAx6z6GdVflb0gD5AI8izM5W_J_00
+    short-id: db9af76e455811d0
+  servername: www.apple.com
+  client-fingerprint: chrome
+  network: tcp
   udp: true
-  x-toolall-mihomo: true
-- name: 美国12
-  port: 443
-  server: 137.175.22.40
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 美国13
+- name: 美国8
   port: 9002
   server: 138.199.35.204
   skip-cert-verify: true
@@ -362,21 +215,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 加拿大2
-  server: tachu37.top
-  port: 443
-  type: vless
-  uuid: 65c21703-ae89-4eed-ae87-8bec8a4c000c
-  udp: true
-  tls: true
-  servername: tachu37.top
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /js
-    headers:
-      Host: tachu37.top
-- name: 新加坡2
+- name: 新加坡1
   password: ''
   port: 9443
   server: 149.88.99.209
@@ -394,14 +233,11 @@ proxy-groups:
   - 新加坡
   - 日本
   - 美国
-  - 台湾
   - 韩国
   - 德国
   - 加拿大
   - 越南
   - 泰国
-  - 菲律宾
-  - 印尼
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
@@ -414,13 +250,10 @@ proxy-groups:
   type: select
   proxies:
   - 新加坡1
-  - 新加坡2
 - name: 日本
   type: select
   proxies:
   - 日本1
-  - 日本2
-  - 日本3
 - name: 美国
   type: select
   proxies:
@@ -432,15 +265,6 @@ proxy-groups:
   - 美国6
   - 美国7
   - 美国8
-  - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
-  - 美国13
-- name: 台湾
-  type: select
-  proxies:
-  - 台湾1
 - name: 韩国
   type: select
   proxies:
@@ -455,12 +279,10 @@ proxy-groups:
   type: select
   proxies:
   - 加拿大1
-  - 加拿大2
 - name: 越南
   type: select
   proxies:
   - 越南1
-  - 越南2
 - name: 泰国
   type: select
   proxies:
@@ -470,66 +292,33 @@ proxy-groups:
   - 泰国4
   - 泰国5
   - 泰国6
-  - 泰国7
-  - 泰国8
-  - 泰国9
-  - 泰国10
-  - 泰国11
-- name: 菲律宾
-  type: select
-  proxies:
-  - 菲律宾1
-- name: 印尼
-  type: select
-  proxies:
-  - 印尼1
-  - 印尼2
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
   - 香港1
-  - 新加坡1
-  - 台湾1
-  - 印尼1
-  - 印尼2
   - 泰国1
   - 韩国1
   - 泰国2
-  - 泰国3
   - 韩国2
-  - 泰国4
   - 日本1
-  - 日本2
+  - 泰国3
+  - 泰国4
+  - 香港2
   - 泰国5
-  - 菲律宾1
   - 越南1
   - 泰国6
-  - 泰国7
-  - 泰国8
-  - 泰国9
-  - 香港2
-  - 泰国10
-  - 越南2
-  - 泰国11
-  - 美国1
-  - 日本3
   - 德国1
-  - 美国2
-  - 美国3
   - 德国2
   - 加拿大1
+  - 美国1
+  - 美国2
+  - 美国3
   - 美国4
   - 美国5
   - 美国6
   - 美国7
   - 美国8
-  - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
-  - 美国13
-  - 加拿大2
-  - 新加坡2
+  - 新加坡1
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
