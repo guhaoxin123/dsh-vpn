@@ -26,277 +26,201 @@ dns:
     geoip: true
     geoip-code: CN
 proxies:
-- name: 香港1
-  type: http
-  server: 119.28.24.235
-  port: 3128
-  tls: true
-  skip-cert-verify: true
-- name: 香港2
-  server: ibsdsf.df6h451rh.xin
-  port: 443
-  type: anytls
-  password: 2902c46c8493
-  client-fingerprint: chrome
-  udp: true
-  sni: docs.microsoft.com
-  skip-cert-verify: true
-- name: 香港3
-  server: 116.213.43.43
-  port: 11106
-  type: vless
-  uuid: 2e7bd251-52be-4ffa-b79e-108e1fe07185
-  tls: true
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: -13uTSuqk44pCU0x6yvldaskzyRIlO2ihmDvM0FsBns
-    short-id: da12e31124830d42
-  servername: www.apple.com
-  client-fingerprint: chrome
-  network: tcp
-  udp: true
-- name: 台湾1
-  password: 2902c46c8493
-  port: 443
-  server: er8u54dh.df6h451rh.xin
-  skip-cert-verify: true
-  sni: px.ads.linkedin.com
-  type: anytls
-- name: 台湾2
-  server: a54ge.df6h451rh.xin
-  port: 443
-  type: anytls
-  password: 0324fbc29561
-  client-fingerprint: chrome
-  udp: true
-  sni: docs.microsoft.com
-  skip-cert-verify: true
-- name: 越南1
-  server: hsaia.connainho.lol
-  port: 46074
-  type: vless
-  uuid: c74a51bc-0e10-43e5-b6a8-9395c40f3f54
-  tls: true
-  packet-encoding: xudp
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: Zpe4RNze71UGv-T9y55k31k9BtY7gS7uvRV5aA7eiWQ
-    short-id: 367e3031
-  servername: www.apple.com
-  client-fingerprint: edge
-  network: tcp
-- name: 泰国1
-  password: VAwyJQX0iKMJiyCw5UVK9wGH
-  port: 42000
-  server: 103.14.164.30
-  type: socks5
-  username: route164JIa2CBPxfy
-- name: 泰国2
-  password: YlRoWvE0dL_cUqS94wPeKnA4
-  port: 62000
-  server: 87.84.49.245
-  type: socks5
-  username: ks878449260d
-- name: 日本1
-  port: 343
-  server: 133.18.200.207
-  skip-cert-verify: true
-  sub_tag: P002-260618
-  tls: true
-  type: http
-  udp: true
-  x-toolall-mihomo: true
-- name: 日本2
-  type: vless
-  server: 207.65.189.9
-  port: 443
-  uuid: 57715fc4-f787-4e90-9eb2-53fa515fbf37
-  udp: true
-  tls: true
-  skip-cert-verify: true
-  servername: spsudu.pages.dev
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: spsudu.pages.dev
-- name: 香港4
-  type: http
-  server: fan.240104.xyz
-  port: 443
-  tls: true
-  sni: fan.240104.xyz
-  skip-cert-verify: true
-- name: 泰国3
-  password: ao3W5ZML
-  port: 42000
-  server: 168.222.8.4
-  type: socks5
-  username: JPjarpW3
-- name: 泰国4
-  password: zdnivBaI
-  port: 62000
-  server: 109.66.136.234
-  type: socks5
-  username: r3ZzP8WW
-- name: 泰国5
-  password: zdnivBaI
-  port: 62000
-  server: 109.66.136.42
-  type: socks5
-  username: r3ZzP8WW
-- name: 英国1
-  type: socks5
-  server: 192.204.14.58
-  port: 42000
-  username: 2FYbAx8H
-  password: 3ahWX7l1
 - name: 加拿大1
-  server: 172.64.154.113
-  port: 8443
-  type: vless
-  uuid: 53bbdad4-2f4e-45db-8df4-fa491a6a7227
+  type: ss
+  server: 184.107.106.78
+  port: 8388
+  cipher: aes-256-gcm
+  password: itzvpn@321
   udp: true
-  tls: true
-  servername: freeceshi6.frii.site
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET
-    headers:
-      Host: freeceshi6.frii.site
-- name: 美国1
-  type: vmess
-  network: ws
-  server: 172.67.190.164
-  port: 443
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
+- alterId: 0
   cipher: auto
-  ws-opts:
-    headers:
-      Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 德国1
-  password: 'null'
-  port: 443
-  server: 172.64.68.89
-  skip-cert-verify: true
-  tls: true
-  type: http
+  name: 美国1
+  network: tcp
+  port: 18000
+  server: 67.220.85.46
+  type: vmess
   udp: true
-  username: 'null'
-  x-toolall-mihomo: true
-- name: 加拿大2
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国2
+  network: raw
+  port: 443
+  reality-opts:
+    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
+    short-id: a3a578ab
+  server: 185.95.231.156
+  servername: www.apple.com
+  tls: true
   type: vless
-  server: 104.17.3.81
-  port: 80
-  uuid: fdd8f4d0-4500-11ef-8227-1577c1651679
   udp: true
-  network: ws
-  ws-opts:
-    path: //worryfree
-    headers:
-      Host: sg-vless-ws.bypass.id
-- name: 美国2
-  port: 9002
-  server: 138.199.35.204
-  skip-cert-verify: true
-  sub_tag: R002-260618
+  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
+- client-fingerprint: firefox
+  flow: xtls-rprx-vision
+  name: 美国3
+  network: raw
+  port: 28190
+  reality-opts:
+    public-key: ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno
+    short-id: ''
+  server: 159.89.87.21
+  servername: aws.amazon.com
   tls: true
-  type: http
+  type: vless
   udp: true
-  x-toolall-mihomo: true
-- name: 美国3
-  password: None
-  port: 9002
-  server: 138.199.35.216
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
+  uuid: 14c80e0e-f7ce-4991-94fc-99a1db4a9b1e
 - name: 美国4
-  type: http
-  server: 138.199.35.214
-  port: 9002
-  username: 'null'
-  password: 'null'
-  tls: true
-  sni: 138.199.35.214
-  skip-cert-verify: true
-- name: 美国5
-  password: 'null'
-  port: 9002
-  server: 138.199.35.218
-  skip-cert-verify: true
-  sub_tag: P002-260618
-  tls: true
-  type: http
+  server: 38.143.66.146
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-  username: 'null'
-  x-toolall-mihomo: true
-- name: 德国2
-  password: 'null'
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国5
+  network: tcp
   port: 443
-  server: 172.64.69.89
-  skip-cert-verify: true
+  reality-opts:
+    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
+    short-id: 0990d22f
+  server: 167.17.69.171
+  servername: www.cloudflare.com
   tls: true
-  type: http
-  username: 'null'
+  type: vless
+  udp: true
+  uuid: 00144519-7e0d-476b-8d28-435576af9262
 - name: 美国6
-  type: http
-  server: 138.199.35.219
-  port: 9002
-  username: 'null'
-  password: None
+  type: ss
+  server: 138.197.89.234
+  port: 28960
+  cipher: chacha20-ietf-poly1305
+  password: DZRy4Q3QH0jUGfKFl2jDCZ
+  udp: true
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国7
+  network: tcp
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.231
+  servername: yahoo.com
   tls: true
-  sni: 138.199.35.219
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国8
+  network: raw
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.229
+  servername: yahoo.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- client-fingerprint: firefox
+  flow: xtls-rprx-vision
+  name: 加拿大2
+  network: raw
+  port: 443
+  reality-opts:
+    public-key: uTmb-ytXsx8p0fkBz7A76SHpWk7_oVutIA4LGTE8BQk
+    short-id: f98843107912e782
+  server: 209.200.246.148
+  servername: www.cloudflare.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: ca52e2b6-fb9f-4dac-b6dc-49da9923f251
+- name: 美国9
+  type: http
+  server: 12.202.180.118
+  port: 443
+  tls: true
   skip-cert-verify: true
-- name: 美国7
-  port: 9002
-  server: 138.199.35.211
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国10
+  network: raw
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.89
+  servername: yahoo.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国11
+  network: tcp
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.163
+  servername: yahoo.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- name: 美国12
+  password: ''
+  port: 443
+  server: 149.88.21.129
   skip-cert-verify: true
-  sub_tag: R002-260618
   tls: true
   type: http
   udp: true
+  username: ''
   x-toolall-mihomo: true
-- name: 美国8
-  password: gs4BXwT6SW
-  port: 10988
-  server: 154.26.192.123
-  type: http
-  username: fQ67Dpe5dU
+- type: vless
+  name: 日本1
+  server: kuruish.org
+  port: 443
+  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+  udp: true
+  tls: true
+  servername: kuruish.org
+  sni: kuruish.org
+  skip-cert-verify: false
+- name: 美国13
+  server: 199.7.140.201
+  port: 443
+  type: vless
+  uuid: a52ac672-0f5f-4070-b8fd-6b5685fc8004
+  udp: true
+  tls: true
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: LRAkgKlj5BPtVAGEIZfO5LvDZ5Eg91X0CBKIYhBC1jE
+    short-id: ''
+  client-fingerprint: chrome
+  network: tcp
 proxy-groups:
 - name: 🚀 节点选择
   type: select
   proxies:
-  - 香港
   - 日本
   - 美国
-  - 台湾
-  - 英国
-  - 德国
   - 加拿大
-  - 越南
-  - 泰国
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
-- name: 香港
-  type: select
-  proxies:
-  - 香港1
-  - 香港2
-  - 香港3
-  - 香港4
 - name: 日本
   type: select
   proxies:
   - 日本1
-  - 日本2
 - name: 美国
   type: select
   proxies:
@@ -308,67 +232,35 @@ proxy-groups:
   - 美国6
   - 美国7
   - 美国8
-- name: 台湾
-  type: select
-  proxies:
-  - 台湾1
-  - 台湾2
-- name: 英国
-  type: select
-  proxies:
-  - 英国1
-- name: 德国
-  type: select
-  proxies:
-  - 德国1
-  - 德国2
+  - 美国9
+  - 美国10
+  - 美国11
+  - 美国12
+  - 美国13
 - name: 加拿大
   type: select
   proxies:
   - 加拿大1
   - 加拿大2
-- name: 越南
-  type: select
-  proxies:
-  - 越南1
-- name: 泰国
-  type: select
-  proxies:
-  - 泰国1
-  - 泰国2
-  - 泰国3
-  - 泰国4
-  - 泰国5
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
-  - 香港1
-  - 香港2
-  - 香港3
-  - 台湾1
-  - 台湾2
-  - 越南1
-  - 泰国1
-  - 泰国2
-  - 日本1
-  - 日本2
-  - 香港4
-  - 泰国3
-  - 泰国4
-  - 泰国5
-  - 英国1
   - 加拿大1
   - 美国1
-  - 德国1
-  - 加拿大2
   - 美国2
   - 美国3
   - 美国4
   - 美国5
-  - 德国2
   - 美国6
   - 美国7
   - 美国8
+  - 加拿大2
+  - 美国9
+  - 美国10
+  - 美国11
+  - 美国12
+  - 日本1
+  - 美国13
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
