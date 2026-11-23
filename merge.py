@@ -801,7 +801,25 @@ def to_link(p):
                     "alpn": p.get("alpn"), "allow_insecure": "1" if p.get("skip-cert-verify") else ""})
         return f"tuic://{uuid}:{urllib.parse.quote(pw, safe='')}@{srv}:{port}?{query}{frag}"
 
+    if t in ("socks5", "socks"):
+        user = str(p.get("username") or "")
+        pw = str(p.get("password") or "")
+        cred = ""
+        if user or pw:
+            cred = f"{urllib.parse.quote(user, safe='')}:{urllib.parse.quote(pw, safe='')}@"
+        return f"socks5://{cred}{srv}:{port}{frag}"
+
+    if t == "http":
+        user = str(p.get("username") or "")
+        pw = str(p.get("password") or "")
+        cred = ""
+        if user or pw:
+            cred = f"{urllib.parse.quote(user, safe='')}:{urllib.parse.quote(pw, safe='')}@"
+        return f"http://{cred}{srv}:{port}{frag}"
+
     return None
+
+
 
 
 def write_v2rayng(alive, path="v2rayng.txt"):
@@ -818,7 +836,19 @@ def write_v2rayng(alive, path="v2rayng.txt"):
     with open(path, "w", encoding="utf-8") as f:
         f.write(body)
     print(f"  v2rayNG：{used} 个节点（跳过 {len(alive) - used} 个不支持的类型）")
+    # ql 混合链接：明文一份（一行一条），ql:// base64 打包一份（空格隔开挤成一行）
+    ql_dir = os.path.dirname(path)
+    ql_plain = os.path.join(ql_dir, "ql.txt") if ql_dir else "ql.txt"
+    ql_pack = os.path.join(ql_dir, "ql-packed.txt") if ql_dir else "ql-packed.txt"
+    mixed = " ".join(links)
+    with open(ql_plain, "w", encoding="utf-8") as f:
+        f.write("\n".join(links) + "\n")
+    with open(ql_pack, "w", encoding="utf-8") as f:
+        f.write("ql://" + base64.b64encode(mixed.encode("utf-8")).decode() + "\n")
+    print(f"  ql 混合链接：{used} 条 -> {ql_plain} / {ql_pack}")
     return used
+
+
 
 
 def build_region_groups(names, region_of):
