@@ -27,12 +27,6 @@ dns:
     geoip-code: CN
 proxies:
 - name: 香港1
-  password: '111'
-  port: 11211
-  server: 47.243.173.50
-  type: socks5
-  username: '111'
-- name: 香港2
   server: ibsdsf.df6h451rh.xin
   port: 443
   type: anytls
@@ -96,30 +90,10 @@ proxies:
   sni: docs.microsoft.com
   skip-cert-verify: true
 - name: 韩国1
-  type: socks5
-  server: 121.169.46.116
-  port: 1090
-- name: 韩国2
   port: 1080
   server: 59.11.209.162
   skip-cert-verify: true
   type: socks5
-- name: 美国1
-  type: vless
-  network: ws
-  server: 104.21.94.203
-  port: 443
-  uuid: 364D2D52-E61E-4E52-80EC-2BC6BDF15349
-  servername: fr-free.fastestrelay.com
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: fr-free.fastestrelay.com
-    path: /700gvl
 - name: 日本1
   password: exaxgqkKkd0TAMrCxeonWg==
   port: 443
@@ -145,36 +119,24 @@ proxies:
   type: socks5
   username: r3ZzP8WW
 - name: 泰国4
-  password: KT5hiU8o
-  port: 42000
-  server: 104.234.70.136
-  type: socks5
-  username: rnt2L4XO
-- name: 泰国5
   password: zdnivBaI
   port: 62000
   server: 109.66.136.42
   type: socks5
   username: r3ZzP8WW
-- name: 泰国6
-  password: zdnivBaI
-  port: 62000
-  server: 109.66.136.234
-  type: socks5
-  username: r3ZzP8WW
-- name: 泰国7
+- name: 泰国5
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.192
   type: socks5
   username: X3s3JteD
-- name: 泰国8
+- name: 泰国6
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.138
   type: socks5
   username: X3s3JteD
-- name: 美国2
+- name: 美国1
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -192,7 +154,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国3
+- name: 美国2
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -200,7 +162,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国4
+- name: 美国3
   type: vmess
   network: ws
   server: 104.18.42.163
@@ -214,7 +176,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 美国5
+- name: 美国4
   port: 9002
   server: 138.199.35.201
   skip-cert-verify: true
@@ -222,7 +184,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国6
+- name: 美国5
   password: ''
   port: 9002
   server: 138.199.35.200
@@ -232,7 +194,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国7
+- name: 美国6
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
@@ -246,7 +208,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国8
+- name: 美国7
   password: 'null'
   port: 9002
   server: 138.199.35.206
@@ -254,7 +216,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国9
+- name: 美国8
   password: None
   port: 9002
   server: 138.199.35.196
@@ -264,23 +226,6 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国10
-  server: 188.114.97.6
-  port: 443
-  type: vless
-  uuid: e58384f2-76ba-400b-ae0a-8271b4c9c310
-  tls: true
-  alpn:
-  - h2
-  - http/1.1
-  servername: crm.dpdns.org
-  client-fingerprint: unsafe
-  network: xhttp
-  xhttp-opts:
-    path: /api/v1/stream
-    host: crm.dpdns.org
-    mode: auto
-  udp: true
 - name: 法国1
   port: 6103
   server: 87.98.174.157
@@ -289,7 +234,7 @@ proxies:
   type: http
   udp: true
 - type: anytls
-  name: 美国11
+  name: 美国9
   server: sdf65h46wr.df6h451rh.xin
   port: 443
   password: 0324fbc29561
@@ -297,7 +242,7 @@ proxies:
   servername: images.ctfassets.net
   sni: images.ctfassets.net
   skip-cert-verify: true
-- name: 美国12
+- name: 美国10
   password: l1tlrdx52v
   port: 62000
   server: 66.253.2.69
@@ -313,7 +258,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国13
+- name: 美国11
   password: exaxgqkKkd0TAMrCxeonWg==
   port: 443
   server: usgp1-cdn-route.couldflare-cdn.com
@@ -321,27 +266,15 @@ proxies:
   type: http
   udp: true
   username: mrwdfNTD8M79LCukCieldrqZWqs=
-- name: 美国14
-  server: 146.75.32.177
-  port: 443
-  type: vless
-  uuid: e15225fb-0998-4719-8391-eede56f4d472
-  udp: true
-  tls: true
-  servername: zd.fastly.com
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /
-    host: huryuk.global.ssl.fastly.net
-    mode: packet-up
-- name: 意大利1
+- type: ss
+  name: 意大利1
   server: 202.50.253.63
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 比利时1
   port: 443
   server: 146.70.123.98
@@ -364,7 +297,7 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 美国15
+- name: 美国12
   type: vless
   network: ws
   server: 172.64.154.113
@@ -384,7 +317,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国16
+- name: 美国13
   password: ''
   port: 443
   server: 149.88.21.129
@@ -394,7 +327,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国17
+- name: 美国14
   password: 75bPoRcB
   port: 62000
   server: 216.132.114.27
@@ -407,11 +340,11 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 美国18
+- name: 美国15
   port: 38182
   server: 69.55.49.177
   type: socks5
-- name: 美国19
+- name: 美国16
   port: 443
   server: 149.34.248.65
   skip-cert-verify: true
@@ -435,21 +368,6 @@ proxies:
     host: 9303d6x.fi-p1b.h1clayd.click
     mode: auto
   udp: true
-- name: 美国20
-  type: vless
-  network: http
-  server: 64.227.41.219
-  port: 443
-  uuid: 40992c2a-513e-4837-9594-23411fd42afd
-  tls: false
-  udp: true
-  http-opts:
-    headers:
-      Host:
-      - fast.com
-    method: GET
-    path:
-    - /
 - name: 罗马尼亚1
   password: 'null'
   port: 9002
@@ -541,21 +459,6 @@ proxies:
     grpc-mode: gun
     grpc-service-name: mobile.api.Event
   udp: true
-- name: 英国3
-  type: vless
-  network: http
-  server: 167.99.203.0
-  port: 443
-  uuid: 40992c2a-513e-4837-9594-23411fd42afd
-  tls: false
-  udp: true
-  http-opts:
-    headers:
-      Host:
-      - fast.com
-    method: GET
-    path:
-    - /
 - name: 荷兰1
   port: 443
   server: 149.36.51.129
@@ -570,13 +473,15 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 意大利4
+- type: ss
+  name: 意大利4
   server: 202.50.253.99
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 荷兰2
   password: None
   port: 9002
@@ -616,7 +521,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 泰国9
+- name: 泰国7
   password: fAgE2jqK
   port: 42000
   server: 151.246.108.69
@@ -638,20 +543,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 俄罗斯3
-  type: vless
-  server: 72.56.238.135
-  port: 443
-  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
-  udp: true
-  network: ws
-  tls: true
-  servername: parchment.merlano.monster
-  client-fingerprint: firefox
-  ws-opts:
-    path: /api/de7/stream
-    headers:
-      Host: parchment.merlano.monster
 - name: 荷兰7
   password: 'null'
   port: 9002
@@ -661,13 +552,15 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 意大利5
+- type: ss
+  name: 意大利5
   server: 202.50.253.36
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 意大利6
   server: 202.50.253.54
   port: 19999
@@ -690,27 +583,15 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国21
-  type: vless
-  server: 48.102.204.67
-  port: 8443
-  uuid: 1d1eda2e-0bd7-4478-877b-1c5425c6c4dd
-  udp: true
-  network: tcp
-  tls: true
-  servername: tradingview.com
-  client-fingerprint: edge
-  reality-opts:
-    public-key: yr_opKG6DGTppNDXkk-DhGSYJZXbb9o-caexk2FZO38
-    short-id: 8f3c6e2a1b5d4f09
-  flow: xtls-rprx-vision
-- name: 意大利8
+- type: ss
+  name: 意大利8
   server: 202.50.253.72
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 德国5
   port: 9002
   server: 158.173.154.1
@@ -793,26 +674,18 @@ proxies:
   skip-cert-verify: true
   type: socks5
   username: UBXich0K
-- name: 新加坡2
-  port: 443
-  server: 154.26.139.24
-  skip-cert-verify: true
-  tls: true
-  type: http
-- name: 英国4
+- name: 英国3
   server: a80b5386.fi2.h1clayd.click
   port: 443
   type: vless
-  udp: true
   uuid: 2ccb06b6-9eac-44eb-ade7-c1e5afb8e7df
   tls: true
-  skip-cert-verify: true
-  network: tcp
   reality-opts:
     public-key: PslSaSQWP4BZZmkL7irab4FMti8sW6BvoC7ytFjJFyc
     short-id: cc678f10161992a9
   servername: a80b5386.fi2.h1clayd.click
-  client-fingerprint: chrome
+  client-fingerprint: firefox
+  network: tcp
 - name: 墨西哥4
   password: sZnD8GTz
   port: 42000
@@ -833,21 +706,7 @@ proxies:
   server: 191.7.129.133
   type: socks5
   username: uwrgfkwg
-- name: 俄罗斯4
-  server: heatherfield.moltex.click
-  port: 443
-  type: vless
-  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
-  udp: true
-  tls: true
-  servername: heatherfield.moltex.click
-  client-fingerprint: chrome
-  network: xhttp
-  xhttp-opts:
-    path: /api/de6/sync
-    host: heatherfield.moltex.click
-    mode: auto
-- name: 俄罗斯5
+- name: 俄罗斯3
   type: vless
   server: tgfree.rush-server.com
   port: 443
@@ -896,12 +755,10 @@ proxy-groups:
   type: select
   proxies:
   - 香港1
-  - 香港2
 - name: 新加坡
   type: select
   proxies:
   - 新加坡1
-  - 新加坡2
 - name: 日本
   type: select
   proxies:
@@ -926,11 +783,6 @@ proxy-groups:
   - 美国14
   - 美国15
   - 美国16
-  - 美国17
-  - 美国18
-  - 美国19
-  - 美国20
-  - 美国21
 - name: 台湾
   type: select
   proxies:
@@ -942,14 +794,12 @@ proxy-groups:
   type: select
   proxies:
   - 韩国1
-  - 韩国2
 - name: 英国
   type: select
   proxies:
   - 英国1
   - 英国2
   - 英国3
-  - 英国4
 - name: 德国
   type: select
   proxies:
@@ -983,8 +833,6 @@ proxy-groups:
   - 俄罗斯1
   - 俄罗斯2
   - 俄罗斯3
-  - 俄罗斯4
-  - 俄罗斯5
 - name: 土耳其
   type: select
   proxies:
@@ -1054,8 +902,6 @@ proxy-groups:
   - 泰国5
   - 泰国6
   - 泰国7
-  - 泰国8
-  - 泰国9
 - name: 其他
   type: select
   proxies:
@@ -1064,7 +910,6 @@ proxy-groups:
   type: url-test
   proxies: &id001
   - 香港1
-  - 香港2
   - 台湾1
   - 台湾2
   - 泰国1
@@ -1072,46 +917,39 @@ proxy-groups:
   - 台湾3
   - 台湾4
   - 韩国1
-  - 韩国2
-  - 美国1
   - 日本1
   - 日本2
   - 泰国3
   - 泰国4
   - 泰国5
   - 泰国6
-  - 泰国7
-  - 泰国8
-  - 美国2
+  - 美国1
   - 德国1
+  - 美国2
   - 美国3
   - 美国4
   - 美国5
   - 美国6
-  - 美国7
   - 德国2
+  - 美国7
   - 美国8
+  - 法国1
   - 美国9
   - 美国10
-  - 法国1
-  - 美国11
-  - 美国12
   - 新加坡1
-  - 美国13
-  - 美国14
+  - 美国11
   - 意大利1
   - 比利时1
   - 奥地利1
   - 瑞士1
-  - 美国15
+  - 美国12
   - 希腊1
-  - 美国16
-  - 美国17
+  - 美国13
+  - 美国14
   - 意大利2
-  - 美国18
-  - 美国19
+  - 美国15
+  - 美国16
   - 英国1
-  - 美国20
   - 罗马尼亚1
   - 罗马尼亚2
   - 爱尔兰1
@@ -1122,7 +960,6 @@ proxy-groups:
   - 英国2
   - 俄罗斯1
   - 俄罗斯2
-  - 英国3
   - 荷兰1
   - 意大利3
   - 意大利4
@@ -1131,16 +968,14 @@ proxy-groups:
   - 荷兰4
   - 德国3
   - 荷兰5
-  - 泰国9
+  - 泰国7
   - 荷兰6
   - 德国4
-  - 俄罗斯3
   - 荷兰7
   - 意大利5
   - 意大利6
   - 意大利7
   - 荷兰8
-  - 美国21
   - 意大利8
   - 德国5
   - 荷兰9
@@ -1152,13 +987,11 @@ proxy-groups:
   - 墨西哥1
   - 墨西哥2
   - 墨西哥3
-  - 新加坡2
-  - 英国4
+  - 英国3
   - 墨西哥4
   - 其他1
   - 巴西1
-  - 俄罗斯4
-  - 俄罗斯5
+  - 俄罗斯3
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50

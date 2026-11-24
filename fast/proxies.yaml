@@ -1,11 +1,5 @@
 proxies:
 - name: 香港1
-  password: '111'
-  port: 11211
-  server: 47.243.173.50
-  type: socks5
-  username: '111'
-- name: 香港2
   server: ibsdsf.df6h451rh.xin
   port: 443
   type: anytls
@@ -69,30 +63,10 @@ proxies:
   sni: docs.microsoft.com
   skip-cert-verify: true
 - name: 韩国1
-  type: socks5
-  server: 121.169.46.116
-  port: 1090
-- name: 韩国2
   port: 1080
   server: 59.11.209.162
   skip-cert-verify: true
   type: socks5
-- name: 美国1
-  type: vless
-  network: ws
-  server: 104.21.94.203
-  port: 443
-  uuid: 364D2D52-E61E-4E52-80EC-2BC6BDF15349
-  servername: fr-free.fastestrelay.com
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: fr-free.fastestrelay.com
-    path: /700gvl
 - name: 日本1
   password: exaxgqkKkd0TAMrCxeonWg==
   port: 443
@@ -118,36 +92,24 @@ proxies:
   type: socks5
   username: r3ZzP8WW
 - name: 泰国4
-  password: KT5hiU8o
-  port: 42000
-  server: 104.234.70.136
-  type: socks5
-  username: rnt2L4XO
-- name: 泰国5
   password: zdnivBaI
   port: 62000
   server: 109.66.136.42
   type: socks5
   username: r3ZzP8WW
-- name: 泰国6
-  password: zdnivBaI
-  port: 62000
-  server: 109.66.136.234
-  type: socks5
-  username: r3ZzP8WW
-- name: 泰国7
+- name: 泰国5
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.192
   type: socks5
   username: X3s3JteD
-- name: 泰国8
+- name: 泰国6
   password: mpbK00Pl
   port: 42000
   server: 192.204.15.138
   type: socks5
   username: X3s3JteD
-- name: 美国2
+- name: 美国1
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -165,7 +127,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国3
+- name: 美国2
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -173,7 +135,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国4
+- name: 美国3
   type: vmess
   network: ws
   server: 104.18.42.163
@@ -187,7 +149,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 美国5
+- name: 美国4
   port: 9002
   server: 138.199.35.201
   skip-cert-verify: true
@@ -195,7 +157,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国6
+- name: 美国5
   password: ''
   port: 9002
   server: 138.199.35.200
@@ -205,7 +167,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国7
+- name: 美国6
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
@@ -219,7 +181,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国8
+- name: 美国7
   password: 'null'
   port: 9002
   server: 138.199.35.206
@@ -227,7 +189,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国9
+- name: 美国8
   password: None
   port: 9002
   server: 138.199.35.196
@@ -237,20 +199,3 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国10
-  server: 188.114.97.6
-  port: 443
-  type: vless
-  uuid: e58384f2-76ba-400b-ae0a-8271b4c9c310
-  tls: true
-  alpn:
-  - h2
-  - http/1.1
-  servername: crm.dpdns.org
-  client-fingerprint: unsafe
-  network: xhttp
-  xhttp-opts:
-    path: /api/v1/stream
-    host: crm.dpdns.org
-    mode: auto
-  udp: true
