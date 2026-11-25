@@ -27,12 +27,6 @@ dns:
     geoip-code: CN
 proxies:
 - name: 香港1
-  password: '111'
-  port: 11211
-  server: 47.243.173.50
-  type: socks5
-  username: '111'
-- name: 香港2
   server: ibsdsf.df6h451rh.xin
   port: 443
   type: anytls
@@ -40,13 +34,6 @@ proxies:
   client-fingerprint: chrome
   udp: true
   sni: docs.microsoft.com
-  skip-cert-verify: true
-- name: 美国1
-  server: signal.lovehk.xyz
-  port: 443
-  type: anytls
-  password: 98c394b5-2a27-4be2-b5e5-0daab762c058
-  sni: signal.lovehk.xyz
   skip-cert-verify: true
 - name: 台湾1
   server: a54ge.df6h451rh.xin
@@ -76,16 +63,10 @@ proxies:
   type: http
   username: mrwdfNTD8M79LCukCieldrqZWqs=
 - name: 日本2
-  password: ''
   port: 443
   server: fan.571589.xyz
-  skip-cert-verify: true
-  sni: fan.571589.xyz
   tls: true
   type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 日本3
   server: win2loxfde0303.gggrelay.org
   port: 34745
@@ -108,7 +89,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国2
+- name: 美国1
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -116,7 +97,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国3
+- name: 美国2
   password: None
   port: 9002
   server: 138.199.35.211
@@ -134,7 +115,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国4
+- name: 美国3
   password: None
   port: 9002
   server: 138.199.35.196
@@ -144,7 +125,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国5
+- name: 美国4
   password: 'null'
   port: 9002
   server: 138.199.35.206
@@ -152,7 +133,18 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国6
+- name: 法国1
+  network: ws
+  port: 80
+  server: 188.114.99.137
+  tls: false
+  type: vless
+  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
+  ws-opts:
+    headers:
+      Host: suh.cryptofront.uk
+    path: /
+- name: 美国5
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -160,16 +152,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国7
-  password: ''
-  port: 9002
-  server: 138.199.35.200
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 新加坡1
   network: ws
   port: 8443
@@ -182,22 +164,12 @@ proxies:
     headers:
       Host: freeceshi6.frii.site
     path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
-- name: 美国8
+- name: 美国6
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
   type: http
   username: fQ67Dpe5dU
-- name: 美国9
-  password: ''
-  port: 9002
-  server: 138.199.35.201
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 proxy-groups:
 - name: 🚀 节点选择
   type: select
@@ -209,6 +181,7 @@ proxy-groups:
   - 台湾
   - 韩国
   - 德国
+  - 法国
   - 加拿大
   - 泰国
   - ♻️ 自动选择
@@ -218,7 +191,6 @@ proxy-groups:
   type: select
   proxies:
   - 香港1
-  - 香港2
 - name: 新加坡
   type: select
   proxies:
@@ -239,9 +211,6 @@ proxy-groups:
   - 美国4
   - 美国5
   - 美国6
-  - 美国7
-  - 美国8
-  - 美国9
 - name: 台湾
   type: select
   proxies:
@@ -254,6 +223,10 @@ proxy-groups:
   type: select
   proxies:
   - 德国1
+- name: 法国
+  type: select
+  proxies:
+  - 法国1
 - name: 加拿大
   type: select
   proxies:
@@ -266,8 +239,6 @@ proxy-groups:
   type: url-test
   proxies: &id001
   - 香港1
-  - 香港2
-  - 美国1
   - 台湾1
   - 泰国1
   - 韩国1
@@ -276,16 +247,15 @@ proxy-groups:
   - 日本3
   - 日本4
   - 加拿大1
+  - 美国1
   - 美国2
-  - 美国3
   - 德国1
+  - 美国3
   - 美国4
+  - 法国1
   - 美国5
-  - 美国6
-  - 美国7
   - 新加坡1
-  - 美国8
-  - 美国9
+  - 美国6
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50

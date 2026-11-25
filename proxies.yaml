@@ -1,11 +1,5 @@
 proxies:
 - name: 香港1
-  password: '111'
-  port: 11211
-  server: 47.243.173.50
-  type: socks5
-  username: '111'
-- name: 香港2
   server: ibsdsf.df6h451rh.xin
   port: 443
   type: anytls
@@ -13,13 +7,6 @@ proxies:
   client-fingerprint: chrome
   udp: true
   sni: docs.microsoft.com
-  skip-cert-verify: true
-- name: 美国1
-  server: signal.lovehk.xyz
-  port: 443
-  type: anytls
-  password: 98c394b5-2a27-4be2-b5e5-0daab762c058
-  sni: signal.lovehk.xyz
   skip-cert-verify: true
 - name: 台湾1
   server: a54ge.df6h451rh.xin
@@ -49,16 +36,10 @@ proxies:
   type: http
   username: mrwdfNTD8M79LCukCieldrqZWqs=
 - name: 日本2
-  password: ''
   port: 443
   server: fan.571589.xyz
-  skip-cert-verify: true
-  sni: fan.571589.xyz
   tls: true
   type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 日本3
   server: win2loxfde0303.gggrelay.org
   port: 34745
@@ -81,7 +62,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国2
+- name: 美国1
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -89,7 +70,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国3
+- name: 美国2
   password: None
   port: 9002
   server: 138.199.35.211
@@ -107,7 +88,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国4
+- name: 美国3
   password: None
   port: 9002
   server: 138.199.35.196
@@ -117,7 +98,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国5
+- name: 美国4
   password: 'null'
   port: 9002
   server: 138.199.35.206
@@ -125,7 +106,18 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国6
+- name: 法国1
+  network: ws
+  port: 80
+  server: 188.114.99.137
+  tls: false
+  type: vless
+  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
+  ws-opts:
+    headers:
+      Host: suh.cryptofront.uk
+    path: /
+- name: 美国5
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -133,16 +125,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国7
-  password: ''
-  port: 9002
-  server: 138.199.35.200
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 新加坡1
   network: ws
   port: 8443
@@ -155,23 +137,13 @@ proxies:
     headers:
       Host: freeceshi6.frii.site
     path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
-- name: 美国8
+- name: 美国6
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
   type: http
   username: fQ67Dpe5dU
-- name: 美国9
-  password: ''
-  port: 9002
-  server: 138.199.35.201
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
-- name: 美国10
+- name: 美国7
   password: l1tlrdx52v
   port: 62000
   server: 66.253.2.69
@@ -187,7 +159,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 法国1
+- name: 法国2
   port: 6103
   server: 87.98.174.157
   skip-cert-verify: true
@@ -202,7 +174,7 @@ proxies:
   password: e4b72b531a2d10900519
   tls: true
   sni: a7acacbe.acsnet.co
-- name: 美国11
+- name: 美国8
   password: exaxgqkKkd0TAMrCxeonWg==
   port: 443
   server: usgp1-cdn-route.couldflare-cdn.com
@@ -217,18 +189,6 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 美国12
-  password: None
-  port: 38182
-  server: 69.55.49.177
-  skip-cert-verify: true
-  type: socks5
-- name: 泰国2
-  password: fAgE2jqK
-  port: 42000
-  server: 151.246.108.69
-  type: socks5
-  username: h87527jJ
 - name: 意大利2
   server: 202.50.253.81
   port: 19999
@@ -243,28 +203,20 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国13
+- name: 美国9
   password: 75bPoRcB
   port: 62000
   server: 216.132.114.27
   type: socks5
   username: JzufiJ62
-- name: 美国14
+- name: 美国10
   port: 443
   server: 149.34.248.65
   skip-cert-verify: true
   sni: 149.34.248.65
   tls: true
   type: http
-- name: 台湾2
-  server: theme.lovehk.xyz
-  port: 443
-  type: anytls
-  password: 1ab804ed-fea9-4374-8d11-e6866495d8d0
-  udp: true
-  sni: theme.lovehk.xyz
-  skip-cert-verify: true
-- name: 美国15
+- name: 美国11
   password: ''
   port: 443
   server: 149.88.21.129
@@ -290,26 +242,28 @@ proxies:
   udp: true
   x-toolall-mihomo: true
 - name: 立陶宛1
+  type: vless
   server: 84.32.209.54
   port: 443
-  type: vless
   uuid: f69e272f-e0e5-4e9d-b180-5be63930cde9
+  udp: true
+  network: tcp
   tls: true
-  flow: xtls-rprx-vision
+  servername: lt.memepn.com
+  client-fingerprint: firefox
   reality-opts:
     public-key: drl7nndYdfzZY1aQ0eUAWmNV0nsHig2uDnu9siy9biQ
     short-id: 868419504747f6de
-  servername: lt.memepn.com
-  client-fingerprint: firefox
-  network: tcp
-  udp: true
-- name: 意大利4
+  flow: xtls-rprx-vision
+- type: ss
+  name: 意大利4
   server: 202.50.253.72
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 爱尔兰1
   port: 443
   server: 18.200.158.139
@@ -323,23 +277,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-  udp: true
-- name: 英国2
-  server: 196.196.208.22
-  port: 443
-  type: vless
-  uuid: cae99415-10a6-4317-81bd-19a4586b5d76
-  tls: true
-  reality-opts:
-    public-key: _yJGJ5q-8IxTuWFcoy5wpKKYtk9p9q4lQ6svfXC1IUU
-    short-id: 621290c77645b731
-  servername: 9303d6x.fi-p1b.h1clayd.click
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /f57a81c99fea
-    host: 9303d6x.fi-p1b.h1clayd.click
-    mode: auto
   udp: true
 - name: 罗马尼亚1
   port: 9002
@@ -374,7 +311,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 英国3
+- name: 英国2
   type: http
   server: 82.196.9.7
   port: 443
@@ -391,19 +328,6 @@ proxies:
   tls: true
   type: http
 - name: 俄罗斯1
-  server: 193.160.208.240
-  port: 443
-  type: vless
-  uuid: 4777d90d-265b-4927-a0d1-63f36ed1421c
-  tls: true
-  servername: 193.160.208.240
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /assets/twru01/
-    mode: auto
-  udp: true
-- name: 俄罗斯2
   server: 201.51.12.98
   port: 443
   type: vless
@@ -416,20 +340,29 @@ proxies:
     grpc-mode: gun
     grpc-service-name: mobile.api.Event
   udp: true
-- name: 意大利5
-  password: JdFlrZhqHP
-  port: 1080
-  server: 69.16.157.244
-  type: socks5
-  username: ufCobhydz4Wd
-- name: 意大利6
+- name: 德国2
+  server: 193.160.208.240
+  port: 443
+  type: vless
+  uuid: 4777d90d-265b-4927-a0d1-63f36ed1421c
+  tls: true
+  servername: 193.160.208.240
+  client-fingerprint: firefox
+  network: xhttp
+  xhttp-opts:
+    path: /assets/twru01/
+    mode: auto
+  udp: true
+- type: ss
+  name: 意大利5
   server: 202.50.253.27
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
-- name: 德国2
+  tls: false
+  skip-cert-verify: false
+- name: 德国3
   password: None
   port: 443
   server: 149.36.50.1
@@ -453,7 +386,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 德国3
+- name: 德国4
   port: 9002
   server: 158.173.154.5
   skip-cert-verify: true
@@ -483,13 +416,15 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 意大利7
+- type: ss
+  name: 意大利6
   server: 202.50.253.63
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 荷兰6
   password: 'null'
   port: 9002
@@ -508,7 +443,7 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 德国4
+- name: 德国5
   password: None
   port: 9002
   server: 158.173.154.4
@@ -516,43 +451,26 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 英国4
+- name: 英国3
   port: 443
   server: 212.102.63.31
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 意大利8
+- name: 意大利7
   server: 202.50.253.18
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 意大利9
+- name: 意大利8
   server: 202.50.253.36
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
-- name: 德国5
-  server: greenhouse.elvano.website
-  port: 443
-  type: vless
-  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
-  tls: true
-  alpn:
-  - h2
-  - http/1.1
-  servername: greenhouse.elvano.website
-  client-fingerprint: firefox
-  network: xhttp
-  xhttp-opts:
-    path: /api/de6/sync
-    host: greenhouse.elvano.website
-    mode: auto
   udp: true
 - name: 德国6
   server: wildflower.elvano.website
@@ -587,21 +505,23 @@ proxies:
     host: inlet.gerqix.online
     mode: packet-up
   udp: true
-- name: 俄罗斯3
-  server: vps3.nemnogogo.com
-  port: 443
-  type: vless
-  uuid: 38308ff1-5aa9-494f-a25a-0f2870d56b3e
-  tls: true
-  alpn:
+- alpn:
   - h2
-  servername: vps3.nemnogogo.com
+  - http/1.1
   client-fingerprint: firefox
-  network: grpc
-  grpc-opts:
-    grpc-mode: gun
-    grpc-service-name: mobile.api.Event
+  name: 德国8
+  network: xhttp
+  port: 443
+  server: greenhouse.elvano.website
+  servername: greenhouse.elvano.website
+  tls: true
+  type: vless
   udp: true
+  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
+  xhttp-opts:
+    host: greenhouse.elvano.website
+    mode: auto
+    path: /api/de6/sync
 - name: 日本5
   password: J5rM2xL9
   port: 42000
@@ -609,13 +529,30 @@ proxies:
   skip-cert-verify: true
   type: socks5
   username: tB4vN7qP
-- name: 意大利10
+- alpn:
+  - h2
+  client-fingerprint: firefox
+  grpc-opts:
+    grpc-mode: gun
+    grpc-service-name: mobile.api.Event
+  name: 俄罗斯2
+  network: grpc
+  port: 443
+  server: vps3.nemnogogo.com
+  servername: vps3.nemnogogo.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 38308ff1-5aa9-494f-a25a-0f2870d56b3e
+- type: ss
+  name: 意大利9
   server: 202.50.253.90
   port: 19999
-  type: ss
-  cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  cipher: aes-256-gcm
   udp: true
+  tls: false
+  skip-cert-verify: false
 - name: 荷兰8
   password: None
   port: 9002
@@ -624,14 +561,14 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 德国8
+- name: 德国9
   port: 9002
   server: 158.173.154.1
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 俄罗斯4
+- name: 俄罗斯3
   type: vless
   server: tgfree.rush-server.com
   port: 443
@@ -645,13 +582,23 @@ proxies:
     public-key: mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0
     short-id: 64c1fe36c7846400
   flow: xtls-rprx-vision
-- name: 土耳其1
-  password: freeuser1
-  port: 9251
-  server: br3-tr.freeconnect.link
+- alpn:
+  - h2
+  - http/1.1
+  client-fingerprint: edge
+  name: 俄罗斯4
+  network: xhttp
+  port: 443
+  server: seaglass.gerqix.online
+  servername: seaglass.gerqix.online
   tls: true
-  type: http
-  username: freeuser1
+  type: vless
+  udp: true
+  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
+  xhttp-opts:
+    host: seaglass.gerqix.online
+    mode: auto
+    path: /api/de5/sync
 - name: 捷克1
   password: None
   port: 9443
@@ -660,36 +607,37 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: chrome
-  name: 美国16
-  network: tcp
-  packet-encoding: xudp
-  port: 443
-  reality-opts:
-    public-key: kkCGiCQCKnkozJR1KKCRNtmdBECmThCgI9VSv7iDcWI
-    short-id: 8956c57cb4c4f8d2
-  server: f0d7aft.nl13.h1clayd.click
-  servername: f0d7aft.nl13.h1clayd.click
-  tls: true
-  type: vless
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
-  x-toolall-mihomo: true
 - name: 俄罗斯5
-  server: leviko-ru4448.shopingggg.ir
-  port: 443
   type: vless
-  uuid: 38308ff1-5aa9-494f-a25a-0f2870d56b3e
-  tls: true
-  alpn:
-  - h2
-  servername: vps3.nemnogogo.com
-  client-fingerprint: chrome
+  server: 193.233.89.130
+  port: 8443
+  uuid: 7bd7c4aa-52c4-482c-bdcc-e7380fa6b5fe
+  udp: true
   network: grpc
+  tls: true
+  servername: g.play2go.gay
+  client-fingerprint: random
+  reality-opts:
+    public-key: xx8KWdR4HbVmvqPb0wRPAstBHGN2Uk99m7AF794_E3c
+    short-id: ''
+  grpc-opts:
+    grpc-service-name: grpc
+- alpn:
+  - h2
+  client-fingerprint: chrome
   grpc-opts:
     grpc-mode: gun
     grpc-service-name: mobile.api.Event
+  name: 俄罗斯6
+  network: grpc
+  port: 443
+  server: leviko-ru4448.shopingggg.ir
+  servername: vps3.nemnogogo.com
+  tls: true
+  type: vless
   udp: true
-- name: 法国2
+  uuid: 38308ff1-5aa9-494f-a25a-0f2870d56b3e
+- name: 法国3
   port: 443
   server: 82.66.235.221
   skip-cert-verify: true
@@ -698,33 +646,18 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 荷兰9
-  server: fc82dfx.nl8.h1clayd.click
-  port: 443
-  type: vless
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
-  tls: true
-  reality-opts:
-    public-key: dtO7khFLUkpFDQOtNzo4Th4hJKLoPSY2VtD_9k4Hgiw
-    short-id: 7b2b1a14a6e0630d
-  servername: fc82dfx.nl8.h1clayd.click
-  client-fingerprint: chrome
-  network: xhttp
-  xhttp-opts:
-    path: /0616f2d729aa
-    host: fc82dfx.nl8.h1clayd.click
-    mode: auto
-  udp: true
-- name: 英国5
-  server: 136.148.83.70
-  port: 443
-  type: vless
-  uuid: 00000000-0000-0001-0000-000000000000
-  tls: true
-  servername: aszbk-ru-78dc.my-fade.cloud
-  client-fingerprint: qq
+- client-fingerprint: qq
+  name: 英国4
   network: tcp
+  port: 443
+  server: 136.148.83.70
+  servername: aszbk-ru-78dc.my-fade.cloud
+  tls: true
+  type: vless
   udp: true
+  uuid: 00000000-0000-0001-0000-000000000000
+  ws-opts:
+    path: /
 - name: 墨西哥1
   password: DJy1T0dt
   port: 42000
@@ -747,50 +680,24 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 墨西哥3
-  password: 2j7CCZQb
-  port: 62000
-  server: 94.194.164.203
-  type: socks5
-  username: rVkkraqT
-- name: 巴西1
-  password: 0mvrt5jb
-  port: 62000
-  server: 191.7.129.133
-  type: socks5
-  username: uwrgfkwg
-- name: 美国17
-  server: 207.244.243.12
-  port: 443
-  type: vless
-  uuid: a33f9fb8-51bb-46d0-8d3a-6b54fdc15943
-  udp: true
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.cloudflare.com
-  reality-opts:
-    public-key: 7pnL_m6XftDfRH5Lue-2zI1a0XWg-xcQd5F8m5lqChg
-    short-id: d5f348390b201e86
-  client-fingerprint: chrome
-  network: tcp
-- name: 俄罗斯6
-  server: bayleaf.elvano.website
-  port: 443
-  type: vless
-  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
-  tls: true
-  alpn:
+- alpn:
   - h2
   - http/1.1
-  servername: bayleaf.elvano.website
   client-fingerprint: edge
+  name: 俄罗斯7
   network: xhttp
+  port: 443
+  server: bayleaf.elvano.website
+  servername: bayleaf.elvano.website
+  tls: true
+  type: vless
+  udp: true
+  uuid: 0b6a7fe0-206b-4071-9f96-cd397d1ec01a
   xhttp-opts:
-    path: /api/de3/sync
     host: bayleaf.elvano.website
     mode: auto
-  udp: true
-- name: 俄罗斯7
+    path: /api/de3/sync
+- name: 德国10
   server: ws3.falmero.store
   port: 443
   type: vless
@@ -804,7 +711,7 @@ proxies:
     headers:
       Host: paperbirch.merlano.monster
   udp: true
-- name: 荷兰10
+- name: 荷兰9
   password: freeuser1
   port: 9251
   server: nl205.freeconnect.link
@@ -812,19 +719,3 @@ proxies:
   tls: true
   type: http
   username: freeuser1
-- name: 台湾3
-  server: 116.213.43.43
-  port: 11102
-  type: vless
-  uuid: 530d31fc-2690-49e4-bfc9-3f991e145008
-  tls: true
-  tfo: false
-  flow: xtls-rprx-vision
-  skip-cert-verify: true
-  reality-opts:
-    public-key: oW6HMjniDmBJdjGKwhBAIS2zMS1VvHORubh9vdazqQ0
-    short-id: ed571d022f7bc3bf
-  servername: www.apple.com
-  client-fingerprint: chrome
-  network: tcp
-  udp: true
