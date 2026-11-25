@@ -26,47 +26,266 @@ dns:
     geoip: true
     geoip-code: CN
 proxies:
-- alterId: 0
-  cipher: aes-128-gcm
-  name: 美国1
-  network: raw
-  port: 18000
-  server: 67.220.95.3
-  type: vmess
-  udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 美国2
-  network: raw
+- name: 香港1
+  password: '111'
+  port: 11211
+  server: 47.243.173.50
+  type: socks5
+  username: '111'
+- name: 香港2
+  server: ibsdsf.df6h451rh.xin
   port: 443
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  server: 169.40.42.229
-  servername: yahoo.com
+  type: anytls
+  password: 2902c46c8493
+  client-fingerprint: chrome
+  udp: true
+  sni: docs.microsoft.com
+  skip-cert-verify: true
+- name: 美国1
+  server: signal.lovehk.xyz
+  port: 443
+  type: anytls
+  password: 98c394b5-2a27-4be2-b5e5-0daab762c058
+  sni: signal.lovehk.xyz
+  skip-cert-verify: true
+- name: 台湾1
+  server: a54ge.df6h451rh.xin
+  port: 443
+  type: anytls
+  password: 0324fbc29561
+  client-fingerprint: chrome
+  udp: true
+  sni: docs.microsoft.com
+  skip-cert-verify: true
+- name: 泰国1
+  password: VAwyJQX0iKMJiyCw5UVK9wGH
+  port: 42000
+  server: 103.14.164.30
+  type: socks5
+  username: route164JIa2CBPxfy
+- name: 韩国1
+  port: 1080
+  server: 59.11.209.162
+  skip-cert-verify: true
+  type: socks5
+- name: 日本1
+  password: exaxgqkKkd0TAMrCxeonWg==
+  port: 443
+  server: jpgmo102-cdn-route.couldflare-cdn.com
+  tls: true
+  type: http
+  username: mrwdfNTD8M79LCukCieldrqZWqs=
+- name: 日本2
+  password: ''
+  port: 443
+  server: fan.571589.xyz
+  skip-cert-verify: true
+  sni: fan.571589.xyz
+  tls: true
+  type: http
+  udp: true
+  username: ''
+  x-toolall-mihomo: true
+- name: 日本3
+  server: win2loxfde0303.gggrelay.org
+  port: 34745
+  type: trojan
+  password: 57beeeb0-03fc-4fc9-94da-7604488a7134
+  sni: nu3rb.supertoolify.com
+  skip-cert-verify: true
+  udp: true
+- name: 日本4
+  type: http
+  server: 64.176.51.83
+  port: 8443
+  tls: true
+  sni: 64.176.51.83
+  skip-cert-verify: true
+- name: 加拿大1
+  port: 443
+  server: 172.64.69.89
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+- name: 美国2
+  port: 9443
+  server: 38.95.111.226
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国3
+  password: None
+  port: 9002
+  server: 138.199.35.211
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: 'null'
+- name: 德国1
+  password: None
+  port: 443
+  server: 172.64.68.89
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国4
+  password: None
+  port: 9002
+  server: 138.199.35.196
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国5
+  password: 'null'
+  port: 9002
+  server: 138.199.35.206
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: 'null'
+- name: 美国6
+  password: 'null'
+  port: 9002
+  server: 138.199.35.220
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: 'null'
+- name: 美国7
+  password: ''
+  port: 9002
+  server: 138.199.35.200
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  username: ''
+  x-toolall-mihomo: true
+- name: 新加坡1
+  network: ws
+  port: 8443
+  server: 172.64.154.113
+  servername: freeceshi6.frii.site
   tls: true
   type: vless
+  uuid: 53bbdad4-2f4e-45db-8df4-fa491a6a7227
+  ws-opts:
+    headers:
+      Host: freeceshi6.frii.site
+    path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
+- name: 美国8
+  password: gs4BXwT6SW
+  port: 10988
+  server: 154.26.192.123
+  type: http
+  username: fQ67Dpe5dU
+- name: 美国9
+  password: ''
+  port: 9002
+  server: 138.199.35.201
+  skip-cert-verify: true
+  tls: true
+  type: http
   udp: true
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+  username: ''
+  x-toolall-mihomo: true
 proxy-groups:
 - name: 🚀 节点选择
   type: select
   proxies:
+  - 香港
+  - 新加坡
+  - 日本
   - 美国
+  - 台湾
+  - 韩国
+  - 德国
+  - 加拿大
+  - 泰国
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
+- name: 香港
+  type: select
+  proxies:
+  - 香港1
+  - 香港2
+- name: 新加坡
+  type: select
+  proxies:
+  - 新加坡1
+- name: 日本
+  type: select
+  proxies:
+  - 日本1
+  - 日本2
+  - 日本3
+  - 日本4
 - name: 美国
   type: select
   proxies:
   - 美国1
   - 美国2
+  - 美国3
+  - 美国4
+  - 美国5
+  - 美国6
+  - 美国7
+  - 美国8
+  - 美国9
+- name: 台湾
+  type: select
+  proxies:
+  - 台湾1
+- name: 韩国
+  type: select
+  proxies:
+  - 韩国1
+- name: 德国
+  type: select
+  proxies:
+  - 德国1
+- name: 加拿大
+  type: select
+  proxies:
+  - 加拿大1
+- name: 泰国
+  type: select
+  proxies:
+  - 泰国1
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
+  - 香港1
+  - 香港2
   - 美国1
+  - 台湾1
+  - 泰国1
+  - 韩国1
+  - 日本1
+  - 日本2
+  - 日本3
+  - 日本4
+  - 加拿大1
   - 美国2
+  - 美国3
+  - 德国1
+  - 美国4
+  - 美国5
+  - 美国6
+  - 美国7
+  - 新加坡1
+  - 美国8
+  - 美国9
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
