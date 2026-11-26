@@ -43,17 +43,13 @@ proxies:
   sni: im.lovehk.xyz
   type: anytls
   udp: true
-- name: 中国1
-  type: vmess
-  server: 120.48.133.162
-  port: 10086
-  uuid: c89f8a9e-a2c4-480e-b9af-debc1998b725
-  alterId: 0
-  cipher: auto
+- name: 美国1
+  type: ss
+  server: 40.160.86.43
+  port: 8388
+  cipher: aes-256-gcm
+  password: itzvpn@321
   udp: true
-  tls: false
-  servername: ''
-  network: ws
 - name: 台湾1
   server: a54ge.df6h451rh.xin
   port: 443
@@ -101,51 +97,34 @@ proxies:
   port: 443
   tls: true
   skip-cert-verify: true
-- name: 美国1
-  type: vless
-  network: ws
-  server: 104.18.37.127
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国2
+  network: tcp
   port: 443
-  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
+  reality-opts:
+    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
+    short-id: 0990d22f
+  server: 167.17.69.171
+  servername: www.cloudflare.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 00144519-7e0d-476b-8d28-435576af9262
+- client-fingerprint: chrome
+  name: 加拿大2
+  network: ws
+  port: 443
+  server: 104.18.37.127
   servername: jp3.yohototo.top
   tls: true
-  client-fingerprint: chrome
+  type: vless
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
   ws-opts:
     headers:
       Host: jp3.yohototo.top
     path: /tyxyws
-- name: 美国2
-  type: vless
-  network: ws
-  server: 172.67.74.177
-  port: 2083
-  uuid: bd6c11e0-0233-4fb1-ba97-8d5f16d7155f
-  servername: site.check-looks.space
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: site.check-looks.space
-    path: /
 - name: 美国3
-  type: vless
-  network: ws
-  server: 38.107.236.166
-  port: 8443
-  uuid: 48572af1-d091-457b-a86e-4a457e99927f
-  servername: 3h-unitedstates3.09vpn.com
-  skip-cert-verify: true
-  tls: true
-  udp: true
-  packet-encoding: xudp
-  ws-opts:
-    headers:
-      Host: 3h-unitedstates3.09vpn.com
-    path: /vless/
-- name: 美国4
   password: ''
   port: 9443
   server: 38.95.111.226
@@ -155,94 +134,40 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国5
-  type: vless
+- name: 法国1
   network: ws
-  server: 104.17.145.145
-  port: 2083
-  uuid: bd6c11e0-0233-4fb1-ba97-8d5f16d7155f
-  servername: site.check-looks.space
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: site.check-looks.space
-    path: /
-- name: 美国6
-  type: vless
-  network: ws
-  server: 104.17.70.206
-  port: 8443
-  uuid: 3692de53-42e6-4aed-a522-40ec355dcd2f
-  servername: free.sahanwickramasinghe.com
-  skip-cert-verify: false
-  tls: true
-  udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: free.sahanwickramasinghe.com
-    path: /
-- name: 美国7
-  type: vmess
-  network: ws
-  server: 172.67.190.164
-  port: 443
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
-  alterId: 0
-  cipher: auto
-  ws-opts:
-    headers:
-      Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 巴西1
-  type: vless
-  network: ws
-  server: 188.114.99.137
   port: 80
-  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
+  server: 188.114.99.137
   tls: false
+  type: vless
+  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
   ws-opts:
     headers:
       Host: suh.cryptofront.uk
     path: /
-- name: 美国8
+- name: 加拿大3
   type: vmess
+  server: 172.67.190.164
+  port: 443
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  servername: guanwang.awsno.com
   network: ws
+- name: 加拿大4
+  type: vmess
   server: 172.64.145.93
   port: 443
   uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  skip-cert-verify: true
-  tls: true
   alterId: 0
   cipher: auto
-  ws-opts:
-    headers:
-      Host: guanwang.awsno.com
-    path: /hls/cctv5phd.m3u8
-- name: 美国9
-  type: vless
-  network: ws
-  server: 172.64.150.205
-  port: 2083
-  uuid: bd6c11e0-0233-4fb1-ba97-8d5f16d7155f
-  servername: site.check-looks.space
-  skip-cert-verify: false
-  tls: true
   udp: true
-  tfo: false
-  client-fingerprint: chrome
-  ws-opts:
-    headers:
-      Host: site.check-looks.space
-    path: /
-- name: 美国10
+  tls: true
+  servername: guanwang.awsno.com
+  network: ws
+- name: 美国4
   password: ''
   port: 9002
   server: 138.199.35.196
@@ -252,26 +177,28 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国11
+- name: 美国5
   type: http
   server: 138.199.35.195
   port: 9002
+  username: 'null'
+  password: 'null'
   tls: true
   skip-cert-verify: true
-- name: 美国12
+- name: 美国6
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
   type: http
   username: fQ67Dpe5dU
-- name: 加拿大2
+- name: 加拿大5
   port: 443
   server: 172.64.69.89
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 美国13
+- name: 美国7
   password: 'null'
   port: 9002
   server: 138.199.35.219
@@ -288,9 +215,8 @@ proxy-groups:
   - 美国
   - 台湾
   - 韩国
+  - 法国
   - 加拿大
-  - 巴西
-  - 中国
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
@@ -309,12 +235,6 @@ proxy-groups:
   - 美国5
   - 美国6
   - 美国7
-  - 美国8
-  - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
-  - 美国13
 - name: 台湾
   type: select
   proxies:
@@ -326,46 +246,41 @@ proxy-groups:
   proxies:
   - 韩国1
   - 韩国2
+- name: 法国
+  type: select
+  proxies:
+  - 法国1
 - name: 加拿大
   type: select
   proxies:
   - 加拿大1
   - 加拿大2
-- name: 巴西
-  type: select
-  proxies:
-  - 巴西1
-- name: 中国
-  type: select
-  proxies:
-  - 中国1
+  - 加拿大3
+  - 加拿大4
+  - 加拿大5
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
   - 香港1
   - 加拿大1
-  - 中国1
+  - 美国1
   - 台湾1
   - 香港2
   - 台湾2
   - 台湾3
   - 韩国1
   - 韩国2
-  - 美国1
   - 美国2
+  - 加拿大2
   - 美国3
+  - 法国1
+  - 加拿大3
+  - 加拿大4
   - 美国4
   - 美国5
   - 美国6
+  - 加拿大5
   - 美国7
-  - 巴西1
-  - 美国8
-  - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
-  - 加拿大2
-  - 美国13
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
