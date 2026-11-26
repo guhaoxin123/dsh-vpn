@@ -860,6 +860,8 @@ def build_region_groups(names, region_of):
     for code, _ in REGION_DEFS:
         if buckets.get(code):
             groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
+    if buckets.get("CN"):
+        groups.append({"name": "中国", "type": "select", "proxies": buckets["CN"]})
     if buckets.get("OTHER"):
         groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
     return groups
@@ -918,18 +920,20 @@ def main():
     with open("pool.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": _pool}, f, allow_unicode=True, sort_keys=False, width=4096)
     print(f"  候选池 pool.yaml：{len(_pool)} 个节点，供手机端实测")
-    # ---- 手机实测优先：只保留在你自己网络里能连上的节点 ----
+    # ---- 手机实测优先：以你自己网络为准（CI 没测到的，你手机上可能照样能用）----
     phone = load_phone_latency()
     if phone:
-        hits = [p for p in alive if node_key(p) in phone]
+        hits = [p for p in all_px if node_key(p) in phone]
         if len(hits) >= 20:
             for p in hits:
                 p["_delay"] = phone[node_key(p)]
-            print("[ok] 采用手机实测：%d 个节点（CI 侧另有 %d 个通过，你的网络上连不上）"
-                  % (len(hits), len(alive) - len(hits)))
-            alive = hits
+            print("[ok] 手机实测命中 %d 个（CI 侧通过 %d 个），以手机为准"
+                  % (len(hits), len(alive)))
+            alive = shrink_invalid(hits)
+            print("  校验后剩 %d 个" % len(alive))
         else:
             print("  手机实测只命中 %d 个（少于 20），本次按 CI 测速结果生成" % len(hits))
+
 
     alive.sort(key=lambda p: p.get("_delay") or 99999)
     fast_delay = {}
@@ -944,7 +948,7 @@ def main():
         print(f"  {len(unknown)} 个节点名字里没有地区，按 IP 归属地补全…")
         geo = geo_lookup(sorted({str(p["server"]) for p in unknown}))
         alias = {"GB": "UK"}
-        known = {c for c, _ in REGION_DEFS}
+        known = {c for c, _ in REGION_DEFS} | {"CN"}
         fixed = 0
         for p in unknown:
             cc = geo.get(str(p["server"]), "")
@@ -970,6 +974,8 @@ def main():
     for code, _ in REGION_DEFS:
         if buckets.get(code):
             region_groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
+    if buckets.get("CN"):
+        region_groups.append({"name": "中国", "type": "select", "proxies": buckets["CN"]})
     if buckets.get("OTHER"):
         region_groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
     for g in region_groups:
@@ -1059,6 +1065,7 @@ REGION_PATTERNS = [(name, _build_pattern(words)) for name, words in REGION_DEFS]
 
 # 地区代码 -> 中文名（节点重命名用，取 REGION_DEFS 每项的第二个词）
 REGION_CN = {code: words[1] for code, words in REGION_DEFS}
+REGION_CN["CN"] = "中国"  # 中国大陆机房的兜底组给个正经名字
 
 
 
