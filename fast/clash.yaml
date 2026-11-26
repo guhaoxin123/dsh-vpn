@@ -43,6 +43,17 @@ proxies:
   sni: im.lovehk.xyz
   type: anytls
   udp: true
+- name: 中国1
+  type: vmess
+  server: 120.48.133.162
+  port: 10086
+  uuid: c89f8a9e-a2c4-480e-b9af-debc1998b725
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  servername: ''
+  network: ws
 - name: 台湾1
   server: a54ge.df6h451rh.xin
   port: 443
@@ -60,12 +71,10 @@ proxies:
   udp: true
   network: tcp
   tls: true
-  servername: www.apple.com
-  client-fingerprint: chrome
+  servername: 116.213.43.43
   reality-opts:
-    public-key: -13uTSuqk44pCU0x6yvldaskzyRIlO2ihmDvM0FsBns
-    short-id: da12e31124830d42
-  flow: xtls-rprx-vision
+    public-key: ''
+    short-id: ''
 - name: 台湾2
   password: 2902c46c8493
   port: 443
@@ -92,19 +101,7 @@ proxies:
   port: 443
   tls: true
   skip-cert-verify: true
-- alpn:
-  - h3
-  name: 美国1
-  obfs: salamander
-  obfs-password: kydqninqtcdomlcb
-  password: 57beeeb0-03fc-4fc9-94da-7604488a7134
-  port: 40205
-  server: a1dgus.supertoolify.com
-  skip-cert-verify: true
-  sni: psstatic.cdn.bcebos.com
-  tls: false
-  type: hysteria2
-- name: 美国2
+- name: 美国1
   type: vless
   network: ws
   server: 104.18.37.127
@@ -117,17 +114,7 @@ proxies:
     headers:
       Host: jp3.yohototo.top
     path: /tyxyws
-- type: vless
-  name: 美国3
-  server: kuruish.org
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  udp: true
-  tls: true
-  servername: kuruish.org
-  sni: kuruish.org
-  skip-cert-verify: true
-- name: 美国4
+- name: 美国2
   type: vless
   network: ws
   server: 172.67.74.177
@@ -143,18 +130,22 @@ proxies:
     headers:
       Host: site.check-looks.space
     path: /
-- name: 美国5
+- name: 美国3
   type: vless
-  network: tcp
-  server: 216.106.185.158
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  servername: kuruish.org
-  skip-cert-verify: false
+  network: ws
+  server: 38.107.236.166
+  port: 8443
+  uuid: 48572af1-d091-457b-a86e-4a457e99927f
+  servername: 3h-unitedstates3.09vpn.com
+  skip-cert-verify: true
   tls: true
   udp: true
-  tfo: false
-- name: 美国6
+  packet-encoding: xudp
+  ws-opts:
+    headers:
+      Host: 3h-unitedstates3.09vpn.com
+    path: /vless/
+- name: 美国4
   password: ''
   port: 9443
   server: 38.95.111.226
@@ -164,7 +155,7 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国7
+- name: 美国5
   type: vless
   network: ws
   server: 104.17.145.145
@@ -180,7 +171,7 @@ proxies:
     headers:
       Host: site.check-looks.space
     path: /
-- name: 美国8
+- name: 美国6
   type: vless
   network: ws
   server: 104.17.70.206
@@ -196,18 +187,7 @@ proxies:
     headers:
       Host: free.sahanwickramasinghe.com
     path: /
-- name: 巴西1
-  type: vless
-  network: ws
-  server: 188.114.99.137
-  port: 80
-  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
-  tls: false
-  ws-opts:
-    headers:
-      Host: suh.cryptofront.uk
-    path: /
-- name: 美国9
+- name: 美国7
   type: vmess
   network: ws
   server: 172.67.190.164
@@ -221,7 +201,18 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 美国10
+- name: 巴西1
+  type: vless
+  network: ws
+  server: 188.114.99.137
+  port: 80
+  uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
+  tls: false
+  ws-opts:
+    headers:
+      Host: suh.cryptofront.uk
+    path: /
+- name: 美国8
   type: vmess
   network: ws
   server: 172.64.145.93
@@ -235,7 +226,7 @@ proxies:
     headers:
       Host: guanwang.awsno.com
     path: /hls/cctv5phd.m3u8
-- name: 美国11
+- name: 美国9
   type: vless
   network: ws
   server: 172.64.150.205
@@ -251,7 +242,7 @@ proxies:
     headers:
       Host: site.check-looks.space
     path: /
-- name: 美国12
+- name: 美国10
   password: ''
   port: 9002
   server: 138.199.35.196
@@ -261,13 +252,13 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国13
+- name: 美国11
   type: http
   server: 138.199.35.195
   port: 9002
   tls: true
   skip-cert-verify: true
-- name: 美国14
+- name: 美国12
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
@@ -280,7 +271,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国15
+- name: 美国13
   password: 'null'
   port: 9002
   server: 138.199.35.219
@@ -299,6 +290,7 @@ proxy-groups:
   - 韩国
   - 加拿大
   - 巴西
+  - 中国
   - ♻️ 自动选择
   - 🔯 故障转移
   - DIRECT
@@ -323,8 +315,6 @@ proxy-groups:
   - 美国11
   - 美国12
   - 美国13
-  - 美国14
-  - 美国15
 - name: 台湾
   type: select
   proxies:
@@ -345,11 +335,16 @@ proxy-groups:
   type: select
   proxies:
   - 巴西1
+- name: 中国
+  type: select
+  proxies:
+  - 中国1
 - name: ♻️ 自动选择
   type: url-test
   proxies: &id001
   - 香港1
   - 加拿大1
+  - 中国1
   - 台湾1
   - 香港2
   - 台湾2
@@ -363,16 +358,14 @@ proxy-groups:
   - 美国5
   - 美国6
   - 美国7
-  - 美国8
   - 巴西1
+  - 美国8
   - 美国9
   - 美国10
   - 美国11
   - 美国12
-  - 美国13
-  - 美国14
   - 加拿大2
-  - 美国15
+  - 美国13
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
