@@ -65,14 +65,6 @@ proxies:
   udp: true
   sni: docs.microsoft.com
   skip-cert-verify: true
-- name: 德国1
-  server: signal.frnhk.xyz
-  port: 443
-  type: anytls
-  password: 9e34ee67-c4dd-4c49-8e33-bbfac6efbc33
-  udp: true
-  sni: signal.frnhk.xyz
-  skip-cert-verify: true
 - name: 韩国1
   port: 1080
   server: 59.11.209.162
@@ -84,24 +76,6 @@ proxies:
   port: 443
   tls: true
   skip-cert-verify: true
-- name: 泰国1
-  password: mpbK00Pl
-  port: 42000
-  server: 192.204.15.135
-  type: socks5
-  username: X3s3JteD
-- name: 泰国2
-  password: KT5hiU8o
-  port: 42000
-  server: 104.234.70.82
-  type: socks5
-  username: rnt2L4XO
-- name: 泰国3
-  password: Ks4Iab43
-  port: 42000
-  server: 82.47.152.151
-  type: socks5
-  username: userLjVB
 - name: 美国1
   type: vless
   network: ws
@@ -216,24 +190,16 @@ proxies:
       Host: site.check-looks.space
     path: /
 - name: 美国8
-  password: None
+  password: ''
   port: 9002
   server: 138.199.35.196
   skip-cert-verify: true
-  sub_tag: P002-260618
   tls: true
   type: http
   udp: true
+  username: ''
   x-toolall-mihomo: true
 - name: 美国9
-  password: 'null'
-  port: 9002
-  server: 138.199.35.206
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
-- name: 美国10
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
@@ -246,7 +212,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国11
+- name: 美国10
   password: 'null'
   port: 9002
   server: 138.199.35.219

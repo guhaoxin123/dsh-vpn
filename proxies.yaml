@@ -65,14 +65,6 @@ proxies:
   udp: true
   sni: docs.microsoft.com
   skip-cert-verify: true
-- name: 德国1
-  server: signal.frnhk.xyz
-  port: 443
-  type: anytls
-  password: 9e34ee67-c4dd-4c49-8e33-bbfac6efbc33
-  udp: true
-  sni: signal.frnhk.xyz
-  skip-cert-verify: true
 - name: 韩国1
   port: 1080
   server: 59.11.209.162
@@ -84,24 +76,6 @@ proxies:
   port: 443
   tls: true
   skip-cert-verify: true
-- name: 泰国1
-  password: mpbK00Pl
-  port: 42000
-  server: 192.204.15.135
-  type: socks5
-  username: X3s3JteD
-- name: 泰国2
-  password: KT5hiU8o
-  port: 42000
-  server: 104.234.70.82
-  type: socks5
-  username: rnt2L4XO
-- name: 泰国3
-  password: Ks4Iab43
-  port: 42000
-  server: 82.47.152.151
-  type: socks5
-  username: userLjVB
 - name: 美国1
   type: vless
   network: ws
@@ -216,24 +190,16 @@ proxies:
       Host: site.check-looks.space
     path: /
 - name: 美国8
-  password: None
+  password: ''
   port: 9002
   server: 138.199.35.196
   skip-cert-verify: true
-  sub_tag: P002-260618
   tls: true
   type: http
   udp: true
+  username: ''
   x-toolall-mihomo: true
 - name: 美国9
-  password: 'null'
-  port: 9002
-  server: 138.199.35.206
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
-- name: 美国10
   password: gs4BXwT6SW
   port: 10988
   server: 154.26.192.123
@@ -246,7 +212,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国11
+- name: 美国10
   password: 'null'
   port: 9002
   server: 138.199.35.219
@@ -263,7 +229,7 @@ proxies:
   udp: true
   sni: images.ctfassets.net
   skip-cert-verify: true
-- name: 美国12
+- name: 美国11
   password: l1tlrdx52v
   port: 62000
   server: 66.253.2.69
@@ -282,17 +248,7 @@ proxies:
   port: 62000
   username: usereb7d
   password: c0a34a
-- name: 新加坡2
-  password: ''
-  port: 9443
-  server: 149.88.99.209
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
-- name: 美国13
+- name: 美国12
   password: exaxgqkKkd0TAMrCxeonWg==
   port: 443
   server: usgp1-cdn-route.couldflare-cdn.com
@@ -314,7 +270,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 德国2
+- name: 德国1
   type: vless
   server: 31.76.93.112
   port: 443
@@ -324,15 +280,7 @@ proxies:
   tls: true
   servername: m47.scan-cdn.com
   flow: xtls-rprx-vision
-- name: 美国14
-  password: 'null'
-  port: 443
-  server: fan.365747.xyz
-  sni: fan.365747.xyz
-  tls: true
-  type: http
-  username: 'null'
-- name: 美国15
+- name: 美国13
   password: ''
   port: 443
   server: 149.88.21.129
@@ -342,12 +290,22 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 泰国4
-  password: 1pB7HV6u
-  port: 42000
-  server: 151.246.109.158
-  type: socks5
-  username: AJ3d9gJw
+- name: 法国2
+  type: vless
+  network: ws
+  server: 81.49.182.202
+  port: 443
+  uuid: 58e22afd-bf74-4736-984d-63a8ca03d7f0
+  servername: accessfooter.cleanfoodshop.org
+  skip-cert-verify: false
+  tls: true
+  udp: true
+  tfo: false
+  client-fingerprint: chrome
+  ws-opts:
+    headers:
+      Host: accessfooter.cleanfoodshop.org
+    path: /media/ws/
 - name: 罗马尼亚1
   type: vless
   network: ws
@@ -361,12 +319,12 @@ proxies:
     headers:
       Host: accessfooter.cleanfoodshop.org
     path: /media/ws/
-- name: 美国16
+- name: 美国14
   port: 443
   server: fan.226278.xyz
   tls: true
   type: http
-- name: 美国17
+- name: 美国15
   port: 443
   server: 149.34.248.65
   skip-cert-verify: true
@@ -374,15 +332,6 @@ proxies:
   tls: true
   type: http
 - name: 罗马尼亚2
-  password: 'null'
-  port: 9002
-  server: 193.176.84.33
-  skip-cert-verify: true
-  sni: 193.176.84.33
-  tls: true
-  type: http
-  username: 'null'
-- name: 罗马尼亚3
   port: 9002
   server: 193.176.84.39
   skip-cert-verify: true
@@ -395,7 +344,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 罗马尼亚4
+- name: 罗马尼亚3
   password: 'null'
   port: 9002
   server: 193.176.84.23
@@ -403,6 +352,13 @@ proxies:
   tls: true
   type: http
   username: 'null'
+- name: 罗马尼亚4
+  port: 9002
+  server: 193.176.84.26
+  skip-cert-verify: true
+  sni: www.bing.com
+  tls: true
+  type: http
 - name: 罗马尼亚5
   password: 'null'
   port: 9002
@@ -412,24 +368,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 罗马尼亚6
-  password: 'null'
-  port: 9002
-  server: 193.176.84.26
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
-- name: 希腊1
-  password: ''
-  port: 443
-  server: 149.22.85.65
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 俄罗斯1
   type: vless
   server: 46.243.232.149
@@ -444,28 +382,15 @@ proxies:
     path: /edge/chunk/b2265efffa29/
     headers:
       Host: devcdn.icu
-- name: 罗马尼亚7
-  port: 9002
-  server: 193.176.84.37
-  skip-cert-verify: true
-  sni: www.bing.com
-  tls: true
-  type: http
-- name: 罗马尼亚8
-  port: 9002
-  server: 193.176.84.36
-  skip-cert-verify: true
-  sni: www.bing.com
-  tls: true
-  type: http
-- name: 罗马尼亚9
+- name: 罗马尼亚6
+  password: 'null'
   port: 9002
   server: 193.176.84.27
   skip-cert-verify: true
-  sni: www.bing.com
   tls: true
   type: http
-- name: 罗马尼亚10
+  username: 'null'
+- name: 罗马尼亚7
   password: None
   port: 9002
   server: 193.176.84.24
@@ -473,7 +398,13 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 罗马尼亚11
+- name: 罗马尼亚8
+  port: 9002
+  server: 193.176.84.34
+  skip-cert-verify: true
+  tls: true
+  type: http
+- name: 罗马尼亚9
   password: 'null'
   port: 9002
   server: 193.176.84.19
@@ -481,13 +412,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 罗马尼亚12
-  port: 9002
-  server: 193.176.84.34
-  skip-cert-verify: true
-  tls: true
-  type: http
-- name: 德国3
+- name: 德国2
   password: None
   port: 443
   server: 149.36.50.1
@@ -495,14 +420,14 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 德国4
+- name: 德国3
   port: 9002
   server: 158.173.154.1
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 德国5
+- name: 德国4
   port: 9002
   server: 158.173.154.5
   skip-cert-verify: true
@@ -524,7 +449,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 德国6
+- name: 德国5
   password: None
   port: 9002
   server: 158.173.154.4
@@ -607,12 +532,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 罗马尼亚13
-  port: 9002
-  server: 193.176.84.25
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 捷克1
   password: None
   port: 9443
@@ -635,20 +554,18 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国18
+- name: 美国16
+  type: vless
+  network: ws
   server: 172.64.154.113
   port: 8443
-  type: vless
   uuid: 53bbdad4-2f4e-45db-8df4-fa491a6a7227
-  tls: true
   servername: freeceshi6.frii.site
-  client-fingerprint: chrome
-  network: ws
+  tls: true
   ws-opts:
-    path: /proxyip=ProxyIP.JP.CMLiussss.net
     headers:
       Host: freeceshi6.frii.site
-  udp: true
+    path: /proxyip=ProxyIP.JP.CMLiussss.netfp=chrome
 - name: 意大利4
   server: 202.50.253.18
   port: 19999
@@ -656,74 +573,31 @@ proxies:
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: 美国19
-  server: 104.25.128.15
+- name: 美国17
+  server: 179.254.92.134
   port: 443
   type: vless
-  uuid: db906786-8c49-4b17-9182-cea680ef954d
+  uuid: 7ad63b26-bf70-4872-8fab-ebaf73a1e19d
   tls: true
-  servername: krc.80782636.xyz
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /kw7x2mq9
-    headers:
-      Host: krc.80782636.xyz
-  udp: true
-- name: 美国20
-  server: 162.35.101.177
-  port: 443
-  type: vless
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
-  tls: true
+  flow: xtls-rprx-vision
   reality-opts:
-    public-key: cO3wYHISTeorXcM8ffaDCDdqZ-olBQL-GyZqb-W7rTk
-    short-id: bd8f712209a9c283
-  servername: 0592efg.us8.h1clayd.click
-  client-fingerprint: edge
-  network: grpc
-  grpc-opts:
-    grpc-mode: gun
-    grpc-service-name: 99f2107b03f8
-- name: 墨西哥1
-  password: lcFa8dTH
-  port: 62000
-  server: 94.194.165.96
-  type: socks5
-  username: QyVdo5ks
-- name: 英国2
-  type: vless
+    public-key: OQu-e59wDwOSwiBBawquNAPhg8Li1hmioWU2Up1TGDw
+    short-id: c33807f76b689c9a
+  servername: assets-70.topp-con.xyz
+  client-fingerprint: chrome
   network: tcp
+  udp: true
+- name: 英国2
   server: 136.148.83.70
   port: 443
+  type: vless
   uuid: 00000000-0000-0001-0000-000000000000
+  tls: true
   servername: aszbk-ru-78dc.my-fade.cloud
-  skip-cert-verify: false
-  tls: true
+  client-fingerprint: qq
+  network: tcp
   udp: true
-  tfo: false
-  client-fingerprint: chrome
-- name: 荷兰9
-  password: freeuser1
-  port: 9251
-  server: nl205.freeconnect.link
-  sni: nl205.freeconnect.link
-  tls: true
-  type: http
-  username: freeuser1
-- name: 墨西哥2
-  password: DJy1T0dt
-  port: 42000
-  server: 144.225.47.8
-  type: socks5
-  username: Tek2x6av
-- name: 墨西哥3
-  password: sZnD8GTz
-  port: 42000
-  server: 144.225.47.68
-  type: socks5
-  username: DJy1T0dt
-- name: 德国7
+- name: 德国6
   server: 185.134.203.106
   port: 443
   type: vless
@@ -737,23 +611,13 @@ proxies:
     short-id: db04ce8bdb8900f1
   client-fingerprint: firefox
   network: tcp
-- name: 其他2
-  password: ''
-  port: 9443
-  server: 38.165.231.71
-  skip-cert-verify: true
-  tls: true
+- name: 新加坡2
   type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
-- name: 新加坡3
-  port: 443
   server: 154.26.139.24
-  skip-cert-verify: true
+  port: 443
   tls: true
-  type: http
-- name: 俄罗斯3
+  skip-cert-verify: true
+- name: 阿联酋1
   server: 213.183.41.31
   port: 8459
   type: vless
@@ -765,15 +629,15 @@ proxies:
   ws-opts:
     path: /ws
   udp: true
-- name: 新加坡4
-  server: 213.183.45.23
-  port: 8444
-  type: vless
-  uuid: eb62cabf-5901-403a-aa0c-b1d9ed1b346d
-  tls: true
-  servername: media.plumstatic.com
-  client-fingerprint: firefox
+- client-fingerprint: firefox
+  name: 新加坡3
   network: ws
+  port: 8444
+  server: 213.183.45.23
+  servername: media.plumstatic.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: eb62cabf-5901-403a-aa0c-b1d9ed1b346d
   ws-opts:
     path: /ws
-  udp: true
