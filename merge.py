@@ -44,7 +44,7 @@ MAX_DELAY = 2000   # 超过这个延迟(ms)的节点直接删除
 FAST_MS = 200      # 极速分组阈值(ms)
 CTRL_PORT = 19090
 PHONE_LATENCY_FILE = "phone-latency.txt"
-PHONE_MAX_AGE_H = 12
+PHONE_MAX_AGE_H = 48  # 手机数据两天内都算数
 
 
 def node_key(p):
@@ -860,10 +860,9 @@ def build_region_groups(names, region_of):
     for code, _ in REGION_DEFS:
         if buckets.get(code):
             groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
-    if buckets.get("CN"):
-        groups.append({"name": "中国", "type": "select", "proxies": buckets["CN"]})
-    if buckets.get("OTHER"):
-        groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
+    if buckets.get("CN") or buckets.get("OTHER"):
+        groups.append({"name": "中国", "type": "select",
+                       "proxies": buckets.get("CN", []) + buckets.get("OTHER", [])})
     return groups
 
 
@@ -920,17 +919,21 @@ def main():
     with open("pool.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump({"proxies": _pool}, f, allow_unicode=True, sort_keys=False, width=4096)
     print(f"  候选池 pool.yaml：{len(_pool)} 个节点，供手机端实测")
-    # ---- 手机实测优先：以你自己网络为准（CI 没测到的，你手机上可能照样能用）----
+    # ---- 手机实测优先：手机能连的排前面，CI 没测到的也补进来，不丢节点 ----
     phone = load_phone_latency()
     if phone:
         hits = [p for p in all_px if node_key(p) in phone]
         if len(hits) >= 20:
             for p in hits:
                 p["_delay"] = phone[node_key(p)]
-            print("[ok] 手机实测命中 %d 个（CI 侧通过 %d 个），以手机为准"
+            have = {node_key(p) for p in alive}
+            extra = [p for p in hits if node_key(p) not in have]
+            if extra:
+                extra = shrink_invalid(extra)
+                print("  手机能连、CI 没测到：补 %d 个" % len(extra))
+            alive = alive + extra
+            print("[ok] 手机实测命中 %d 个，合计 %d 个节点（能连的排前面）"
                   % (len(hits), len(alive)))
-            alive = shrink_invalid(hits)
-            print("  校验后剩 %d 个" % len(alive))
         else:
             print("  手机实测只命中 %d 个（少于 20），本次按 CI 测速结果生成" % len(hits))
 
@@ -962,7 +965,7 @@ def main():
     for p in alive:
         r = p.pop("_region", "OTHER")
         seq[r] = seq.get(r, 0) + 1
-        p["name"] = f"{REGION_CN.get(r, '其他')}{seq[r]}"
+        p["name"] = f"{(REGION_CN.get(r) or '中国')}{seq[r]}"
         region_of[p["name"]] = r
         d = p.pop("_delay", None)
         if isinstance(d, (int, float)) and d > 0:
@@ -974,10 +977,9 @@ def main():
     for code, _ in REGION_DEFS:
         if buckets.get(code):
             region_groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
-    if buckets.get("CN"):
-        region_groups.append({"name": "中国", "type": "select", "proxies": buckets["CN"]})
-    if buckets.get("OTHER"):
-        region_groups.append({"name": "其他", "type": "select", "proxies": buckets["OTHER"]})
+    if buckets.get("CN") or buckets.get("OTHER"):
+        region_groups.append({"name": "中国", "type": "select",
+                       "proxies": buckets.get("CN", []) + buckets.get("OTHER", [])})
     for g in region_groups:
         print(f"  分组 {g['name']}: {len(g['proxies'])} 个节点")
     cfg = build_cfg(alive, region_groups)
