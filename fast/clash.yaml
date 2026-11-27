@@ -44,18 +44,20 @@ proxies:
   sni: docs.microsoft.com
   skip-cert-verify: true
 - name: 台湾1
-  password: 2902c46c8493
-  port: 443
   server: rtifgjdr.df6h451rh.xin
-  skip-cert-verify: true
-  sni: docs.microsoft.com
+  port: 443
   type: anytls
+  password: 2902c46c8493
+  client-fingerprint: chrome
   udp: true
+  sni: docs.microsoft.com
+  skip-cert-verify: true
 - name: 韩国1
   type: http
   server: 152.69.230.221
   port: 443
   tls: true
+  sni: 152.69.230.221
   skip-cert-verify: true
 - name: 日本1
   port: 443
@@ -74,12 +76,21 @@ proxies:
   port: 62000
   username: KUs4xRXd
   password: 480w0Yy4
-- name: 英国3
-  server: waic.pro.main.sys-metric-report.com
-  port: 28014
-  type: ss
-  cipher: chacha20-ietf-poly1305
+- type: hysteria2
+  name: 美国2
+  server: starlink-ft.251313.xyz
+  port: 443
+  password: https://xship.2fa.cat
+  udp: true
+  servername: xship.top
+  sni: xship.top
+  skip-cert-verify: true
+- cipher: chacha20-ietf-poly1305
+  name: 英国3
   password: abc62f00-95a8-4c2e-a85d-36a2cdc977da
+  port: 28014
+  server: waic.pro.main.sys-metric-report.com
+  type: ss
   udp: true
 - name: 新加坡1
   server: dddz-1-x.473221.xyz
@@ -95,33 +106,21 @@ proxies:
   servername: v1-dy.ixigua.com
   client-fingerprint: edge
   network: tcp
-- name: 美国2
-  password: test123
-  port: 1080
-  server: 104.168.249.36
-  type: socks5
-  username: test123
 - name: 美国3
-  password: gs4BXwT6SW
-  port: 10988
-  server: 154.26.192.123
+  password: 'null'
+  port: 9002
+  server: 138.199.35.198
+  skip-cert-verify: true
+  sni: 138.199.35.198
+  tls: true
   type: http
-  username: fQ67Dpe5dU
+  username: 'null'
 - name: 美国4
   password: 'null'
   port: 9002
   server: 138.199.35.219
   skip-cert-verify: true
   sni: 138.199.35.219
-  tls: true
-  type: http
-  username: 'null'
-- name: 美国5
-  password: 'null'
-  port: 9002
-  server: 138.199.35.198
-  skip-cert-verify: true
-  sni: 138.199.35.198
   tls: true
   type: http
   username: 'null'
@@ -132,7 +131,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 美国6
+- name: 美国5
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -140,7 +139,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国7
+- name: 美国6
   port: 9002
   server: 138.199.35.201
   skip-cert-verify: true
@@ -148,24 +147,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国8
-  password: ''
-  port: 9002
-  server: 138.199.35.207
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
-- name: 美国9
-  type: http
-  server: 138.199.35.202
-  port: 9002
-  tls: true
-  sni: 138.199.35.202
-  skip-cert-verify: true
-- name: 美国10
+- name: 美国7
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -173,7 +155,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国11
+- name: 美国8
   port: 9002
   server: 138.199.35.196
   skip-cert-verify: true
@@ -181,7 +163,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国12
+- name: 美国9
   port: 9002
   server: 138.199.35.200
   skip-cert-verify: true
@@ -202,21 +184,6 @@ proxies:
   server: belgium.astroapps.io
   type: ss
   udp: true
-- name: 美国13
-  type: http
-  server: 138.199.35.195
-  port: 9002
-  username: 'null'
-  password: 'null'
-  tls: true
-  skip-cert-verify: true
-- name: 美国14
-  type: http
-  server: 45.145.72.122
-  port: 8443
-  tls: true
-  sni: 45.145.72.122
-  skip-cert-verify: true
 - name: 法国1
   network: ws
   port: 80
@@ -228,23 +195,15 @@ proxies:
     headers:
       Host: suh.cryptofront.uk
     path: /
-- name: 美国15
-  type: http
-  server: 137.175.22.85
-  port: 443
-  tls: true
-  sni: 137.175.22.85
-  skip-cert-verify: true
-- name: 美国16
-  password: ''
-  port: 9002
-  server: 138.199.35.197
-  skip-cert-verify: true
-  tls: true
-  type: http
+- alterId: 0
+  cipher: auto
+  name: 加拿大2
+  network: tcp
+  port: 18000
+  server: 23.162.200.198
+  type: vmess
   udp: true
-  username: ''
-  x-toolall-mihomo: true
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
 proxy-groups:
 - name: 🚀 节点选择
   type: select
@@ -286,13 +245,6 @@ proxy-groups:
   - 美国7
   - 美国8
   - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
-  - 美国13
-  - 美国14
-  - 美国15
-  - 美国16
 - name: 台湾
   type: select
   proxies:
@@ -315,6 +267,7 @@ proxy-groups:
   type: select
   proxies:
   - 加拿大1
+  - 加拿大2
 - name: 比利时
   type: select
   proxies:
@@ -329,26 +282,20 @@ proxy-groups:
   - 日本1
   - 英国1
   - 英国2
+  - 美国2
   - 英国3
   - 新加坡1
-  - 美国2
   - 美国3
   - 美国4
-  - 美国5
   - 加拿大1
+  - 美国5
   - 美国6
   - 美国7
   - 美国8
   - 美国9
-  - 美国10
-  - 美国11
-  - 美国12
   - 比利时1
-  - 美国13
-  - 美国14
   - 法国1
-  - 美国15
-  - 美国16
+  - 加拿大2
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
