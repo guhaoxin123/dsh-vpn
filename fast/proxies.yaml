@@ -1,7 +1,27 @@
 proxies:
 - ip: 172.16.0.2/32
-  mtu: 1380
+  keepalive: '5'
+  mtu: 1280
   name: 加拿大1
+  persistent-keepalive: '5'
+  port: 987
+  presharedkey: ''
+  private-key: GJTd46xB/fjfi6vyJmpxUiNrNdjZTW0Qhi7b0PkER1Y=
+  public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+  reserved:
+  - 175
+  - 93
+  - 41
+  server: 188.114.97.6
+  type: wireguard
+  udp: true
+  wnoise: quic
+  wnoisecount: '15'
+  wnoisedelay: 1-2
+  wpayloadsize: 5-10
+- ip: 172.16.0.2/32
+  mtu: 1380
+  name: 加拿大2
   port: 3581
   presharedkey: ''
   private-key: 2FaqTm+aXdVK00dvbeuMW/t741BWYu9lNOOVtMI4R3Y=
@@ -22,6 +42,26 @@ proxies:
   udp: true
   sni: docs.microsoft.com
   skip-cert-verify: true
+- name: 美国1
+  password: 75bPoRcB
+  port: 62000
+  server: 216.132.114.27
+  type: socks5
+  username: JzufiJ62
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国2
+  network: raw
+  port: 443
+  reality-opts:
+    public-key: 8eXftARun6KH38UZhuqIfPR1VF2DLS9RMBZEnF5k6To
+    short-id: a3a578ab
+  server: 185.95.231.156
+  servername: www.apple.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 1f8cf47a-b66a-4916-979f-26edfcf44eea
 - name: 台湾1
   server: rtifgjdr.df6h451rh.xin
   port: 443
@@ -31,42 +71,142 @@ proxies:
   udp: true
   sni: docs.microsoft.com
   skip-cert-verify: true
-- alterId: 0
-  cipher: auto
-  name: 加拿大2
+- client-fingerprint: ios
+  flow: xtls-rprx-vision
+  name: 美国3
   network: tcp
-  port: 18000
-  server: 134.195.196.211
-  type: vmess
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.90
+  servername: yahoo.com
+  tls: true
+  type: vless
   udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-- alterId: 0
-  cipher: auto
-  name: 加拿大3
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- name: 韩国1
+  type: http
+  server: 152.69.230.221
+  port: 443
+  tls: true
+  skip-cert-verify: true
+- client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 美国4
   network: tcp
-  port: 18000
-  server: 23.162.200.198
-  type: vmess
+  port: 443
+  reality-opts:
+    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
+    short-id: 0990d22f
+  server: 167.17.69.171
+  servername: www.cloudflare.com
+  tls: true
+  type: vless
   udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+  uuid: 00144519-7e0d-476b-8d28-435576af9262
+- name: 美国5
+  port: 9443
+  server: 198.44.138.27
+  skip-cert-verify: true
+  tls: true
+  type: http
+- name: 美国6
+  type: vless
+  network: tcp
+  server: 66.163.113.9
+  port: 443
+  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+  servername: kuruish.org
+  skip-cert-verify: false
+  tls: true
+  udp: true
+  tfo: false
+  client-fingerprint: chrome
+- client-fingerprint: random
+  flow: xtls-rprx-vision
+  name: 美国7
+  network: tcp
+  port: 443
+  reality-opts:
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  server: 169.40.42.74
+  servername: yahoo.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
 - name: 日本1
   port: 443
   server: fan.571589.xyz
   tls: true
   type: http
-- name: 英国1
-  type: socks5
-  server: 221.133.22.195
-  port: 62000
-  username: KUs4xRXd
-  password: 480w0Yy4
-- cipher: chacha20-ietf-poly1305
-  name: 香港2
-  password: abc62f00-95a8-4c2e-a85d-36a2cdc977da
-  port: 28014
+- name: 美国8
+  server: 207.244.243.12
+  port: 443
+  type: vless
+  uuid: a33f9fb8-51bb-46d0-8d3a-6b54fdc15943
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: www.cloudflare.com
+  reality-opts:
+    public-key: 7pnL_m6XftDfRH5Lue-2zI1a0XWg-xcQd5F8m5lqChg
+    short-id: d5f348390b201e86
+  client-fingerprint: chrome
+  network: tcp
+- type: ss
+  name: 美国9
   server: waic.pro.main.sys-metric-report.com
-  type: ss
-- name: 美国1
+  port: 28014
+  password: abc62f00-95a8-4c2e-a85d-36a2cdc977da
+  cipher: chacha20-ietf-poly1305
+  udp: true
+  tls: false
+  skip-cert-verify: true
+- name: 美国10
+  server: 3h-unitedstates1.09vpn.com
+  port: 80
+  type: vless
+  uuid: 18cf8db1-9f86-43f7-baa0-382efb7f2dfa
+  udp: true
+  tls: false
+  servername: 3h-unitedstates1.09vpn.com
+  network: ws
+  ws-opts:
+    path: /vless/
+    headers:
+      Host: 3h-unitedstates1.09vpn.com
+- name: 美国11
+  server: x.m-90.xyz
+  port: 443
+  type: vless
+  uuid: eee8ae65-bc48-438f-a606-a96f10bfb3b8
+  udp: true
+  tls: true
+  servername: x.m-90.xyz
+  network: ws
+  ws-opts:
+    path: t.me/TEAMNETGRATISCOL
+    headers:
+      Host: x.m-90.xyz
+- name: 瑞典1
+  password: d4ca9415f0eac7897472e1e5b86d2e96
+  port: 443
+  server: promo.betust.net
+  skip-cert-verify: false
+  sni: ''
+  type: hysteria2
+- name: 荷兰1
+  password: 549766c3-fa5f-471e-8031-ffc1f8d5064f
+  port: 443
+  server: 212.34.137.105
+  skip-cert-verify: false
+  sni: shorts.blog-forme.ru
+  tls: false
+  type: hysteria2
+- name: 美国12
   password: 'null'
   port: 9002
   server: 138.199.35.198
@@ -75,7 +215,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国2
+- name: 美国13
   password: 'null'
   port: 9002
   server: 138.199.35.219
@@ -84,14 +224,14 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 加拿大4
+- name: 加拿大3
   port: 443
   server: 172.64.69.89
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
-- name: 美国3
+- name: 美国14
   port: 9002
   server: 138.199.35.207
   skip-cert-verify: true
@@ -99,7 +239,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国4
+- name: 美国15
   password: 'null'
   port: 9002
   server: 138.199.35.220
@@ -107,7 +247,7 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 美国5
+- name: 美国16
   port: 9443
   server: 38.95.111.226
   skip-cert-verify: true
@@ -115,7 +255,7 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国6
+- name: 美国17
   port: 9002
   server: 138.199.35.200
   skip-cert-verify: true
@@ -123,14 +263,21 @@ proxies:
   type: http
   udp: true
   x-toolall-mihomo: true
-- name: 美国7
-  type: http
-  server: 138.199.35.195
-  port: 9002
-  username: 'null'
-  password: 'null'
-  tls: true
-  skip-cert-verify: true
+- name: 荷兰2
+  password: 04920673-035c-410d-94e4-5b1469d3fb6f
+  port: 42848
+  server: 171.22.183.158
+  sni: 171.22.183.158
+  tls: false
+  type: hysteria2
+- client-fingerprint: chrome
+  name: 伊朗1
+  password: 549766c3-fa5f-471e-8031-ffc1f8d5064f
+  port: 24403
+  server: 94.183.164.119
+  sni: docs.blog-forme.ru
+  tls: false
+  type: hysteria2
 - cipher: chacha20-ietf-poly1305
   name: 比利时1
   password: c40d60d1c847e63098058c7524680f349c9042f932d8e79c
@@ -145,28 +292,63 @@ proxies:
   server: belgium.astroapps.io
   type: ss
   udp: true
-- name: 法国1
-  network: ws
-  port: 80
-  server: 188.114.99.137
-  tls: false
+- type: hysteria2
+  name: 阿联酋1
+  server: 128.254.186.57
+  port: 13337
+  password: 900c8c92-1979-4c7c-8f2f-63e87d53d8fe
+  udp: true
+  servername: mother-earth.fyi
+  sni: mother-earth.fyi
+  skip-cert-verify: true
+- name: 巴西1
   type: vless
+  network: ws
+  server: 188.114.99.137
+  port: 80
   uuid: c762af05-2e92-4133-bc30-8cf45dd40a28
+  tls: false
   ws-opts:
     headers:
       Host: suh.cryptofront.uk
     path: /
-- client-fingerprint: ios
+- name: 美国18
+  server: 188.114.98.0
+  port: 443
+  type: vless
+  uuid: eee8ae65-bc48-438f-a606-a96f10bfb3b8
+  tls: true
+  alpn:
+  - http/1.1
+  servername: x.m-90.xyz
+  client-fingerprint: unsafe
+  network: ws
+  ws-opts:
+    path: t.me/TEAMNETGRATISCOL
+    headers:
+      Host: x.m-90.xyz
+  udp: true
+- client-fingerprint: chrome
   flow: xtls-rprx-vision
-  name: 美国8
-  network: tcp
+  name: 美国19
+  network: raw
   port: 443
   reality-opts:
     public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
     short-id: c39cc7310a
-  server: 169.40.42.90
+  server: 169.40.42.89
   servername: yahoo.com
   tls: true
   type: vless
   udp: true
   uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- name: 英国1
+  server: uk-tube-01.stre4m.net
+  port: 13337
+  type: hysteria2
+  password: 900c8c92-1979-4c7c-8f2f-63e87d53d8fe
+  auth: 900c8c92-1979-4c7c-8f2f-63e87d53d8fe
+  sni: mother-earth.fyi
+  skip-cert-verify: true
+  alpn:
+  - h3
