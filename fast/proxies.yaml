@@ -1,4 +1,12 @@
 proxies:
+- name: 美国1
+  password: 1010cbba-c467-45cd-87f3-a583871f6c1a
+  port: 443
+  server: signal.lovehk.xyz
+  skip-cert-verify: true
+  sni: signal.lovehk.xyz
+  type: anytls
+  udp: true
 - name: 香港1
   server: ibsdsf.df6h451rh.xin
   port: 443
@@ -8,50 +16,7 @@ proxies:
   udp: true
   sni: docs.microsoft.com
   skip-cert-verify: true
-- name: 加拿大1
-  password: f00f8f7d-ef35-42ac-b10f-680a7a3f81ed
-  port: 443
-  server: im.lovehk.xyz
-  skip-cert-verify: true
-  sni: im.lovehk.xyz
-  type: anytls
-  udp: true
-- name: 美国1
-  type: ss
-  server: 40.160.86.43
-  port: 8388
-  cipher: aes-256-gcm
-  password: itzvpn@321
-  udp: true
 - name: 台湾1
-  server: a54ge.df6h451rh.xin
-  port: 443
-  type: anytls
-  password: 0324fbc29561
-  client-fingerprint: chrome
-  udp: true
-  sni: docs.microsoft.com
-  skip-cert-verify: true
-- name: 香港2
-  type: vless
-  server: 116.213.43.43
-  port: 11106
-  uuid: 2e7bd251-52be-4ffa-b79e-108e1fe07185
-  udp: true
-  network: tcp
-  tls: true
-  servername: 116.213.43.43
-  reality-opts:
-    public-key: ''
-    short-id: ''
-- name: 台湾2
-  password: 2902c46c8493
-  port: 443
-  server: er8u54dh.df6h451rh.xin
-  skip-cert-verify: true
-  sni: px.ads.linkedin.com
-  type: anytls
-- name: 台湾3
   password: 2902c46c8493
   port: 443
   server: rtifgjdr.df6h451rh.xin
@@ -60,53 +25,171 @@ proxies:
   type: anytls
   udp: true
 - name: 韩国1
-  port: 1080
-  server: 59.11.209.162
-  skip-cert-verify: true
-  type: socks5
-- name: 韩国2
   type: http
   server: 152.69.230.221
   port: 443
   tls: true
   skip-cert-verify: true
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 美国2
-  network: tcp
+- name: 日本1
   port: 443
-  reality-opts:
-    public-key: ALT8hIGeZEhi0sQFbXP_ntBg8Xo-v7i0YCLrqTnBxRk
-    short-id: 0990d22f
-  server: 167.17.69.171
-  servername: www.cloudflare.com
+  server: fan.571589.xyz
   tls: true
-  type: vless
+  type: http
+- name: 英国1
+  type: socks5
+  server: 221.133.22.195
+  port: 62000
+  username: KUs4xRXd
+  password: 480w0Yy4
+- name: 英国2
+  type: socks5
+  server: 221.133.22.51
+  port: 62000
+  username: KUs4xRXd
+  password: 480w0Yy4
+- name: 英国3
+  server: waic.pro.main.sys-metric-report.com
+  port: 28014
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: abc62f00-95a8-4c2e-a85d-36a2cdc977da
   udp: true
-  uuid: 00144519-7e0d-476b-8d28-435576af9262
-- client-fingerprint: chrome
-  name: 加拿大2
-  network: ws
-  port: 443
-  server: 104.18.37.127
-  servername: jp3.yohototo.top
-  tls: true
+- name: 新加坡1
+  server: dddz-1-x.473221.xyz
+  port: 43113
   type: vless
-  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
-  ws-opts:
-    headers:
-      Host: jp3.yohototo.top
-    path: /tyxyws
+  uuid: 5807f1c4-b50e-4ec0-8d01-274045da0da5
+  tls: true
+  packet-encoding: xudp
+  flow: xtls-rprx-vision
+  reality-opts:
+    public-key: EK3prcfF8VKm3CoTXWQguRj67LxGbkPIpKmEUKsMKGs
+    short-id: ff2c978a0b
+  servername: v1-dy.ixigua.com
+  client-fingerprint: edge
+  network: tcp
+- name: 美国2
+  password: test123
+  port: 1080
+  server: 104.168.249.36
+  type: socks5
+  username: test123
 - name: 美国3
+  password: gs4BXwT6SW
+  port: 10988
+  server: 154.26.192.123
+  type: http
+  username: fQ67Dpe5dU
+- name: 美国4
+  password: 'null'
+  port: 9002
+  server: 138.199.35.219
+  skip-cert-verify: true
+  sni: 138.199.35.219
+  tls: true
+  type: http
+  username: 'null'
+- name: 美国5
+  password: 'null'
+  port: 9002
+  server: 138.199.35.198
+  skip-cert-verify: true
+  sni: 138.199.35.198
+  tls: true
+  type: http
+  username: 'null'
+- name: 加拿大1
+  port: 443
+  server: 172.64.69.89
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+- name: 美国6
+  password: 'null'
+  port: 9002
+  server: 138.199.35.220
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: 'null'
+- name: 美国7
+  port: 9002
+  server: 138.199.35.201
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国8
   password: ''
-  port: 9443
-  server: 38.95.111.226
+  port: 9002
+  server: 138.199.35.207
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
   username: ''
   x-toolall-mihomo: true
+- name: 美国9
+  type: http
+  server: 138.199.35.202
+  port: 9002
+  tls: true
+  sni: 138.199.35.202
+  skip-cert-verify: true
+- name: 美国10
+  port: 9443
+  server: 38.95.111.226
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国11
+  port: 9002
+  server: 138.199.35.196
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- name: 美国12
+  port: 9002
+  server: 138.199.35.200
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
+  x-toolall-mihomo: true
+- cipher: chacha20-ietf-poly1305
+  name: 比利时1
+  password: c40d60d1c847e63098058c7524680f349c9042f932d8e79c
+  plugin: v2ray-plugin
+  plugin-opts:
+    host: belgium.astroapps.io
+    mode: websocket
+    path: /7a0f74508333399db96164d7
+    tls: true
+  port: 443
+  server: belgium.astroapps.io
+  type: ss
+  udp: true
+- name: 美国13
+  type: http
+  server: 138.199.35.195
+  port: 9002
+  username: 'null'
+  password: 'null'
+  tls: true
+  skip-cert-verify: true
+- name: 美国14
+  type: http
+  server: 45.145.72.122
+  port: 8443
+  tls: true
+  sni: 45.145.72.122
+  skip-cert-verify: true
 - name: 法国1
   network: ws
   port: 80
@@ -118,65 +201,20 @@ proxies:
     headers:
       Host: suh.cryptofront.uk
     path: /
-- name: 加拿大3
-  type: vmess
-  server: 172.67.190.164
+- name: 美国15
+  type: http
+  server: 137.175.22.85
   port: 443
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  alterId: 0
-  cipher: auto
-  udp: true
   tls: true
-  servername: guanwang.awsno.com
-  network: ws
-- name: 加拿大4
-  type: vmess
-  server: 172.64.145.93
-  port: 443
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  alterId: 0
-  cipher: auto
-  udp: true
-  tls: true
-  servername: guanwang.awsno.com
-  network: ws
-- name: 美国4
+  sni: 137.175.22.85
+  skip-cert-verify: true
+- name: 美国16
   password: ''
   port: 9002
-  server: 138.199.35.196
+  server: 138.199.35.197
   skip-cert-verify: true
   tls: true
   type: http
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 美国5
-  type: http
-  server: 138.199.35.195
-  port: 9002
-  username: 'null'
-  password: 'null'
-  tls: true
-  skip-cert-verify: true
-- name: 美国6
-  password: gs4BXwT6SW
-  port: 10988
-  server: 154.26.192.123
-  type: http
-  username: fQ67Dpe5dU
-- name: 加拿大5
-  port: 443
-  server: 172.64.69.89
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-- name: 美国7
-  password: 'null'
-  port: 9002
-  server: 138.199.35.219
-  skip-cert-verify: true
-  sni: 138.199.35.219
-  tls: true
-  type: http
-  username: 'null'
