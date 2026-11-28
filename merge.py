@@ -962,14 +962,22 @@ def main():
         print(f"  归属地识别 {fixed}/{len(unknown)}")
     region_of = {}
     seq = {}
+    kept, dropped = [], 0
     for p in alive:
         r = p.pop("_region", "OTHER")
+        if r in ("CN", "OTHER"):
+            dropped += 1
+            continue
         seq[r] = seq.get(r, 0) + 1
-        p["name"] = f"{(REGION_CN.get(r) or '中国')}{seq[r]}"
+        p["name"] = f"{REGION_CN.get(r, r)}{seq[r]}"
         region_of[p["name"]] = r
         d = p.pop("_delay", None)
         if isinstance(d, (int, float)) and d > 0:
             fast_delay[p["name"]] = d
+        kept.append(p)
+    alive = kept
+    if dropped:
+        print(f"  兜底/国内机房 {dropped} 个节点已剔除（不要中国组）")
     buckets = {}
     for p in alive:
         buckets.setdefault(region_of[p["name"]], []).append(p["name"])
@@ -977,9 +985,6 @@ def main():
     for code, _ in REGION_DEFS:
         if buckets.get(code):
             region_groups.append({"name": REGION_CN.get(code, code), "type": "select", "proxies": buckets[code]})
-    if buckets.get("CN") or buckets.get("OTHER"):
-        region_groups.append({"name": "中国", "type": "select",
-                       "proxies": buckets.get("CN", []) + buckets.get("OTHER", [])})
     for g in region_groups:
         print(f"  分组 {g['name']}: {len(g['proxies'])} 个节点")
     cfg = build_cfg(alive, region_groups)
